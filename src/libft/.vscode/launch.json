@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/aherrman/Documents/cursus42/base lib/libft",
+      "program": "/Users/aherrman/Documents/cursus42/base lib/libft/build/Debug/outDebug"
+    }
+  ]
+}
