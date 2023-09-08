@@ -6,11 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 10:28:54 by aherrman          #+#    #+#             */
-/*   Updated: 2023/08/24 11:21:46 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/09/08 00:12:08 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../include/minishell.h"
 
 int	ft_valid_sort(char **tab)
 {
