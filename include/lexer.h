@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/08 22:02:52 by sbouheni         ###   ########.fr       */
+/*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
+/*   Updated: 2023/09/08 22:07:19 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef LEXER_H
+# define LEXER_H
 
-int	main(int argc, char **argv, char **envp)
+typedef enum e_tokentype
 {
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	t_shell	shell;
+	token_cmd,
+	token_arg,
+}				t_tokentype;
 
-	init_prompt(&shell);
-	while (shell.status)
-	{
-		read_user_input(&shell);
-	}
-}
+typedef struct s_token
+{
+	t_tokentype	type;
+	char		*value;
+}				t_token;
+
+t_token			*extract_tokens(char *input);
+char			*next_token(char *input, char **remaining);
+int				count_tokens(char *input);
+
+#endif

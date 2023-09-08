@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/08/24 10:21:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/09/08 22:48:09 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 # define MINISHELL_H
 
 //***** LIB *****//
+# include "lexer.h"
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -23,6 +26,14 @@
 # include <unistd.h>
 
 //*****STRUCT*****//
+typedef struct s_shell
+{
+	char			*prompt;
+	char			*user_input;
+	t_token			*tokens;
+	int				status;
+}					t_shell;
+
 typedef struct s_lint
 {
 	long int		t0;
@@ -56,12 +67,14 @@ typedef struct s_lst
 
 typedef struct s_mini
 {
-	char **env;
-	char **expt;
-	char **path;
-	t_lst *lst;
+	char			**env;
+	char			**expt;
+	char			**path;
+	t_lst			*lst;
 
 }					t_mini;
 
-void ft_arg_to_mini(char **env, t_mini *mini);
+void				ft_arg_to_mini(char **env, t_mini *mini);
+void				init_prompt(t_shell *shell);
+void				read_user_input(t_shell *shell);
 #endif
