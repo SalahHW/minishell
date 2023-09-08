@@ -6,64 +6,56 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/08/22 14:00:39 by aherrman         ###   ########.fr        #
+#    Updated: 2023/09/08 22:27:29 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
+NAME	=			minishell
+OBJST	=			$(addprefix src/test/,$(SRCST:.c=.o))
+OBJS	=			$(addprefix src/,$(SRCS:.c=.o))
+CC		= 			gcc
+CFLAGS	= 			-g3 -Wall -Wextra -Werror
+RM		=			rm -rf
+LIBS 	=			include/libft/libft.a
+INC 	=			-I 
+SRCS 	=			main.c							\
+					lexer/lexer.c					\
+					prompt/prompt.c					\
 
-SRCS =	minishell.c\
-	utils/utils1.c\
-	parcing/ft_parcing1.c\
-		
-SRCST = ft_print_list.c\
-
-OBJST = $(addprefix src/test/,$(SRCST:.c=.o))
-
-
-OBJS = $(addprefix src/,$(SRCS:.c=.o))
-
-CC = gcc
-
-CFLAGS = -g3 -Wall -Werror -Wextra
-
-RM = rm -rf
-
-LIBS = src/libft/libft.a
-INC = -I 
+SRCST 	=			ft_print_list.c					\
 
 
-.c.o:
+.c.o	:
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-all:	$(NAME)
+all		:		$(NAME)
 
-$(NAME):	$(OBJS) 
-	@make all -C ./src/libft
-	@gcc $(FLAG) $(OBJS) $(LIBS) -o $(NAME)
+$(NAME)	:	$(OBJS) 
+	make -C ./include/libft
+	gcc $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) -lreadline
 
-debug:	$(OBJS)
-	@make all -C ./src/libft
-	@gcc $(FLAG) -fsanitize=address $(OBJS) $(LIBS) -o $(NAME)
+debug	:		$(OBJS)
+	make -C ./include/libft
+	gcc $(CFLAGS) -fsanitize=address $(OBJS) $(LIBS) -o $(NAME)
 
-test: $(OBJS) $(OBJST)
-	@make all -C ./src/libft
-	@gcc $(FLAG) $(OBJS) $(OBJST) $(LIBS) -o $(NAME)
+test	:		$(OBJS) $(OBJST)
+	make -C ./include/libft
+	gcc $(CFLAGS) $(OBJS) $(OBJST) $(LIBS) -o $(NAME)
 	
-testd: $(OBJS) $(OBJST)
-	@make all -C ./src/libft
-	@gcc $(FLAG) -fsanitize=address $(OBJS) $(OBJST) $(LIBS) -o $(NAME)
+testd	:		$(OBJS) $(OBJST)
+	make -C ./include/libft
+	gcc $(CFLAGS) -fsanitize=address $(OBJS) $(OBJST) $(LIBS) -o $(NAME)
 
-clean:
-	@$(RM) $(OBJS)
-	@$(RM) $(OBJST)
-	@make clean -C ./src/libft
+clean	:
+	$(RM) $(OBJS)
+	$(RM) $(OBJST)
+	make clean -C ./include/libft
 
 
-fclean:	clean
+fclean	:		clean
 	$(RM) $(NAME)
-	@make fclean -C ./src/libft
+	make clean -C ./include/libft
 	
-re:	fclean all
+re		:		fclean all
 
-ret: fclean test
+ret		:		fclean test
