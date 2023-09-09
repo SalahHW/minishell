@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/09 02:06:24 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/09 02:09:43 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*next_token(char *input, char **remaining)
 {
 	char	*token_start;
 	char	*token_end;
-	char    *input_ptr;
+	char	*input_ptr;
 
 	input_ptr = input;
 	while (*input_ptr && is_white_space(*input_ptr))
