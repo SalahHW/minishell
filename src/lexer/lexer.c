@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/09 02:09:43 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/10 20:21:09 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	*extract_tokens(char *input)
 	char		*token_str;
 	t_tokentype	type;
 
-	tokens = malloc(sizeof(t_token) * count_tokens(input) + 1);
+	tokens = malloc(sizeof(t_token) * (count_tokens(input) + 1));
 	if (!tokens)
 		return (NULL);
 	token_ptr = tokens;
@@ -74,13 +74,16 @@ int	count_tokens(char *input)
 	int		count;
 	char	*token_str;
 	char	*remaining;
+	char	*input_cpy;
 
 	count = 0;
-	token_str = next_token(input, &remaining);
+	input_cpy = ft_strdup(input);
+	token_str = next_token(input_cpy, &remaining);
 	while (token_str)
 	{
 		count++;
 		token_str = next_token(remaining, &remaining);
 	}
+	free(input_cpy);
 	return (count);
 }
