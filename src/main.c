@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/08 22:02:52 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/10 19:56:16 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,5 @@ int	main(int argc, char **argv, char **envp)
 	t_shell	shell;
 
 	init_prompt(&shell);
-	while (shell.status)
-	{
-		read_user_input(&shell);
-	}
+	read_user_input(&shell);
 }
