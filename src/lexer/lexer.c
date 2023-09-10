@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/10 20:21:09 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/10 23:51:41 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,18 @@ int	count_tokens(char *input)
 	}
 	free(input_cpy);
 	return (count);
+}
+
+//Clean the tokens list
+void	free_tokens(t_token *tokens)
+{
+	t_token	*token_ptr;
+
+	token_ptr = tokens;
+	while (token_ptr->value)
+	{
+		free(token_ptr->value);
+		token_ptr++;
+	}
+	free(tokens);
 }

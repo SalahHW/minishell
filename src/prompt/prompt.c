@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/08 22:48:14 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/10 23:58:04 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ void read_user_input(t_shell *shell)
 {
 	char *input;
 
-	input = readline(shell->prompt);
-	shell->tokens = extract_tokens(input);
+	while (shell->status)
+	{
+		input = readline(shell->prompt);
+		if (input)
+		{
+			shell->tokens = extract_tokens(input);
+			free(input);
+			free_tokens(shell->tokens);
+		}
+	}
 }
