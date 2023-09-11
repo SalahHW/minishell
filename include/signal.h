@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signal.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/11 02:06:30 by sbouheni         ###   ########.fr       */
+/*   Created: 2023/09/11 00:28:56 by sbouheni          #+#    #+#             */
+/*   Updated: 2023/09/11 01:32:35 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef SIGNAL_H
+# define SIGNAL_H
 
-int	main(int argc, char **argv, char **envp)
-{
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	t_shell	shell;
+int		setup_signal_handlers(void);
+void	handle_sigint(int sig);
 
-	if (init_shell(&shell) == -1)
-		return (EXIT_FAILURE);
-	read_user_input(&shell);
-	clean_shell(&shell);
-}
+#endif

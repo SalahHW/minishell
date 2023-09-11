@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   setup_signals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/11 02:06:30 by sbouheni         ###   ########.fr       */
+/*   Created: 2023/09/11 00:22:08 by sbouheni          #+#    #+#             */
+/*   Updated: 2023/09/11 01:26:03 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	setup_signal_handlers(void)
 {
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	t_shell	shell;
+	struct sigaction	sa;
 
-	if (init_shell(&shell) == -1)
-		return (EXIT_FAILURE);
-	read_user_input(&shell);
-	clean_shell(&shell);
+	g_sigint_received = 0;
+	sa.sa_handler = &handle_sigint;
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
+	if (sigaction(SIGINT, &sa, NULL) == -1)
+	{
+		perror("Can't set SIGINT handler");
+		return (0);
+	}
+	return (1);
 }

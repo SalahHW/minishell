@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_sigint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/11 02:06:30 by sbouheni         ###   ########.fr       */
+/*   Created: 2023/09/11 00:26:58 by sbouheni          #+#    #+#             */
+/*   Updated: 2023/09/11 00:27:15 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void handle_sigint(int sig)
 {
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	t_shell	shell;
-
-	if (init_shell(&shell) == -1)
-		return (EXIT_FAILURE);
-	read_user_input(&shell);
-	clean_shell(&shell);
+	(void)sig;
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
