@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/11 02:12:05 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/11 02:51:53 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <string.h>
 # include <unistd.h>
 
-extern volatile sig_atomic_t	g_sigint_received;
+extern volatile sig_atomic_t	g_sigquit_received;
 
 //*****STRUCT*****//
 typedef struct s_shell
