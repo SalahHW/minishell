@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/09/11 16:24:28 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/09/12 03:58:04 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM		=			rm -rf
 LIBS 	=			include/libft/libft.a
 INC 	=			-I 
 SRCS 	=			main.c							\
-					lexer/lexer.c					\
+					lexer/tokenizer.c				\
 					prompt/prompt.c					\
 					signal/setup_signals.c			\
 					signal/handle_sigquit.c			\
