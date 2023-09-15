@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/11 02:51:53 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:38:01 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_shell
 {
 	char						*prompt;
 	char						*user_input;
-	t_token						*tokens;
+	t_tokenlist					*tokens;
 	int							status;
 }								t_shell;
 
