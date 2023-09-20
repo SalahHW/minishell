@@ -6,14 +6,14 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/15 13:09:24 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:04:30 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 // Add a token to the tokens list
-static void	add_new_token(t_tokenlist *tokens, char *value, t_tokentype type)
+static void	add_new_token(t_tokenlist *tokens, char *value)
 {
 	t_token	*new_token;
 
@@ -23,8 +23,8 @@ static void	add_new_token(t_tokenlist *tokens, char *value, t_tokentype type)
 		perror("Error while tokenizing");
 		return ;
 	}
-	new_token->value = value;
-	new_token->type = type;
+	new_token->value = ft_strdup(value);
+	new_token->type = token_undifined;
 	new_token->next = NULL;
 	if (!tokens->head)
 	{
@@ -36,67 +36,79 @@ static void	add_new_token(t_tokenlist *tokens, char *value, t_tokentype type)
 	tokens->tail = new_token;
 }
 
+static t_tokenlist	*init_tokens_list(void)
+{
+	t_tokenlist	*tokens;
+
+	tokens = malloc(sizeof(t_tokenlist));
+	tokens->head = NULL;
+	tokens->tail = NULL;
+	return (tokens);
+}
+
+static void	detect_tokens_type(t_tokenlist *tokens)
+{
+	t_token	*token_ptr;
+
+	token_ptr = tokens->head;
+	while (token_ptr)
+	{
+		token_ptr = token_ptr->next;
+	}
+}
+
 // Take a string and return a list of tokens
 t_tokenlist	*extract_tokens(char *input)
 {
 	t_tokenlist	*tokens;
 	char		*token_str;
-	char		*remaining;
-	char		*value;
-	t_tokentype	type;
 
-	tokens = malloc(sizeof(t_tokenlist));
-	tokens->head = NULL;
-	tokens->tail = NULL;
-	token_str = next_token(input, &remaining);
-	type = token_cmd;
+	tokens = init_tokens_list();
+	token_str = get_next_token(&input);
 	while (token_str)
 	{
-		value = ft_strdup(token_str);
-		add_new_token(tokens, value, type);
-		type = token_arg;
-		token_str = next_token(remaining, &remaining);
+		add_new_token(tokens, token_str);
+		token_str = get_next_token(&input);
 	}
+	detect_tokens_type(tokens);
 	return (tokens);
 }
 
 // Take a string and return the next token
-char	*next_token(char *input, char **remaining)
+char	*get_next_token(char **input)
 {
 	char	*token_start;
-	char	*token_end;
-	char	*input_ptr;
+	char	quote_flag;
 
-	input_ptr = input;
-	while (*input_ptr && is_white_space(*input_ptr))
-		input_ptr++;
-	token_start = input_ptr;
-	token_start = extract_pipe(token_start, remaining);
-	if (token_start)
-		return (token_start);
-	token_start = input_ptr;
-	token_start = extract_redirection(token_start, remaining);
-	if (token_start)
-		return (token_start);
-	token_start = input_ptr;
-	while (*input_ptr && !is_white_space(*input_ptr))
-		input_ptr++;
-	token_end = input_ptr;
-	if (token_start != token_end)
+	quote_flag = 0;
+	while (**input && is_white_space(**input))
+		(*input)++;
+	token_start = *input;
+	if (**input == '\'' || **input == '\"')
 	{
-		if (*token_end)
-		{
-			*token_end = '\0';
-			*remaining = token_end + 1;
-		}
-		else
-			*remaining = token_end;
-		return (token_start);
+		quote_flag = **input;
+		token_start++;
+		(*input)++;
 	}
-	return (NULL);
+	if (quote_flag)
+	{
+		while (**input && **input != quote_flag)
+			(*input)++;
+	}
+	else
+	{
+		while (**input && !is_white_space(**input))
+			(*input)++;
+	}
+
+	if (token_start == *input)
+		return (NULL);
+	**input = '\0';
+	(*input)++;
+	return (token_start);
 }
 
-//Clean the tokens list
+// Clean the tokens list
 void	free_tokens(t_tokenlist *tokens)
 {
 	t_token	*token_ptr;
