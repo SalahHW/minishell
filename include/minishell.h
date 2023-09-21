@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/15 12:38:01 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/21 02:28:44 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,47 +38,6 @@ typedef struct s_shell
 	int							status;
 }								t_shell;
 
-typedef struct s_lint
-{
-	long int					t0;
-	long int					t1;
-	long int					t2;
-	long int					t3;
-	long int					t4;
-	long int					t5;
-}								t_lint;
-
-typedef struct s_string
-{
-	char						*s0;
-	char						*s1;
-	char						*s2;
-	char						*s3;
-}								t_string;
-
-typedef struct s_temp
-{
-	t_lint						i;
-	t_string					s;
-
-}								t_temp;
-typedef struct s_lst
-{
-	char						*cmd;
-	char						*vpath;
-	struct s_lst				*next;
-}								t_lst;
-
-typedef struct s_mini
-{
-	char						**env;
-	char						**expt;
-	char						**path;
-	t_lst						*lst;
-
-}								t_mini;
-
-void							ft_arg_to_mini(char **env, t_mini *mini);
 int								init_shell(t_shell *shell);
 void							clean_shell(t_shell *shell);
 void							read_user_input(t_shell *shell);
