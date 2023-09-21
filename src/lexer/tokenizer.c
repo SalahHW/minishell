@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/19 14:04:30 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/09/20 10:04:55 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,11 @@ char	*get_next_token(char **input)
 
 	if (token_start == *input)
 		return (NULL);
-	**input = '\0';
-	(*input)++;
+	if (**input != 0)
+	{
+		**input = 0;
+		(*input)++;
+	}
 	return (token_start);
 }
 
