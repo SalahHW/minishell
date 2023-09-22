@@ -6,13 +6,13 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 00:22:08 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/11 16:19:15 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/22 03:57:53 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int setup_sigquit(void)
+static int	setup_sigquit(void)
 {
 	struct sigaction	sa;
 
@@ -28,7 +28,7 @@ static int setup_sigquit(void)
 	return (0);
 }
 
-static int setup_sigint(void)
+static int	setup_sigint(void)
 {
 	struct sigaction	sa;
 
