@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/09/22 04:47:55 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/09/22 05:29:24 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INC 	=			-I
 SRCS 	=			main.c							\
 					lexer/tokenizer.c				\
 					lexer/token_type.c				\
+					lexer/token_list.c				\
 					prompt/prompt.c					\
 					signal/setup_signals.c			\
 					signal/handle_sigquit.c			\

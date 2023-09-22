@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/19 07:17:14 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/09/22 05:28:19 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	read_user_input(t_shell *shell)
 				shell->tokens = extract_tokens(input);
 			free(input);
 			if (!g_sigquit_received)
-				free_tokens(shell->tokens);
+				clear_tokens_list(shell->tokens);
 		}
 		if (!input)
 			shell->status = 0;
