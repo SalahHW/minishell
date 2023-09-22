@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/22 03:42:23 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/22 04:47:49 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ static t_tokenlist	*init_tokens_list(void)
 	return (tokens);
 }
 
-static void	detect_tokens_type(t_tokenlist *tokens)
-{
-	t_token	*token_ptr;
-
-	token_ptr = tokens->head;
-	while (token_ptr)
-	{
-		token_ptr = token_ptr->next;
-	}
-}
 
 // Take a string and return a list of tokens
 t_tokenlist	*extract_tokens(char *input)
