@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/21 02:27:30 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/22 04:14:59 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ typedef enum e_tokentype
 	token_undifined,
 	token_cmd,
 	token_arg,
-	tokent_pipe,
+	token_pipe,
 	token_redirect_in,
 	token_redirect_out,
 	token_redirect_append,
