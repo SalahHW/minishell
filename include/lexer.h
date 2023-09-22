@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/22 04:45:11 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/22 04:55:17 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,5 @@ int					count_tokens(char *input);
 void				free_tokens(t_tokenlist *tokens);
 
 void				detect_tokens_type(t_tokenlist *tokens);
-
-char				*is_redirect_in(char *str);
-char				*is_redirect_out(char *str);
-char				*is_redirect_append(char *str);
 
 #endif
