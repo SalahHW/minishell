@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/22 05:27:53 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/24 17:56:07 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_token
 {
 	t_tokentype		type;
 	char			*value;
+	int				is_valid;
 	struct s_token	*next;
 	struct s_token	*prev;
 }					t_token;

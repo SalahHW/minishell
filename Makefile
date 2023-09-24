@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/09/22 05:29:24 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/09/24 18:57:57 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ SRCS 	=			main.c							\
 					lexer/tokenizer.c				\
 					lexer/token_type.c				\
 					lexer/token_list.c				\
+					parser/parser.c					\
+					parser/token_check.c			\
+					parser/command_check.c			\
 					prompt/prompt.c					\
 					signal/setup_signals.c			\
 					signal/handle_sigquit.c			\
@@ -38,7 +41,7 @@ SRCST 	=			ft_print_list.c					\
 all		:		$(NAME)
 
 $(NAME)	:	$(OBJS) 
-	make -C ./include/libft
+	@make -C ./include/libft
 	gcc $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) -lreadline
 
 debug	:		$(OBJS)
@@ -61,7 +64,7 @@ clean	:
 
 fclean	:		clean
 	$(RM) $(NAME)
-	make clean -C ./include/libft
+	@make clean -C ./include/libft
 	
 re		:		fclean all
 

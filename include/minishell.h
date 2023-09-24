@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/21 02:28:44 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/24 05:53:54 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //***** LIB *****//
 # include "lexer.h"
 # include "libft/libft.h"
+# include "parser.h"
 # include "signal.h"
 # include <fcntl.h>
 # include <readline/history.h>
