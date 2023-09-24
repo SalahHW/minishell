@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:11:23 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/24 18:57:34 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/25 01:13:31 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,62 @@ static int	is_bultin_cmd(char *cmd)
 	return (0);
 }
 
+static char	*get_cmd_path(char *path, char *cmd)
+{
+	char	*cmd_path;
+	char	*tmp;
+
+	cmd_path = ft_strjoin(path, "/");
+	tmp = cmd_path;
+	cmd_path = ft_strjoin(cmd_path, cmd);
+	free(tmp);
+	return (cmd_path);
+}
+
+static int	is_executable_cmd(char *cmd_path)
+{
+	if (access(cmd_path, X_OK) == 0)
+	{
+		free(cmd_path);
+		return (1);
+	}
+	return (0);
+}
+
+static int	is_path_cmd(char *cmd)
+{
+	char	*path;
+	char	**paths;
+	char	*cmd_path;
+	int		i;
+
+	path = getenv("PATH");
+	if (!path)
+		return (0);
+	paths = ft_split(path, ':');
+	if (!paths)
+		return (0);
+	i = 0;
+	while (paths[i])
+	{
+		cmd_path = get_cmd_path(paths[i], cmd);
+		if (is_executable_cmd(cmd_path))
+		{
+			p_free_splited_str(paths);
+			return (1);
+		}
+		free(cmd_path);
+		i++;
+	}
+	p_free_splited_str(paths);
+	return (0);
+}
+
 int	is_valid_command(char *cmd)
 {
 	if (is_bultin_cmd(cmd))
 		return (1);
-	//	if (is_path_cmd(cmd))
-	//		return (1);
+	if (is_path_cmd(cmd))
+		return (1);
 	return (0);
 }
