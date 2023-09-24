@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/24 06:04:38 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/25 01:17:40 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	read_user_input(t_shell *shell)
 				shell->tokens = extract_tokens(input);
 				if (!parser(shell->tokens))
 				{
-
 				}
 			}
 			free(input);

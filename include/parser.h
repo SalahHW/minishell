@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 05:36:55 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/24 18:02:24 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/25 01:16:26 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ int	parser(t_tokenlist *token_list);
 
 int	check_tokens(t_tokenlist *token_list);
 
-int is_valid_command(char *str);
+int	is_valid_command(char *str);
 
 #endif
