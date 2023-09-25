@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:08:15 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/25 01:16:55 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/25 03:37:01 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	add_new_token(t_tokenlist *tokens, char *value)
 		return ;
 	}
 	new_token->value = ft_strdup(value);
-	new_token->type = token_undifined;
+	new_token->type = t_undifined;
 	new_token->next = NULL;
 	new_token->prev = tokens->tail;
 	if (tokens->tail)
