@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/27 17:13:40 by aherrman         ###   ########.fr       */
+/*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
+/*   Updated: 2023/09/28 11:03:51 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 void	ft_print_for_export(char **tmp)
 {
@@ -39,35 +39,26 @@ void	ft_print_for_export(char **tmp)
 	}
 	write(1, "\n", 1);
 }
-void	ft_test(t_mini *mini)
+
+int	export(t_mini *mini, char **arg)
 {
-	char	**tab;
+	int	i;
 
-	(void)mini;
-	tab = malloc(sizeof(char *) * 4);
-	tab[0] = ft_strdup("=CBBBBB");
-	tab[1] = ft_strdup("=AAAAAA");
-	tab[2] = ft_strdup("=ACCCCCC");
-	tab[3] = NULL;
-	ft_print_for_export(tab);
-	printf("\n\n\n\n\n");
-	ft_print_for_export(ft_ascii_sort(tab));
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	t_mini	*mini;
-
-	// t_shell	shell;
-	(void)argc;
-	(void)argv;
-	// if (init_shell(&shell) == -1)
-	// 	return (EXIT_FAILURE);
-	mini = malloc(sizeof(t_mini));
-	ft_init_mini(mini);
-	ft_create_env_and_path(mini, envp);
-	ft_test(mini);
-	// read_user_input(&shell);
-	// clean_shell(&shell);
-	mini_free(mini);
+	i = 0;
+	if (arg[1] == NULL)
+		ft_print_export(ft_ascii_sort(mini->expt));
+	else
+	{
+		while (arg[i])
+		{
+			if (ft_check_char_at_back_tab(arg[i], "="))
+			{
+				mini->expt = add_char_at_back_tab(arg[i], mini->expt);
+				mini->env = fadd_char_at_back_tab(arg[i], mini->env);
+			}
+			else
+				mini->expt = add_char_at_back_tab(arg[i], mini->expt);
+			i++;
+		}
+	}
 }

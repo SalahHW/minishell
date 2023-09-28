@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/09/24 18:57:57 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/09/27 09:06:30 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,17 @@ SRCS 	=			main.c							\
 					signal/handle_sigint.c			\
 					resources/init.c				\
 					resources/clean.c				\
+					global_utils/utils_for_char.c	\
+					global_utils/utils_for_tab.c	\
+					global_utils/utils_for_tab2.c	\
+					global_utils/utils_for_env.c	\
+					global_utils/utils_for_test.c	\
+					resourcesalex/init.c			\
+					resourcesalex/free.c			\
+					resourcesalex/create_r.c		\
+
+					
+					
 
 SRCST 	=			ft_print_list.c					\
 
