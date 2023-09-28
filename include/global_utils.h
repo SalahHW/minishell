@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:18 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/27 15:42:49 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:37:41 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_tab_copy(char **str);
 void	free_tab(char **tab);
 
 //utils_for_tab2//
-char ** ft_replace_in_tab(char ** tab, char *str, char *new);
+char ** ft_replace_in_tab(char ** tab, char *str, char *new_str);
 char *ft_tab_on_one_line(char **tab);
 int count_char_in_tab(char **tab);
 char **ft_delete_elem_in_tab(char *str, char **tab);

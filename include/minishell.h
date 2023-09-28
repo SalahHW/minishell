@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/25 15:44:57 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:50:44 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 //***** LIB *****//
+# include "command.h"
 # include "lexer.h"
 # include "libft/libft.h"
 # include "parser.h"
@@ -27,9 +28,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-//alex//
-#include "global_utils.h"
-#include "new.h"
+// alex//
+# include "global_utils.h"
+# include "new.h"
 
 extern volatile sig_atomic_t	g_sigquit_received;
 

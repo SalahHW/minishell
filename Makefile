@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/09/27 09:06:30 by aherrman         ###   ########.fr        #
+#    Updated: 2023/09/28 11:51:19 by joakoeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS 	=			main.c							\
 					resourcesalex/init.c			\
 					resourcesalex/free.c			\
 					resourcesalex/create_r.c		\
+					execution/execution.c			\
 
 					
 					

@@ -6,9 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 08:49:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:32:16 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/minishell.h"
 
 int	ft_cd(char *arg, char **envp, char *home)
 {
