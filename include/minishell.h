@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 11:50:44 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:07:10 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ typedef struct s_shell
 	char						*user_input;
 	t_tokenlist					*tokens;
 	int							status;
+	t_mini						*mini;
 }								t_shell;
 
 int								init_shell(t_shell *shell);
 void							clean_shell(t_shell *shell);
 void							read_user_input(t_shell *shell);
+int								execute_cmd(t_shell *shell);
 #endif

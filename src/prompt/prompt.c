@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/25 01:17:40 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:07:04 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	read_user_input(t_shell *shell)
 				if (!parser(shell->tokens))
 				{
 				}
+				execute_cmd(shell);
 			}
 			free(input);
 			if (!g_sigquit_received)

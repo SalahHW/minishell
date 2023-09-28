@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 11:48:49 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:33:48 by joakoeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int execute_cmd(t_shell *shell, t_mini *mini, char *cmd)
+int execute_cmd(t_shell *shell)
 {
 	t_token *token;
 
@@ -21,12 +21,19 @@ int execute_cmd(t_shell *shell, t_mini *mini, char *cmd)
 	{
 		if (token->type == t_cmd)
 		{
-			if (ft_strncmp(cmd, "cd", 3) == 0)
+			if (ft_strncmp(token->value, "cd", 3) == 0)
 			{
-				ft_cd(token->next, mini->env, mini->home);
+				if (token->next && token->next->value && token->next->is_valid)
+					ft_cd(token->next->value, shell->mini->env, shell->mini->home);
+				ft_cd(NULL, shell->mini->env, shell->mini->home);
+				
+			}
+			if (ft_strncmp(token->value, "pwd", 4) == 0)
+			{
+				pwd();
 			}
 		}
 		token = token->next;
 	}
-
+	return (1);
 }
