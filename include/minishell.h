@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 16:37:10 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 20:15:00 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include "parser.h"
 # include "signal.h"
 # include <fcntl.h>
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
 # include <stddef.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
