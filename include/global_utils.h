@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:18 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 11:37:41 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/10/02 14:29:26 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 //utils_for_char//
 int		ft_strcmp(char *s1, char *s2);
-char	*ft_search_in_tab(char *seach, char **tab);
 int		ft_strcat(char *src, char *dst);
 int	ft_only_spaces(char *str);
 int ft_check_char_in_str(char*str,char c);
@@ -32,9 +31,13 @@ char ** ft_replace_in_tab(char ** tab, char *str, char *new_str);
 char *ft_tab_on_one_line(char **tab);
 int count_char_in_tab(char **tab);
 char **ft_delete_elem_in_tab(char *str, char **tab);
+char	*ft_search_in_tab(char **tab, char *str);
+
+//utils_for_tab3//
+char	**ft_change_value_in_var_in_tab(char **tab, char *var, char *value);
 
 //utils_for_env//
-char	*ft_search_var_in_env(char *search, char **env, int need);
+char	*ft_search_var_in_env(char **env,char *search, int need);
 
 //utils_for_test//
 

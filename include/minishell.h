@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 12:07:10 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:37:10 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 // alex//
 # include "global_utils.h"
 # include "new.h"
+# include <sys/wait.h>
 
 extern volatile sig_atomic_t	g_sigquit_received;
 

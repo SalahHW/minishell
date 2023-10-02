@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/09/28 12:30:58 by joakoeni         ###   ########.fr        #
+#    Updated: 2023/10/02 14:29:42 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS 	=			main.c							\
 					global_utils/utils_for_char.c	\
 					global_utils/utils_for_tab.c	\
 					global_utils/utils_for_tab2.c	\
+					global_utils/utils_for_tab3.c	\
 					global_utils/utils_for_env.c	\
 					global_utils/utils_for_test.c	\
 					resourcesalex/init.c			\
@@ -41,6 +42,9 @@ SRCS 	=			main.c							\
 					resourcesalex/create_r.c		\
 					builtins/cd.c					\
 					builtins/pwd.c					\
+					builtins/unset.c				\
+					builtins/export.c				\
+					builtins/env.c					\
 					execution/execution.c			\
 
 					
@@ -60,7 +64,7 @@ $(NAME)	:	$(OBJS)
 
 debug	:		$(OBJS)
 	make -C ./include/libft
-	gcc $(CFLAGS) -fsanitize=address $(OBJS) $(LIBS) -o $(NAME)
+	gcc $(CFLAGS) -fsanitize=address $(OBJS) $(LIBS) -o $(NAME) -lreadline
 
 test	:		$(OBJS) $(OBJST)
 	make -C ./include/libft

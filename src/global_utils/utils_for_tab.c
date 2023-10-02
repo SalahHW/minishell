@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:16:14 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/27 15:38:27 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:40:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**add_char_at_back_tab(char **tab, char *str)
 {
 	int		i;
 	char	**tmp;
-	
+
 	i = ft_tab_size(tab) + 2;
 	tmp = ft_tab_copy(tab);
 	tmp[i - 2] = ft_strdup(str);
@@ -85,9 +85,9 @@ int	ft_tab_size(char **str)
 
 char	**ft_tab_copy(char **tab)
 {
-	int l;
-	int i;
-	char **tmp;
+	int		l;
+	int		i;
+	char	**tmp;
 
 	i = 0;
 	l = 0;

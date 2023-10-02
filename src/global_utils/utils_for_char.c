@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:21:57 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/27 15:42:06 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:40:13 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,13 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-char	*ft_search_in_tab(char *search, char **tab)
+int	ft_strcat(char *src, char *dst)
 {
 	int	i;
-
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		if (ft_strncmp(tab[i], search,ft_strlen(search)) == 0)
-			return (tab[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-int ft_strcat(char *src, char *dst)
-{
-	int i;
-	int j;
-
+	int	j;
 
 	i = 0;
 	j = 0;
-
 	while (dst[i])
 		i++;
 	while (src[j])
@@ -68,13 +52,13 @@ int	ft_only_spaces(char *str)
 	}
 	return (0);
 }
-int ft_check_char_in_str(char*str,char c)
+int	ft_check_char_in_str(char *str, char c)
 {
 	int i;
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] == c)
+		if (str[i] == c)
 			return (1);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:02:02 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/27 15:41:55 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:56:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_tab_on_one_line(char **tab)
 	return (tmp);
 }
 
-char	**ft_replace_in_tab(char **tab, char *str, char *new)
+char	**ft_replace_in_tab(char **tab, char *str, char *new_str)
 {
 	int		i;
 	char	**tmp;
@@ -63,7 +63,8 @@ char	**ft_replace_in_tab(char **tab, char *str, char *new)
 		if (ft_strncmp(tmp[i], str, ft_strlen(str)) == 0)
 		{
 			free(tmp[i]);
-			tmp[i] = ft_strdup(new);
+			tmp[i] = ft_strdup(new_str);
+			free_tab(tab);
 			return (tmp);
 		}
 		i++;
@@ -71,24 +72,22 @@ char	**ft_replace_in_tab(char **tab, char *str, char *new)
 	return (NULL);
 }
 
-char **ft_delete_elem_in_tab(char *str, char **tab)
+char	**ft_delete_elem_in_tab(char *str, char **tab)
 {
 	int		i;
 	int		j;
 	int		k;
 	char	**tmp;
 
-printf("str = %s\n", str);
 	i = 0;
 	k = ft_tab_size(tab);
 	j = 0;
-	tmp = ft_calloc(k-1, sizeof(char *));
+	tmp = ft_calloc(k - 1, sizeof(char *));
 	while (tab[i])
 	{
 		if (ft_strncmp(tab[i], str, ft_strlen(str)) != 0)
 		{
 			tmp[j] = ft_strdup(tab[i]);
-			printf("tmp[%d] = %s, tab[%d] = %s\n", j, tmp[j],i,tab[i]);
 			j++;
 		}
 		i++;
@@ -97,4 +96,21 @@ printf("str = %s\n", str);
 	tmp[j] = NULL;
 	return (tmp);
 }
+char	*ft_search_in_tab(char **tab, char *str)
+{
+	int		i;
+	char	*tmp;
 
+	i = 0;
+	while (i<=ft_tab_size(tab) && tab[i])
+	{
+		if (ft_strncmp(tab[i], str, ft_strlen(str)) == 0)
+		{
+			tmp = ft_strdup(tab[i]);
+			free(tab);
+			return (tmp);
+		}
+		i++;
+	}
+	return (NULL);
+}

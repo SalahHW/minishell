@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:56:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 14:00:36 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:12:20 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	echo(t_token *token)
+int echo(t_token *token)
 {
 	int i;
 	int n;
@@ -36,3 +36,4 @@ int	echo(t_token *token)
 	}
 	return (0);
 }
+//PERROR a lire

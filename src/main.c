@@ -6,59 +6,69 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/28 12:09:03 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:43:00 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_print_for_export(char **tmp)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (tmp[j])
-	{
-		i = 0;
-		write(1, "declare -x ", 11);
-		while (tmp[j][i])
-		{
-			if (tmp[j][i] == '=')
-			{
-				write(1, "=\"", 2);
-			}
-			else
-			{
-				write(1, &tmp[j][i], 1);
-			}
-			i++;
-		}
-		j++;
-		write(1, "\"\n", 2);
-	}
-	write(1, "\n", 1);
-}
-void	ft_test(t_mini *mini)
-{
-	char	**tab;
-
-	(void)mini;
-	tab = malloc(sizeof(char *) * 4);
-	tab[0] = ft_strdup("=CBBBBB");
-	tab[1] = ft_strdup("=AAAAAA");
-	tab[2] = ft_strdup("=ACCCCCC");
-	tab[3] = NULL;
-	ft_print_for_export(tab);
-	printf("\n\n\n\n\n");
-	ft_print_for_export(ft_ascii_sort(tab));
-}
+// int	ft_test(t_mini *mini)
+// {
+	// char *path;
+	// char **arg;
+	// int pid ;
+	
+	// path = ft_strdup("/bin/ls");
+	// arg = malloc(sizeof(char *) * 3);
+	// arg[0] = ft_strdup("ls");
+	// arg[1] = ft_strdup("-l");
+	// arg[2] = NULL;
+	//  (void)mini;
+	// char **tab;
+	// char **str;
+	// str = malloc(sizeof(char *) * 3);
+	// str[0] = ft_strdup("hello");
+	// str[1] = ft_strdup("blablaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	// tab = malloc(sizeof(char *) * 8);
+	// str[2] = NULL;
+	// tab[0] = ft_strdup("echo");
+	// tab[1] = ft_strdup("hello");
+	// tab[2] = ft_strdup("world");
+	// tab[3] = ft_strdup("!");
+	// tab[4] = ft_strdup("echo1");
+	// tab[5] = ft_strdup("hello1");
+	// tab[6] = ft_strdup("world1");
+	// tab[7] = ft_strdup("!1");
+	// tab[8] = NULL;
+	// ft_print_tab_for_test(tab);
+	// tab = ft_replace_in_tab(tab, str[0], str[1]);
+	// tab = ft_replace_in_tab(tab, "!", "blabla");
+	// tab = ft_delete_elem_in_tab("echo1", tab);
+	// tab = ft_delete_elem_in_tab("echo", tab);
+	// printf("\ntab after replace:\n");
+	// ft_print_tab_for_test(tab);
+		// pid = fork();
+	// if (pid == -1)
+	// 	return (-1);
+	// else if (pid == 0)
+	// 	if (execve(path, arg, NULL) == -1)
+	// 		return (1);
+	// printf("%s\n", getcwd(NULL, 0));
+	// printf("BEFORE PWD = %s OLDPWD = %s\n", ft_search_var_in_env(mini->env,
+	// 		"OLDPWD", 1), ft_search_var_in_env(mini->env, "OLDPWD", 1));
+	// chdir("..");
+	// pwd_change(mini);
+	// printf("AFTER PWD = %s OLDPWD = %s\n", ft_search_var_in_env(mini->env,
+	// 		"PWD", 1), ft_search_var_in_env(mini->env, "OLDPWD",1));
+	// printf("%s\n", getcwd(NULL, 0));
+// 	return (0);
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_mini	*mini;
-
 	t_shell	shell;
+
 	(void)argc;
 	(void)argv;
 	if (init_shell(&shell) == -1)
@@ -66,11 +76,8 @@ int	main(int argc, char **argv, char **envp)
 	mini = malloc(sizeof(t_mini));
 	ft_init_mini(mini);
 	ft_create_env_and_path(mini, envp);
-	//ft_test(mini);
-	shell.mini = mini;
-	printf("%s\n", shell.mini->home);
-	printf("%s\n", mini->home);
-	read_user_input(&shell);
+		shell.mini = mini;
+		read_user_input(&shell);
 	clean_shell(&shell);
 	mini_free(mini);
 }

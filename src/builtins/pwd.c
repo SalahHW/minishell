@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:45:53 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 12:32:54 by joakoeni         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:48:04 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,26 @@
 int	pwd(void)
 {
 	char	*pwd;
-
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
 		return (1);
-	// return (mini_error("pwd",NULL,0));
 	printf("%s\n", pwd);
+	free(pwd);
+	// return (mini_error("pwd",NULL,0));
 	return (0);
 }
 
-int	pwd_change(char **tab)
+int	pwd_change(t_mini *mini)
 {
-	(void) tab;
-	//if (ft_search_in_tab(tab, "PWD") != NULL)
-	//{
-	//	if (ft_search_in_tab(tab, "OLDPWD") != NULL)
-	//	{
-	//		tab = ft_replace_in_tab(tab, "OLDPWD",
-	//				ft_search_in_tab(tab, "PWD"));
-	//		tab = ft_replace_in_tab(tab, "PWD", getcwd(NULL, 0));
-	//	}
-	//	else
-	//		tab = ft_replace_in_tab(tab, "PWD", getcwd(NULL, 0));
-	//}
+	if (ft_search_in_tab(mini->env, "PWD") != NULL)
+	{
+		if (ft_search_in_tab(mini->env, "OLDPWD") != NULL)
+			mini->env = ft_change_value_in_var_in_tab(mini->env, "OLDPWD",
+					ft_search_var_in_env(mini->env, "PWD", 2));
+		mini->env = ft_change_value_in_var_in_tab(mini->env, "PWD", getcwd(NULL,
+					0));
+	}
+	else if (ft_search_in_tab(mini->env, "OLDPWD") != NULL)
+		mini->env = ft_delete_elem_in_tab("OLDPWD", mini->env);
 	return (0);
 }

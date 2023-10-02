@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_check.c                                      :+:      :+:    :+:   */
+/*   utils_for_tab3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/24 05:32:14 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/29 10:58:37 by aherrman         ###   ########.fr       */
+/*   Created: 2023/10/02 11:38:45 by aherrman          #+#    #+#             */
+/*   Updated: 2023/10/02 16:58:43 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	check_tokens(t_tokenlist *tokens)
+char	**ft_change_value_in_var_in_tab(char **tab, char *var, char *value)
 {
-	t_token	*token;
+	int i;
+	char *tmp;
 
-	token = tokens->head;
-	while (token)
+	i = 0;
+	while (tab[i])
 	{
-		if (token->type == t_cmd)
+		if (ft_strncmp(tab[i]+1, var, ft_strlen(var)) == 0)
 		{
-			if (!is_valid_command(token->value))
-			{
-				printf("%s: command not found\n", token->value);
-				token->is_valid = 0;
-			}
-			else
-			{
-				token->is_valid = 1;
-			}
+			tmp = ft_strjoin(var, "=");
+			free(tab[i]);
+			tab[i] = ft_strjoin(tmp, value);
+			free(tmp);
+			return (tab);
 		}
-		//fortest//
-		token->is_valid = 1;
-		//fortest//
-		token = token->next;
+		i++;
 	}
-	return (0);
+	return (tab);
 }
