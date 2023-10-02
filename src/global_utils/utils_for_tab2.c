@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:02:02 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 16:56:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:35:59 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ char	*ft_search_in_tab(char **tab, char *str)
 	char	*tmp;
 
 	i = 0;
-	while (i<=ft_tab_size(tab) && tab[i])
+	while (tab[i])
 	{
-		if (ft_strncmp(tab[i], str, ft_strlen(str)) == 0)
+		if (ft_strncmp(tab[i]+1, str, ft_strlen(str)) == 0)
 		{
 			tmp = ft_strdup(tab[i]);
 			free(tab);

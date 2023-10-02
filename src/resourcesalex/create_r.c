@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:27:44 by aherrman          #+#    #+#             */
-/*   Updated: 2023/09/28 15:21:14 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:20:56 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_path_home(t_mini *mini, char **env)
 		i++;
 	}
 	i = 0;
-	while (mini->path[i])
+	while (i < ft_tab_size(mini->path))
 	{
 		temp = mini->path[i];
 		mini->path[i] = ft_strjoin(mini->path[i], "/");

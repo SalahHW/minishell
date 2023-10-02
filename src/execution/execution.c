@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 16:38:47 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:31:13 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_for_cmd(char *path, char **arg)
 int	execute_cmd(t_shell *shell)
 {
 	t_token *token;
-
+	printf("coucou\n");
 	token = shell->tokens->head;
 	while (token)
 	{

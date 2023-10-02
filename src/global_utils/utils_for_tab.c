@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:16:14 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 16:40:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:20:33 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	free_tab(char **tab)
 	i = 0;
 	if (tab)
 	{
-		while (tab[i])
+		if (tab[i])
 		{
-			free(tab[i]);
-			tab[i] = NULL;
-			i++;
+			while (tab[i])
+			{
+				free(tab[i]);
+				tab[i] = NULL;
+				i++;
+			}
 		}
 		free(tab);
 		tab = NULL;
@@ -76,6 +79,8 @@ int	ft_tab_size(char **str)
 	int	i;
 
 	i = 0;
+	if(!str)
+		return (0);
 	while (str[i])
 	{
 		i++;
