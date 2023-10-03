@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/02 16:43:00 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:12:50 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,13 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_mini	*mini;
 	t_shell	shell;
 
 	(void)argc;
 	(void)argv;
 	if (init_shell(&shell) == -1)
 		return (EXIT_FAILURE);
-	mini = malloc(sizeof(t_mini));
-	ft_init_mini(mini);
-	ft_create_env_and_path(mini, envp);
-		shell.mini = mini;
+	ft_create_env_and_path(&shell, envp);
 		read_user_input(&shell);
 	clean_shell(&shell);
-	mini_free(mini);
 }

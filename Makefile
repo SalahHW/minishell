@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/02 14:29:42 by aherrman         ###   ########.fr        #
+#    Updated: 2023/10/03 15:21:28 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS 	=			main.c							\
 					signal/setup_signals.c			\
 					signal/handle_sigquit.c			\
 					signal/handle_sigint.c			\
+					resources/create_r.c			\
 					resources/init.c				\
 					resources/clean.c				\
 					global_utils/utils_for_char.c	\
@@ -37,9 +38,6 @@ SRCS 	=			main.c							\
 					global_utils/utils_for_tab3.c	\
 					global_utils/utils_for_env.c	\
 					global_utils/utils_for_test.c	\
-					resourcesalex/init.c			\
-					resourcesalex/free.c			\
-					resourcesalex/create_r.c		\
 					builtins/cd.c					\
 					builtins/pwd.c					\
 					builtins/unset.c				\

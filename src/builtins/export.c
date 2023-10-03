@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 16:32:23 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:15:49 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,21 @@ void	ft_print_for_export(char **tmp)
 	}
 }
 
-int	ft_export(t_mini *mini, char **arg)
+int	ft_export(t_shell *shell, char **arg)
 {
 	int	i;
 	i = 0;
-	ft_print_for_export(ft_ascii_sort(mini->expt));
+	ft_print_for_export(ft_ascii_sort(shell->expt));
 	return (0);
 	while (arg[i])
 	{
 		if (ft_check_char_in_str(arg[i], '='))
 		{
-			mini->expt = add_char_at_back_tab(mini->expt, arg[i]);
-			mini->env = add_char_at_back_tab(mini->env, arg[i]);
+			shell->expt = add_char_at_back_tab(shell->expt, arg[i]);
+			shell->env = add_char_at_back_tab(shell->env, arg[i]);
 		}
 		else
-			mini->expt = add_char_at_back_tab(mini->expt, arg[i]);
+			shell->expt = add_char_at_back_tab(shell->expt, arg[i]);
 		i++;
 	}
 	return (0);
