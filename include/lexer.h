@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/25 04:00:15 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:46:53 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ typedef struct s_token
 	t_tokentype		type;
 	char			*value;
 	int				is_valid;
+	//pas init atm//
+	int				input;
+	int				output;
+	//
 	struct s_token	*next;
 	struct s_token	*prev;
 }					t_token;

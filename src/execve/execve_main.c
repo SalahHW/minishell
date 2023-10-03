@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   execve_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 16:36:12 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/03 11:59:44 by aherrman         ###   ########.fr       */
+/*   Created: 2023/10/03 08:26:16 by aherrman          #+#    #+#             */
+/*   Updated: 2023/10/03 08:58:57 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_create_pipe(int nbpipe, int **pipes)
+ft_child_process(char *cmd, char **arg,t_mini *mini)
 {
-	int	i;
+    char *tmp;
 
-	i = 0;
-	while (i < nbpipe)
-	{
-		if (pipe(pipes[i]) == -1)
-        return(1);
-		i++;
-	}
+    tmp = ft_path(mini->path,arg);
+    if(tmp == NULL)
+        return (1);
+    if (execve(tmp, arg, mini->env) == -1)
+        return (1);
+    return (0);
 }

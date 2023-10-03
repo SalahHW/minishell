@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:27:44 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 17:20:56 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:40:04 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_path_home(t_mini *mini, char **env)
+void	ft_path_home(t_shell *shell, char **env)
 {
 	int		i;
 	char	*temp;
@@ -22,43 +22,42 @@ void	ft_path_home(t_mini *mini, char **env)
 	{
 		if (ft_strncmp(env[i], "PATH", 4) == 0)
 		{
-			mini->path = ft_split(env[i] + 5, ':');
+			shell->path = ft_split(env[i] + 5, ':');
 		}
 		if (ft_strncmp(env[i], "HOME", 4) == 0)
 		{
-			mini->home = ft_strdup(env[i] + 5);
+			shell->home = ft_strdup(env[i] + 5);
 		}
 		i++;
 	}
 	i = 0;
-	while (i < ft_tab_size(mini->path))
+	while (i < ft_tab_size(shell->path))
 	{
-		temp = mini->path[i];
-		mini->path[i] = ft_strjoin(mini->path[i], "/");
+		temp = shell->path[i];
+		shell->path[i] = ft_strjoin(shell->path[i], "/");
 		free(temp);
 		i++;
 	}
 }
-void	ft_env(t_mini *mini, char **env)
+void	ft_env(t_shell *shell, char **env)
 {
 	int	i;
 
 	i = 0;
 	while (env[i])
 		i++;
-	mini->env = malloc(sizeof(char *) * (i + 1));
+	shell->env = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	while (env[i])
 	{
-		mini->env[i] = ft_strdup(env[i]);
+		shell->env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	mini->env[i] = NULL;
-	mini->expt = ft_ascii_sort(ft_tab_copy(mini->env));
+	shell->env[i] = NULL;
+	shell->expt = ft_ascii_sort(ft_tab_copy(shell->env));
 }
-void	ft_create_env_and_path(t_mini *mini, char **env)
+void	ft_create_env_and_path(t_shell *shell, char **env)
 {
-	ft_init_mini(mini);
-	ft_path_home(mini, env);
-	ft_env(mini, env);
+	ft_path_home(shell, env);
+	ft_env(shell, env);
 }

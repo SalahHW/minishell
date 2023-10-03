@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 20:15:00 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:44:12 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define MINISHELL_H
 
 //***** LIB *****//
-# include "command.h"
+//# include "command.h"
+# include "global_utils.h"
 # include "lexer.h"
 # include "libft/libft.h"
 # include "parser.h"
@@ -27,11 +28,8 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <string.h>
-# include <unistd.h>
-// alex//
-# include "global_utils.h"
-# include "new.h"
 # include <sys/wait.h>
+# include <unistd.h>
 
 extern volatile sig_atomic_t	g_sigquit_received;
 
@@ -42,11 +40,27 @@ typedef struct s_shell
 	char						*user_input;
 	t_tokenlist					*tokens;
 	int							status;
-	t_mini						*mini;
+	char						**env;
+	char						**path;
+	char						**expt;
+	char						*home;
+	int							nbpipe;
+	int							nbprocess;
+	int							*pipefd;
 }								t_shell;
 
 int								init_shell(t_shell *shell);
 void							clean_shell(t_shell *shell);
 void							read_user_input(t_shell *shell);
 int								execute_cmd(t_shell *shell);
+// create env,path,home
+void							ft_create_env_and_path(t_shell *shell,
+									char **env);
+// a mettre dans command.h//
+int								ft_cd(char *arg, char **envp, char *home);
+int								pwd(void);
+int								pwd_change(t_shell *shell);
+int								unset(t_shell *shell, char **arg);
+int								ft_export(t_shell *shell, char **arg);
+int								env(char **env);
 #endif

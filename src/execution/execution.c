@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 17:31:13 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:23:37 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_for_cmd(char *path, char **arg)
 	//  [arv[0] = cat arv[1] = -e arv[2] = -e ]
 	pid = fork();
 	if (pid == -1)
-		return (-1);
+		return (1);
 	else if (pid == 0)
 		if (execve(path, arg, NULL) == -1)
 			return (1);
@@ -33,7 +33,6 @@ int	ft_for_cmd(char *path, char **arg)
 int	execute_cmd(t_shell *shell)
 {
 	t_token *token;
-	printf("coucou\n");
 	token = shell->tokens->head;
 	while (token)
 	{
@@ -43,21 +42,21 @@ int	execute_cmd(t_shell *shell)
 			{
 				if (token->next && token->next->value && token->next->is_valid)
 				{
-					ft_cd(token->next->value, shell->mini->env,
-						shell->mini->home);
-					pwd_change(shell->mini);
+					ft_cd(token->next->value, shell->env,
+						shell->home);
+					pwd_change(shell);
 				}
 			}
 			if (ft_strncmp(token->value, "env", 4) == 0)
-				env(shell->mini->env);
+				env(shell->env);
 			if (ft_strncmp(token->value, "pwd", 4) == 0)
 				pwd();
 			if (ft_strncmp(token->value, "exit", 5) == 0)
 				shell->status = 0;
-			//if (ft_strncmp(token->value, "unset", 6) == 0)
-				//unset(token->next->value, shell->mini);
-			//if (ft_strncmp(token->value, "export", 7) == 0)
-			//	ft_export(shell->mini, NULL);
+			// if (ft_strncmp(token->value, "unset", 6) == 0)
+			// unset(token->next->value, shell->shell);
+			if (ft_strncmp(token->value, "export", 7) == 0)
+				ft_export(shell, NULL);
 		}
 		token = token->next;
 	}
