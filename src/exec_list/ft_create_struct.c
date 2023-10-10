@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   ft_create_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 09:22:57 by aherrman         ###   ########.fr       */
+/*   Created: 2023/10/06 15:13:58 by aherrman          #+#    #+#             */
+/*   Updated: 2023/10/09 09:55:49 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_cd(t_exec *exec)
+int	ft_create_list(t_token *token, t_exec *new)
 {
-	int	err;
+	t_token	*tmp;
 
-	err = 0;
-	if (exec->execlist->arg == NULL && ft_search_in_tab(exec->general->env, "HOME") != NULL)
-		return (1);
-	else if (exec->execlist->arg == NULL)
-		err = chdir(exec->general->home);
-	else
-		err = chdir(exec->execlist->arg[1]);
-	if (err != 0)
-		return (1);
+	tmp = token;
+	while (tmp)
+	{
+		ft_execadd_back(new, ft_new_execlist_node(tmp));
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	ft_create_struct(t_exec *exec, t_shell *shell)
+{
+    exec->general = shell->general;
 	return (0);
 }

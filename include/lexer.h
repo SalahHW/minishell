@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/03 15:46:53 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/09 09:50:44 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ typedef struct s_token
 	t_tokentype		type;
 	char			*value;
 	int				is_valid;
-	//pas init atm//
-	int				input;
-	int				output;
-	//
+	char			*cmd_path;
+	char			**arg;
+	// fd for file
+	int				fd;
+	// only for t_cmd//
+	int				fd_in;
+	int				fd_out;
+	// cmd//
 	struct s_token	*next;
 	struct s_token	*prev;
 }					t_token;

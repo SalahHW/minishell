@@ -6,11 +6,54 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/03 15:23:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/09 10:08:18 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	ft_for_builtins(char *str)
+{
+	char	*builtins_cmd[8];
+	int		i;
+
+	builtins_cmd[0] = "echo";
+	builtins_cmd[1] = "cd";
+	builtins_cmd[2] = "pwd";
+	builtins_cmd[3] = "export";
+	builtins_cmd[4] = "unset";
+	builtins_cmd[5] = "env";
+	builtins_cmd[6] = "exit";
+	builtins_cmd[7] = 0;
+	i = 0;
+	while (builtins_cmd[i])
+	{
+		if (ft_strncmp(str, builtins_cmd[i], ft_strlen(builtins_cmd[i])) == 0
+			&& ft_strlen(str) == ft_strlen(builtins_cmd[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	exec_builtins(t_exec *exec)
+{
+	if (ft_strncmp(exec->execlist->arg[0], "echo", 5) == 0)
+		ft_echo(exec);
+	else if (ft_strncmp(exec->execlist->arg[0], "env", 4) == 0)
+		env(exec->general->env);
+	else if (ft_strncmp(exec->execlist->arg[0], "cd", 3) == 0)
+		ft_cd(exec);
+	else if (ft_strncmp(exec->execlist->arg[0], "pwd", 4) == 0)
+		pwd();
+	else if (ft_strncmp(exec->execlist->arg[0], "unset", 6) == 0)
+		unset(exec);
+	else if (ft_strncmp(exec->execlist->arg[0], "export", 7) == 0)
+		ft_export(exec);
+	else if (ft_strncmp(exec->execlist->arg[0], "exit", 5) == 0)
+		exec->general->status = 0;
+	return (0);
+}
 
 int	ft_for_cmd(char *path, char **arg)
 {
@@ -29,36 +72,24 @@ int	ft_for_cmd(char *path, char **arg)
 	return (0);
 	// child process//
 }
-
 int	execute_cmd(t_shell *shell)
 {
-	t_token *token;
-	token = shell->tokens->head;
-	while (token)
-	{
-		if (token->type == t_cmd)
-		{
-			if (ft_strncmp(token->value, "cd", 3) == 0)
-			{
-				if (token->next && token->next->value && token->next->is_valid)
-				{
-					ft_cd(token->next->value, shell->env,
-						shell->home);
-					pwd_change(shell);
-				}
-			}
-			if (ft_strncmp(token->value, "env", 4) == 0)
-				env(shell->env);
-			if (ft_strncmp(token->value, "pwd", 4) == 0)
-				pwd();
-			if (ft_strncmp(token->value, "exit", 5) == 0)
-				shell->status = 0;
-			// if (ft_strncmp(token->value, "unset", 6) == 0)
-			// unset(token->next->value, shell->shell);
-			if (ft_strncmp(token->value, "export", 7) == 0)
-				ft_export(shell, NULL);
-		}
-		token = token->next;
-	}
-	return (1);
+	t_exec *exec;
+
+	exec = malloc(sizeof(t_exec));
+	ft_create_struct(exec, shell);
+	printf("coucou\n");
+	
+	// while (exec->execlist)
+	// {
+	// 	if (ft_for_builtins(exec->execlist->arg[0]) == 1)
+	// 		exec_builtins(exec);
+	// 	// else
+	// 	// exec_cmd(token, shell);
+	// }
+	// if (exec->execlist != NULL)
+	// 	exec->execlist = exec->execlist->next;
+
+	free(exec);
+	return (0);
 }

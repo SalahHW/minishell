@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 01:40:17 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/03 15:46:32 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/09 10:01:10 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ volatile sig_atomic_t	g_sigquit_received;
 
 int init_general_data(t_shell *shell)
 {
-	shell->env = NULL;
-	shell->path = NULL;
-	shell->expt = NULL;
-	shell->home = NULL;
-	shell->pipefd = NULL;
-	shell->nbpipe = -1;
-	shell->nbprocess = -1;
+	shell->general->env = NULL;
+	shell->general->path = NULL;
+	shell->general->expt = NULL;
+	shell->general->home = NULL;
+	shell->general->pipes = NULL;
+	shell->general->nbpipe = -1;
 	return(0);
 }
 
@@ -42,7 +41,8 @@ static int	init_prompt(t_shell *shell)
 
 int	init_shell(t_shell *shell)
 {
-	shell->status = 1;
+	shell->general = malloc(sizeof(t_general));
+	shell->general->status = 1;
 	if (init_prompt(shell) == -1)
 		return (-1);
 	if(init_general_data(shell) == -1)
