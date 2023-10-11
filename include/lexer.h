@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/03 15:46:53 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:11:56 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 typedef enum e_tokentype
 {
-	t_undifined,
-	t_cmd,
-	t_arg,
-	t_pipe,
-	t_redirect_in,
-	t_redirect_out,
-	t_redirect_append,
-	t_heredoc,
-	t_file,
+	t_undifined, //0
+	t_cmd, //1
+	t_arg, //2
+	t_pipe,//3
+	t_redirect_in,//4
+	t_redirect_out,//5
+	t_redirect_append,//6
+	t_heredoc,//7
+	t_file,//8
 }					t_tokentype;
 
 typedef struct s_token
@@ -31,10 +31,14 @@ typedef struct s_token
 	t_tokentype		type;
 	char			*value;
 	int				is_valid;
-	//pas init atm//
-	int				input;
-	int				output;
-	//
+	char			*cmd_path;
+	char			**arg;
+	// fd for file
+	int				fd;
+	// only for t_cmd//
+	int				fd_in;
+	int				fd_out;
+	// cmd//
 	struct s_token	*next;
 	struct s_token	*prev;
 }					t_token;

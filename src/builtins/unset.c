@@ -6,26 +6,26 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:46:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/03 15:15:32 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/09 09:27:43 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int unset(t_shell *shell,char **arg)
+int unset(t_exec *exec)
 {
 	int i;
 	int j;
 
 	i = 1;
 	j = 0;
-	while (arg[i])
+	while (exec->execlist->arg[i])
 	{
         j = 0;
-		while (shell->env[j])
+		while (exec->general->env[j])
 		{
-			if (ft_strncmp(arg[i], shell->env[j], ft_strlen(arg[i])) == 0)
-				shell->env = ft_delete_elem_in_tab(arg[i], shell->env);
+			if (ft_strncmp(exec->execlist->arg[i], exec->general->env[j], ft_strlen(exec->execlist->arg[i])) == 0)
+				exec->general->env = ft_delete_elem_in_tab(exec->execlist->arg[i], exec->general->env);
 			j++;
 		}
 		i++;

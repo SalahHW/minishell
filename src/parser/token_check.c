@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 05:32:14 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/29 10:58:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:39:12 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	check_tokens(t_tokenlist *tokens)
 				token->is_valid = 1;
 			}
 		}
-		//fortest//
+		// fortest//
 		token->is_valid = 1;
-		//fortest//
+		// fortest//
 		token = token->next;
 	}
 	return (0);
