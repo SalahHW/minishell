@@ -6,11 +6,23 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 10:08:18 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:12:44 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	ft_print_token_list(t_token *token)
+{
+	while (token)
+	{
+		printf("token->value = %s\n", token->value);
+		printf("token->type = %d\n", token->type);
+		printf(" fd in = %d fd out = %d\n", token->fd_in, token->fd_out);
+		printf("fd value %d\n", token->fd);
+		token = token->next;
+	}
+}
 
 int	ft_for_builtins(char *str)
 {
@@ -75,11 +87,10 @@ int	ft_for_cmd(char *path, char **arg)
 int	execute_cmd(t_shell *shell)
 {
 	t_exec *exec;
-
+	// ft_print_token_list(shell->tokens->head);
 	exec = malloc(sizeof(t_exec));
 	ft_create_struct(exec, shell);
-	printf("coucou\n");
-	
+
 	// while (exec->execlist)
 	// {
 	// 	if (ft_for_builtins(exec->execlist->arg[0]) == 1)

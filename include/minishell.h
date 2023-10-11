@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 10:11:39 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:04:45 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int								init_shell(t_shell *shell);
 void							clean_shell(t_shell *shell);
 void							read_user_input(t_shell *shell);
 int								execute_cmd(t_shell *shell);
-// create env,path,home
+// create env,path,home//
 void							ft_create_env_and_path(t_shell *shell,
 									char **env);
 // a mettre dans command.h//
@@ -85,12 +85,23 @@ int								unset(t_exec *exec);
 int								ft_export(t_exec *exec);
 int								env(char **env);
 int								ft_echo(t_exec *exec);
+
+//redirect//
+int	ft_redirections(t_tokenlist *tokens);
+int	ft_close_all_fd(t_token *token);
+//utils redirection//
+int	ft_close_all_fd(t_token *token);
+int	redir_output(int output_fd);
+int	redir_input(int input_fd);
+
 // new struct
 int								ft_create_struct(t_exec *exec, t_shell *shell);
 
-// utils new struct
+// utils new struct//
 void							ft_execadd_back(t_exec *exec, t_execlist *new);
 t_execlist						*ft_new_execlist_node(t_token *token);
 int								ft_lst_len(t_execlist *cmd);
 void free_exec(t_exec *exec);
+//fortest//
+void ft_print_token_list(t_token *token);
 #endif

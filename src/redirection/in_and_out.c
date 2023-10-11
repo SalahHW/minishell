@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_and_output.c                                 :+:      :+:    :+:   */
+/*   in_and_out.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/05 13:55:30 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/10 10:30:37 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	ft_search_redir_input(t_token *token)
 		if (tmp->prev != NULL)
 			tmp = tmp->prev;
 	}
+	return (0);
 }
 int	ft_search_redir_output(t_token *token)
 {
@@ -64,6 +65,7 @@ int	ft_search_redir_output(t_token *token)
 		if (tmp->next != NULL)
 			tmp = tmp->next;
 	}
+	return (0);
 }
 
 int	ft_redirections(t_tokenlist *tokens)
@@ -79,4 +81,5 @@ int	ft_redirections(t_tokenlist *tokens)
 			ft_search_redir_output(token);
 		}
 	}
+	return (0);
 }
