@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/10 10:35:26 by aherrman         ###   ########.fr        #
+#    Updated: 2023/10/11 17:39:26 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRCS 	=			main.c							\
 					global_utils/utils_for_env.c	\
 					global_utils/utils_for_test.c	\
 					global_utils/utils_redir.c		\
+					global_utils/is_operator.c		\
+					global_utils/is_quote.c			\
 					exec_list/ft_create_struct.c	\
 					exec_list/ft_execl_utils.c		\
 					builtins/cd.c					\

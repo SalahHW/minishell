@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:18 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/03 15:38:56 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:37:51 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,14 @@ char	*ft_search_var_in_env(char **env, char *search, int need);
 // utils_for_test//
 
 void	ft_print_tab_for_test(char **tab);
+
+int		is_quote(char c);
+int		is_single_quote(char c);
+int		is_double_quote(char c);
+int		is_operator(char c);
+int		is_redirection(char c);
+int		is_pipe(char c);
+int		is_redirect_in(char c);
+int		is_redirect_out(char c);
 
 #endif
