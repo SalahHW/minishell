@@ -6,61 +6,45 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/22 05:27:43 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:54:18 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// Take a string and return a list of tokens
-t_tokenlist	*extract_tokens(char *input)
+// Scan the input and return a list of tokens
+t_tokenlist	*tokenize_input(char *input)
 {
+	char		*input_ptr;
 	t_tokenlist	*tokens;
-	char		*token_str;
 
+	input_ptr = input;
 	tokens = init_tokens_list();
-	token_str = get_next_token(&input);
-	while (token_str)
+	while (*input_ptr)
 	{
-		add_new_token(tokens, token_str);
-		token_str = get_next_token(&input);
+		if (*input_ptr == '\'' || *input_ptr == '\"')
+			input_ptr = tokenize_quote(input_ptr, tokens);
+		else if (*input_ptr == '|' || *input_ptr == '<' || *input_ptr == '>')
+			input_ptr = tokenize_operator(input_ptr, tokens);
+		else if (is_white_space(*input_ptr))
+			input_ptr++;
+		else
+			input_ptr = tokenize_word(input_ptr, tokens);
 	}
-	detect_tokens_type(tokens);
+	print_tokens_list(tokens);
 	return (tokens);
 }
 
-// Take a string and return the next token
-char	*get_next_token(char **input)
+// Take a start and a end and make a string with char beetween
+char	*extract_tokens(char *token_start, char *token_end)
 {
-	char	*token_start;
-	char	quote_flag;
+	char	*new_str;
+	int		new_str_len;
 
-	quote_flag = 0;
-	while (**input && is_white_space(**input))
-		(*input)++;
-	token_start = *input;
-	if (**input == '\'' || **input == '\"')
-	{
-		quote_flag = **input;
-		token_start++;
-		(*input)++;
-	}
-	if (quote_flag)
-	{
-		while (**input && **input != quote_flag)
-			(*input)++;
-	}
-	else
-	{
-		while (**input && !is_white_space(**input))
-			(*input)++;
-	}
-	if (token_start == *input)
+	new_str_len = token_end - token_start + 2;
+	new_str = malloc(sizeof(char) * new_str_len);
+	if (!new_str)
 		return (NULL);
-	if (**input != 0)
-	{
-		**input = 0;
-		(*input)++;
-	}
-	return (token_start);
+	ft_strlcpy(new_str, token_start, new_str_len);
+	return (new_str);
 }

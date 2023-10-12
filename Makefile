@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/11 17:39:26 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/12 13:55:27 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ LIBS 	=			include/libft/libft.a
 INC 	=			-I 
 SRCS 	=			main.c							\
 					lexer/tokenizer.c				\
+					lexer/tokenize_operator.c		\
+					lexer/tokenize_quote.c			\
+					lexer/tokenize_word.c			\
 					lexer/token_type.c				\
 					lexer/token_list.c				\
 					parser/parser.c					\
