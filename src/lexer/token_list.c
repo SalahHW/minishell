@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:08:15 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 13:45:36 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:31:59 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,4 @@ void	clear_tokens_list(t_tokenlist *tokens)
 	tokens->head = NULL;
 	tokens->tail = NULL;
 	free(tokens);
-}
-
-// Print the tokens list
-void	print_tokens_list(t_tokenlist *tokens)
-{
-	t_token	*token_ptr;
-
-	token_ptr = tokens->head;
-	while (token_ptr)
-	{
-		printf("Token: %s\n", token_ptr->value);
-		printf("Type: %d\n", token_ptr->type);
-		token_ptr = token_ptr->next;
-	}
 }
