@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/10 14:04:45 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:30:50 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,5 @@ int								ft_lst_len(t_execlist *cmd);
 void free_exec(t_exec *exec);
 //fortest//
 void ft_print_token_list(t_token *token);
+void				print_tokens_list(t_tokenlist *tokens);
 #endif

@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/12 13:55:27 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/12 16:36:45 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRCS 	=			main.c							\
 					builtins/env.c					\
 					builtins/echo.c					\
 					execution/execution.c			\
+					test/print_tokens.c				\
 
 					
 					
