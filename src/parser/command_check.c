@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:11:23 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/25 01:13:31 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:20:59 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ int	is_valid_command(char *cmd)
 		return (1);
 	if (is_path_cmd(cmd))
 		return (1);
+	printf("%s: command not found\n", cmd);
 	return (0);
 }

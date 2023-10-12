@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 05:32:14 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/11 09:39:12 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:19:48 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	check_tokens(t_tokenlist *tokens)
 		{
 			if (!is_valid_command(token->value))
 			{
-				printf("%s: command not found\n", token->value);
 				token->is_valid = 0;
 			}
 			else
