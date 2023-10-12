@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 16:26:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/11 10:30:54 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:16:14 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	ft_file_can_open(t_token *token)
 {
 	while (token)
 	{
-		printf("token->value = %s token type %d \n", token->value, token->type);
+		// printf("token->value = %s token type %d \n", token->value, token->type);
 		if (token->type == t_file)
 		{
 			if (token->prev && (token->prev->type == t_redirect_in
