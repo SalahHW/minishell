@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 04:43:28 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/11 11:11:57 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:29:04 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,14 @@ void	detect_tokens_type(t_tokenlist *tokens)
 	token_ptr = tokens->head;
 	while (token_ptr)
 	{
-		token_ptr->type = get_token_type(token_ptr);
+		if (!is_quote(*token_ptr->value))
+		{
+			token_ptr->type = get_token_type(token_ptr);
+		}
+		else
+		{
+			remove_quotes(token_ptr);
+		}
 		token_ptr = token_ptr->next;
 	}
 }

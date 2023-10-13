@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:50:14 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 13:54:18 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/12 22:17:11 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ char	*tokenize_quote(char *input, t_tokenlist *tokens)
 		token_end++;
 	}
 	// ERROR UNCOSED QUOTES
+	printf("Warning: unclosed quotes\n");
 	return (token_end);
 }
