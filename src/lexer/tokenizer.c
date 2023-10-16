@@ -6,13 +6,13 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 16:29:19 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/16 22:01:37 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_tokenlist *tokenizer(char *input)
+t_tokenlist *tokenizer(char *input, char **env)
 {
 	t_tokenlist	*tokens;
 
