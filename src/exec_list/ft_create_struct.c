@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:13:58 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/16 14:04:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:25:26 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_execlist	*ft_test(void)
 	char		*cmd_p;
 	int			f_in;
 	int			f_out;
-	t_execlist	*one;
 	t_execlist	*two;
 
 	f_in = -99;
@@ -101,13 +100,14 @@ int	redir_pipes(t_exec *exec)
 		else if (i == exec->general->nbpipes - 1)
 		{
 			exec->execlist->fd_in = exec->general->pipes[i - 1][0];
-			exec->execlist->fd_out = exec = > general->pipes[i][1];
+			exec->execlist->fd_out = exec -> general->pipes[i][1];
 		}
 		else
-			(exec->execlist->fd_in = exec->general->pipes[i - 1][0];);
+			(exec->execlist->fd_in = exec->general->pipes[i - 1][0]);
 		i++;
 		exec->execlist = exec->execlist->next;
 	}
+	return (0);
 }
 
 int	ft_create_struct(t_exec *exec, t_shell *shell)

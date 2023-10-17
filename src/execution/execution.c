@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/16 08:35:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:25:50 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ int	execute_cmd(t_shell *shell)
 		// dup2 fail;
 		if (ft_for_builtins(exec->execlist->arg[0]) == 1)
 			exec_builtins(exec);
-		else
-			exec_cmd(exec, shell);
+		//else
+			//exec_cmd(exec, shell);
 		exec->execlist = exec->execlist->next;
 	}
 	free(ft_h(exec));
