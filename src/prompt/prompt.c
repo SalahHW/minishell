@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/03 11:56:46 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/09 09:09:17 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	read_user_input(t_shell *shell)
 {
 	char	*input;
 
-	while (shell->status)
+	while (shell->general->status)
 	{
 		input = readline(shell->prompt);
 		if (input)
@@ -36,7 +36,7 @@ void	read_user_input(t_shell *shell)
 				clear_tokens_list(shell->tokens);
 		}
 		if (!input)
-			shell->status = 0;
+			shell->general->status = 0;
 	}
 	clear_history();
 }

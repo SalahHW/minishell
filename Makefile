@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/03 15:21:28 by aherrman         ###   ########.fr        #
+#    Updated: 2023/10/13 13:36:55 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SRCS 	=			main.c							\
 					parser/parser.c					\
 					parser/token_check.c			\
 					parser/command_check.c			\
+					parser/file_check.c				\
 					prompt/prompt.c					\
+					redirection/in_and_out.c		\
 					signal/setup_signals.c			\
 					signal/handle_sigquit.c			\
 					signal/handle_sigint.c			\
@@ -38,12 +40,17 @@ SRCS 	=			main.c							\
 					global_utils/utils_for_tab3.c	\
 					global_utils/utils_for_env.c	\
 					global_utils/utils_for_test.c	\
+					global_utils/utils_redir.c		\
+					exec_list/ft_create_struct.c	\
+					exec_list/ft_execl_utils.c		\
 					builtins/cd.c					\
 					builtins/pwd.c					\
 					builtins/unset.c				\
 					builtins/export.c				\
 					builtins/env.c					\
+					builtins/echo.c					\
 					execution/execution.c			\
+					execution/redir_for_exec.c		\
 
 					
 					
