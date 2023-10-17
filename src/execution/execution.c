@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/16 08:35:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:35:05 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,9 @@ int	ft_for_cmd(char *path, char **arg)
 int	execute_cmd(t_shell *shell)
 {
 	t_exec *exec;
-	(void)shell;
 	exec = malloc(sizeof(t_exec));
 	ft_create_struct(exec, shell);
-	ft_print_execlist(exec->execlist);
+	//ft_print_execlist(exec->execlist);
 	while (exec->execlist)
 	{
 		if (ft_def_redir(exec->execlist) == 1)
@@ -110,8 +109,8 @@ int	execute_cmd(t_shell *shell)
 		// dup2 fail;
 		if (ft_for_builtins(exec->execlist->arg[0]) == 1)
 			exec_builtins(exec);
-		else
-			exec_cmd(exec, shell);
+		// else
+		// 	exec_cmd(exec, shell);
 		exec->execlist = exec->execlist->next;
 	}
 	free(ft_h(exec));

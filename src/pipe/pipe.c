@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:36:12 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/16 09:33:52 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:47:42 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_create_pipe(int nbpipe, t_shell *shell)
 		return (1);
 	while (i < nbpipe)
 	{
-		if (pipe(pipes[i]) == -1)
+		if (pipe(shell->general->pipes[i]) == -1)
 			return (1);
 		i++;
 	}
@@ -51,15 +51,15 @@ int	ft_general_pipe(t_shell *shell)
 	int		i;
 
 	i = 0;
-	token = shell->tokenlist->head;
+	token = shell->tokens->head;
 	while (token)
 	{
 		if (token->type == t_pipe)
 			i++;
 		token = token->next;
 	}
-	shell->general->nbpipe = i;
-	if (ft_create_pipe(shell->general->nbpipe, shell) == 1)
+	shell->general->nbpipes = i;
+	if (ft_create_pipe(shell->general->nbpipes, shell) == 1)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/10 10:30:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:04:53 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // < f1 < f3 cat -e > f2 | ls -la > f4 | cat -e > f5 ls va dans f4 cat
 //	-e sur f5(fichier qui nexiste pas est cree mais rien dedans)
 
-int	ft_search_redir_input(t_token *token)
+int	ft_search_redir_input(t_token *token, t_execlist *execlist)
 {
 	t_token	*tmp;
 
@@ -34,12 +34,12 @@ int	ft_search_redir_input(t_token *token)
 	{
 		if (tmp->type == t_file)
 		{
-			tmp->fd_in = 1;
+			execlist->fd_in = token->fd_in;
 			return (0);
 		}
 		if (tmp->type == t_pipe)
 		{
-			tmp->fd_in = 1;
+			tmp->fd_in 
 			return (0);
 		}
 		if (tmp->prev != NULL)
@@ -47,7 +47,7 @@ int	ft_search_redir_input(t_token *token)
 	}
 	return (0);
 }
-int	ft_search_redir_output(t_token *token)
+int	ft_search_redir_output(t_token *token, t_execlist *execlsit)
 {
 	t_token	*tmp;
 
@@ -68,7 +68,7 @@ int	ft_search_redir_output(t_token *token)
 	return (0);
 }
 
-int	ft_redirections(t_tokenlist *tokens)
+int	ft_redirections(t_tokenlist *tokens, t_execlist *exec)
 {
 	t_token	*token;
 
@@ -77,9 +77,16 @@ int	ft_redirections(t_tokenlist *tokens)
 	{
 		if (token->type == t_cmd)
 		{
-			ft_search_redir_input(token);
-			ft_search_redir_output(token);
+			ft_search_redir_input(token, execlist);
+			ft_search_redir_output(token, execlist);
+			execlist = execlist->next;
 		}
+		token = token->next;
 	}
 	return (0);
 }
+
+cmd 
+t_arg
+fd_im=n
+fd_out

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:13:58 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/16 14:04:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:50:14 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_update(t_execlist *node, char *cmd_p, char **arg, int in_fd,
 
 t_execlist	*ft_test(void)
 {
-	t_execlist	*one;
 	char		**arg;
 	char		*cmd_p;
 	int			f_in;
@@ -101,19 +100,22 @@ int	redir_pipes(t_exec *exec)
 		else if (i == exec->general->nbpipes - 1)
 		{
 			exec->execlist->fd_in = exec->general->pipes[i - 1][0];
-			exec->execlist->fd_out = exec = > general->pipes[i][1];
+			exec->execlist->fd_out = exec -> general->pipes[i][1];
 		}
 		else
-			(exec->execlist->fd_in = exec->general->pipes[i - 1][0];);
+			(exec->execlist->fd_in = exec->general->pipes[i - 1][0]);
 		i++;
 		exec->execlist = exec->execlist->next;
 	}
+	return(0);
 }
 
 int	ft_create_struct(t_exec *exec, t_shell *shell)
 {
 	exec->general = shell->general;
 	exec->execlist = ft_test();
-	redir_pipes(ft_h(exec));
+	//ft_create_list(shell->tokens->head, exec);
+	//redir_pipes(ft_h(exec));
+	redir_fd(ft_h(exec));
 	return (0);
 }

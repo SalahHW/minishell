@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 08:26:16 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/16 09:30:58 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:40:03 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	execve_main(t_exec *exec)
 	else if (pid == 0)
 		if (ft_child_process(exec->execlist->cmd_path, exec->execlist->arg,
 				exec->general->path) == 1)
-                return (1);
-            // error execve
-			waitpid(pid, &status, 0);
+			return (1);
+	// error execve
+	waitpid(pid, &status, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 22:40:53 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:28:58 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ void				replace_token(t_token *token, char *value,
 void				clear_tokens_list(t_tokenlist *tokens);
 
 void				remove_quotes(t_token *token);
+//test/
+void	print_tokens_list(t_tokenlist *tokens);
 
 #endif

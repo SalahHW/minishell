@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 10:04:01 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:29:32 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_general
 	char						**path;
 	char						**expt;
 	char						*home;
-	int							nbpipe;
+	int							nbpipes;
 	int							**pipes;
 }								t_general;
 typedef struct s_shell

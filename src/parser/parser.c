@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 01:26:06 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/17 10:05:56 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:39:40 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ int	parser(t_tokenlist *tokens)
 	// {
 	// 	return (1);
 	// }
-//	 ft_redirections(tokens);
-	// fin du parcer MAJ des var dans chaque token pour lexec//
 	return (0);
 }
