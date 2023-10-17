@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/12 16:30:50 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:04:01 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ int								ft_export(t_exec *exec);
 int								env(char **env);
 int								ft_echo(t_exec *exec);
 
-//redirect//
-int	ft_redirections(t_tokenlist *tokens);
-int	ft_close_all_fd(t_token *token);
-//utils redirection//
-int	ft_close_all_fd(t_token *token);
-int	redir_output(int output_fd);
-int	redir_input(int input_fd);
+// redirect//
+int								ft_redirections(t_tokenlist *tokens);
+int								ft_close_all_fd(t_token *token);
+// utils redirection//
+int								ft_close_all_fd(t_token *token);
+int								redir_output(int output_fd);
+int								redir_input(int input_fd);
 
 // new struct
 int								ft_create_struct(t_exec *exec, t_shell *shell);
@@ -101,8 +101,10 @@ int								ft_create_struct(t_exec *exec, t_shell *shell);
 void							ft_execadd_back(t_exec *exec, t_execlist *new);
 t_execlist						*ft_new_execlist_node(t_token *token);
 int								ft_lst_len(t_execlist *cmd);
-void free_exec(t_exec *exec);
-//fortest//
-void ft_print_token_list(t_token *token);
-void				print_tokens_list(t_tokenlist *tokens);
+void							free_exec(t_exec *exec);
+t_exec							*ft_h(t_exec *exec);
+// fortest//
+void							ft_print_token_list(t_token *token);
+// redir in exec//
+int								ft_def_redir(t_execlist *list);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/11 11:12:44 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/16 08:35:24 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ void	ft_print_token_list(t_token *token)
 		printf(" fd in = %d fd out = %d\n", token->fd_in, token->fd_out);
 		printf("fd value %d\n", token->fd);
 		token = token->next;
+	}
+}
+
+void	ft_print_execlist(t_execlist *execlist)
+{
+	while (execlist)
+	{
+		printf("cmd_path = %s\n", execlist->cmd_path);
+		printf("fd in = %d fd out = %d\n", execlist->fd_in, execlist->fd_out);
+		ft_print_tab_for_test(execlist->arg);
+		execlist = execlist->next;
 	}
 }
 
@@ -84,23 +95,25 @@ int	ft_for_cmd(char *path, char **arg)
 	return (0);
 	// child process//
 }
+
 int	execute_cmd(t_shell *shell)
 {
 	t_exec *exec;
-	// ft_print_token_list(shell->tokens->head);
+	(void)shell;
 	exec = malloc(sizeof(t_exec));
 	ft_create_struct(exec, shell);
-
-	// while (exec->execlist)
-	// {
-	// 	if (ft_for_builtins(exec->execlist->arg[0]) == 1)
-	// 		exec_builtins(exec);
-	// 	// else
-	// 	// exec_cmd(token, shell);
-	// }
-	// if (exec->execlist != NULL)
-	// 	exec->execlist = exec->execlist->next;
-
-	free(exec);
+	ft_print_execlist(exec->execlist);
+	while (exec->execlist)
+	{
+		if (ft_def_redir(exec->execlist) == 1)
+			return (1);
+		// dup2 fail;
+		if (ft_for_builtins(exec->execlist->arg[0]) == 1)
+			exec_builtins(exec);
+		else
+			exec_cmd(exec, shell);
+		exec->execlist = exec->execlist->next;
+	}
+	free(ft_h(exec));
 	return (0);
 }

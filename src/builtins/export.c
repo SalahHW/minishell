@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 09:20:38 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:00:54 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ int	ft_export(t_exec *exec)
 {
 	int	i;
 
-	i = 0;
-	if (exec->execlist->arg[1] == NULL)
+	i = 1;
+	if (exec->execlist->arg[i] == NULL)
+	{
 		ft_print_for_export(ft_ascii_sort(exec->general->expt));
-	return (0);
+		return (0);
+	}
 	while (exec->execlist->arg[i])
 	{
 		if (ft_check_char_in_str(exec->execlist->arg[i], '='))
@@ -61,5 +63,6 @@ int	ft_export(t_exec *exec)
 					exec->execlist->arg[i]);
 		i++;
 	}
+	ft_print_for_export(ft_ascii_sort(exec->general->expt));
 	return (0);
 }
