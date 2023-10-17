@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/13 11:00:54 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:27:47 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_print_for_export(char **tmp)
 	}
 }
 
-int	ft_export(t_exec *exec)
+int	ft_export(t_shell *exec)
 {
 	int	i;
 

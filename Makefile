@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/17 10:04:32 by aherrman         ###   ########.fr        #
+#    Updated: 2023/10/17 17:16:08 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ SRCS 	=			main.c							\
 					global_utils/is_quote.c			\
 					exec_list/ft_create_struct.c	\
 					exec_list/ft_execl_utils.c		\
+					pipe/pipe.c						\
+					format_for_exec/main_format.c	\
 					builtins/cd.c					\
 					builtins/pwd.c					\
 					builtins/unset.c				\

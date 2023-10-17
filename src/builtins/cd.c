@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 09:22:57 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:26:50 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_cd(t_exec *exec)
+int	ft_cd(t_shell *exec)
 {
 	int	err;
 

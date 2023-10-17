@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 11:04:53 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:38:13 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,11 @@ int	ft_search_redir_input(t_token *token, t_execlist *execlist)
 	t_token	*tmp;
 
 	tmp = token->prev;
-	while (tmp->prev)
+	while (tmp)
 	{
 		if (tmp->type == t_file)
 		{
-			execlist->fd_in = token->fd_in;
-			return (0);
-		}
-		if (tmp->type == t_pipe)
-		{
-			tmp->fd_in 
+			execlist->fd_in = token->fd;
 			return (0);
 		}
 		if (tmp->prev != NULL)
@@ -47,20 +42,20 @@ int	ft_search_redir_input(t_token *token, t_execlist *execlist)
 	}
 	return (0);
 }
-int	ft_search_redir_output(t_token *token, t_execlist *execlsit)
+int	ft_search_redir_output(t_token *token, t_execlist *execlist)
 {
 	t_token	*tmp;
 
 	tmp = token->next;
-	while (tmp->next)
+	while (tmp)
 	{
-		if (tmp->type == t_pipe)
+		if (!tmp->next && tmp->type == t_pipe)
 		{
 			if (tmp->prev->type == t_file)
-				tmp->prev->fd_out = 1;
-			else
-				tmp->fd_out = 1;
-			return (0);
+			{
+				execlist->fd_out = token->fd_out;
+				return (0);
+			}
 		}
 		if (tmp->next != NULL)
 			tmp = tmp->next;
@@ -68,25 +63,20 @@ int	ft_search_redir_output(t_token *token, t_execlist *execlsit)
 	return (0);
 }
 
-int	ft_redirections(t_tokenlist *tokens, t_execlist *exec)
+int	ft_redirections(t_shell *shell)
 {
-	t_token	*token;
+	t_token *token;
 
-	token = tokens->head;
+	token = shell->tokens->head;
 	while (token)
 	{
 		if (token->type == t_cmd)
 		{
-			ft_search_redir_input(token, execlist);
-			ft_search_redir_output(token, execlist);
-			execlist = execlist->next;
+			ft_search_redir_input(token, shell->execlist);
+			ft_search_redir_output(token, shell->execlist);
+			shell->execlist = shell->execlist->next;
 		}
 		token = token->next;
 	}
 	return (0);
 }
-
-cmd 
-t_arg
-fd_im=n
-fd_out

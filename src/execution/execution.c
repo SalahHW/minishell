@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 10:35:05 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:28:59 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_for_builtins(char *str)
 	return (0);
 }
 
-int	exec_builtins(t_exec *exec)
+int	exec_builtins(t_shell *exec)
 {
 	if (ft_strncmp(exec->execlist->arg[0], "echo", 5) == 0)
 		ft_echo(exec);
@@ -98,21 +98,18 @@ int	ft_for_cmd(char *path, char **arg)
 
 int	execute_cmd(t_shell *shell)
 {
-	t_exec *exec;
-	exec = malloc(sizeof(t_exec));
-	ft_create_struct(exec, shell);
-	//ft_print_execlist(exec->execlist);
-	while (exec->execlist)
+	format_for_exec(shell);
+	while (shell->execlist)
 	{
-		if (ft_def_redir(exec->execlist) == 1)
+		if (ft_def_redir(shell->execlist) == 1)
 			return (1);
 		// dup2 fail;
-		if (ft_for_builtins(exec->execlist->arg[0]) == 1)
-			exec_builtins(exec);
+		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
+			exec_builtins(shell);
 		// else
 		// 	exec_cmd(exec, shell);
-		exec->execlist = exec->execlist->next;
+		shell->execlist = shell->execlist->next;
 	}
-	free(ft_h(exec));
+	free_execlist(shell->execlist);
 	return (0);
 }

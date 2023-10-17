@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:56:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/13 09:12:41 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:27:38 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_echo(t_exec *exec)
+int	ft_echo(t_shell *exec)
 {
 	int	n;
 

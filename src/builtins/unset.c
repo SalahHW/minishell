@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:46:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 09:27:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:27:59 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int unset(t_exec *exec)
+int unset(t_shell *exec)
 {
 	int i;
 	int j;

@@ -6,32 +6,31 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:11:17 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/16 10:07:45 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:43:28 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_exec	*ft_h(t_exec *exec)
+t_execlist	*ft_h(t_execlist *list)
 {
-	if (!exec || !exec->execlist)
-		return (exec);
-	while (exec->execlist->prev)
-		exec->execlist = exec->execlist->prev;
-	return (exec);
+	if (!list)
+		return (list);
+	while (list->prev)
+		list = list->prev;
+	return (list);
 }
 
-void	ft_execadd_back(t_exec *exec, t_execlist *new)
+void	ft_execadd_back(t_shell *shell, t_execlist *new)
 {
 	t_execlist	*tmp;
 
-	tmp = exec->execlist;
-	if (!tmp)
+	if (!shell->execlist)
 	{
-		exec->execlist = new;
+		shell->execlist = new;
 		return ;
 	}
-	tmp = exec->execlist;
+	tmp = shell->execlist;
 	while (tmp->next)
 		tmp = tmp->next;
 	if (new)
@@ -73,7 +72,7 @@ int	ft_lst_len(t_execlist *cmd)
 	return (i);
 }
 
-void	free_exec(t_exec *exec)
+void	free_execlist(t_shell *exec)
 {
 	t_execlist	*tmp;
 	t_execlist	*tmp2;
@@ -88,5 +87,4 @@ void	free_exec(t_exec *exec)
 		tmp = tmp2;
 	}
 	free(exec->execlist);
-	free(exec);
 }
