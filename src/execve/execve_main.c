@@ -6,20 +6,44 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 08:26:16 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/03 08:58:57 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/16 09:30:58 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-ft_child_process(char *cmd, char **arg,t_mini *mini)
+int	ft_child_process(char *cmd, char **arg, char **path)
 {
-    char *tmp;
+	char	*tmp;
 
-    tmp = ft_path(mini->path,arg);
-    if(tmp == NULL)
-        return (1);
-    if (execve(tmp, arg, mini->env) == -1)
-        return (1);
-    return (0);
+	tmp = ft_path(path, arg);
+	if (tmp == NULL)
+		return (1);
+	if (execve(tmp, arg, env) == -1)
+	{
+		free(tmp);
+		return (1);
+		// error execve
+	}
+	free(tmp);
+	return (0);
+}
+
+int	execve_main(t_exec *exec)
+{
+	pid_t	pid;
+	int		status;
+
+	status = 0;
+	pid = fork();
+	if (pid == -1)
+		return (1);
+	// fail fork
+	else if (pid == 0)
+		if (ft_child_process(exec->execlist->cmd_path, exec->execlist->arg,
+				exec->general->path) == 1)
+                return (1);
+            // error execve
+			waitpid(pid, &status, 0);
+	return (0);
 }

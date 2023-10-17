@@ -6,11 +6,20 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:11:17 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 10:11:48 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/16 10:07:45 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+t_exec	*ft_h(t_exec *exec)
+{
+	if (!exec || !exec->execlist)
+		return (exec);
+	while (exec->execlist->prev)
+		exec->execlist = exec->execlist->prev;
+	return (exec);
+}
 
 void	ft_execadd_back(t_exec *exec, t_execlist *new)
 {
@@ -64,10 +73,10 @@ int	ft_lst_len(t_execlist *cmd)
 	return (i);
 }
 
-void free_exec(t_exec *exec)
+void	free_exec(t_exec *exec)
 {
-	t_execlist *tmp;
-	t_execlist *tmp2;
+	t_execlist	*tmp;
+	t_execlist	*tmp2;
 
 	tmp = exec->execlist;
 	while (tmp)

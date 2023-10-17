@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:36:12 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/10 11:03:10 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/16 09:33:52 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ int	ft_general_pipe(t_shell *shell)
 	shell->general->nbpipe = i;
 	if (ft_create_pipe(shell->general->nbpipe, shell) == 1)
 		return (1);
+	return (0);
 }

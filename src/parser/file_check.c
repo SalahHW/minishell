@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 16:26:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/11 10:30:54 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/16 08:33:38 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	ft_token_input(t_token *token, t_tokentype type)
 }
 int	ft_token_output(t_token *token, t_tokentype type)
 {
-	printf("token->value = %s\n", token->value);
 	if (type == t_redirect_out)
 		token->fd = open(token->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (token->fd < 0)
