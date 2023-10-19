@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/12 22:41:23 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/18 09:21:42 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS 	=			main.c							\
 					lexer/token_type.c				\
 					lexer/token_list.c				\
 					lexer/quote_process.c			\
+					lexer/expansion.c				\
 					parser/parser.c					\
 					parser/token_check.c			\
 					parser/command_check.c			\
@@ -47,6 +48,7 @@ SRCS 	=			main.c							\
 					global_utils/utils_redir.c		\
 					global_utils/is_operator.c		\
 					global_utils/is_quote.c			\
+					global_utils/dollar.c			\
 					exec_list/ft_create_struct.c	\
 					exec_list/ft_execl_utils.c		\
 					builtins/cd.c					\
