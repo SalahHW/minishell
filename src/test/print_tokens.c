@@ -37,6 +37,7 @@ void	print_tokens_list(t_tokenlist *tokens)
 			printf("Type: heredoc\n");
 		else if (token_ptr->type == t_file)
 			printf("Type: file\n");
+		printf("Quote : %d\n", token_ptr->quote);
 		token_ptr = token_ptr->next;
 	}
 }
