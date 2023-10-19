@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 17:19:42 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/19 10:58:11 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_execlist
 	char						*cmd_path;
 	char **arg; // arg[0]=cmd arg[1]=
 				//-option(echo ou pour execve verifier dans lexec) arg[i]= un arguments//
-	int							fd_in;
-	int							fd_out;
+	int fd_in;  // 0 de base
+	int fd_out; // 1 de base
 	struct s_execlist			*next;
 	struct s_execlist			*prev;
 }								t_execlist;
@@ -54,6 +54,7 @@ typedef struct s_general
 	char						*home;
 	int							nbpipes;
 	int							**pipes;
+	int							*pids;
 }								t_general;
 typedef struct s_shell
 {
@@ -91,10 +92,10 @@ void							ft_execadd_back(t_shell *shell,
 									t_execlist *new);
 t_execlist						*ft_new_execlist_node(t_token *token);
 int								ft_lst_len(t_execlist *cmd);
-void							free_execlist(t_execlist *execlist);
-t_execlist						*ft_h(t_execlist *list);
+void							free_execlist(t_shell *shell);
+t_shell						*ft_h(t_shell *shell);
 
-// a mettre//
+// buitins//
 int								ft_cd(t_shell *exec);
 int								pwd(void);
 int								pwd_change(t_shell *exec);
@@ -102,8 +103,16 @@ int								unset(t_shell *exec);
 int								ft_export(t_shell *exec);
 int								env(char **env);
 int								ft_echo(t_shell *exec);
+
+// redir in exec//
+int								ft_def_redir(t_execlist *list, int i,
+									t_general *general);
+// fork.c
+int	ft_solo_child(t_shell *shell);
+int	ft_child_process(t_shell *shell, int i);
+void	ft_parent_process(t_shell *shell, int nbprocess);
+
 // fortest//
 void							ft_print_token_list(t_token *token);
-// redir in exec//
-int								ft_def_redir(t_execlist *list);
+
 #endif

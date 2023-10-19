@@ -6,19 +6,23 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:11:17 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 16:43:28 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/19 10:58:27 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_execlist	*ft_h(t_execlist *list)
+t_shell	*ft_h(t_shell *shell)
 {
+	t_execlist	*list;
+
+	list = shell->execlist;
 	if (!list)
-		return (list);
+		return (shell);
 	while (list->prev)
 		list = list->prev;
-	return (list);
+	shell->execlist = list;
+	return (shell);
 }
 
 void	ft_execadd_back(t_shell *shell, t_execlist *new)

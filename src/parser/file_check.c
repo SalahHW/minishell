@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 16:26:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 10:05:08 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:04:11 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_token_output(t_token *token, t_tokentype type)
 		token->fd = open(token->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (token->fd < 0)
 	{
-		// No fail creat file
+		//  fail creat file
 		return (1);
 	}
 	else if (type == t_redirect_append)

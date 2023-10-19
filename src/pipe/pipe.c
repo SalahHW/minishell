@@ -6,30 +6,24 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:36:12 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 17:15:22 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:23:51 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"\
+#include "../../include/minishell.h"
 
-int	redir_pipes(t_shell *shell)
+int	ft_pids(int nbprocess, t_shell *shell)
 {
 	int	i;
 
 	i = 0;
-	while (i < shell->general->nbpipes)
+	shell->general->pids = malloc(sizeof(int) * nbprocess);
+	if (!shell->general->pids)
+		return (1);
+	while (i < nbprocess)
 	{
-		if (i == 0)
-			shell->execlist->fd_out = shell->general->pipes[i][1];
-		else if (i == shell->general->nbpipes - 1)
-		{
-			shell->execlist->fd_in = shell->general->pipes[i - 1][0];
-			shell->execlist->fd_out = shell->general->pipes[i][1];
-		}
-		else
-			(shell->execlist->fd_in = shell->general->pipes[i - 1][0]);
+		shell->general->pids[i] = 0;
 		i++;
-		shell->execlist = shell->execlist->next;
 	}
 	return (0);
 }

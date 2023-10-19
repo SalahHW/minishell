@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 16:38:13 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/19 09:33:30 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_search_redir_input(t_token *token, t_execlist *execlist)
 		if (tmp->type == t_file)
 		{
 			execlist->fd_in = token->fd;
-			return (0);
+			return (1);
 		}
 		if (tmp->prev != NULL)
 			tmp = tmp->prev;
@@ -54,7 +54,7 @@ int	ft_search_redir_output(t_token *token, t_execlist *execlist)
 			if (tmp->prev->type == t_file)
 			{
 				execlist->fd_out = token->fd_out;
-				return (0);
+				return (1);
 			}
 		}
 		if (tmp->next != NULL)
@@ -66,13 +66,15 @@ int	ft_search_redir_output(t_token *token, t_execlist *execlist)
 int	ft_redirections(t_shell *shell)
 {
 	t_token *token;
-
+	
 	token = shell->tokens->head;
 	while (token)
 	{
 		if (token->type == t_cmd)
 		{
+			if(token->prev)
 			ft_search_redir_input(token, shell->execlist);
+			if(token->next)
 			ft_search_redir_output(token, shell->execlist);
 			shell->execlist = shell->execlist->next;
 		}
