@@ -20,14 +20,18 @@ char	*tokenize_quote(char *input, t_tokenlist *tokens)
 	char	quote;
 
 	quote = *input;
-	token_start = input;
+	token_start = input + 1;
 	token_end = input + 1;
 	while (*token_end)
 	{
 		if (*token_end == quote)
 		{
-			new_token = extract_tokens(token_start, token_end);
+			new_token = extract_tokens(token_start, token_end - 1);
 			add_new_token(tokens, new_token);
+			if (quote == '\'')
+				tokens->tail->quote = single_quote;
+			else if (quote == '\"')
+				tokens->tail->quote = double_quote;
 			return (token_end + 1);
 		}
 		token_end++;

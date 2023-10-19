@@ -16,6 +16,6 @@ void remove_quotes(t_token *token)
 {
 	char *new_value;
 
-	new_value = ft_substr(token->value, 1, ft_strlen(token->value) - 2);	
-	replace_token(token, new_value, token->type);
+	new_value = ft_substr(token->value, 1, ft_strlen(token->value) - 2);
+	replace_token(token, new_value);
 }

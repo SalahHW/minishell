@@ -6,27 +6,27 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/16 22:01:37 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:17:12 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_tokenlist *tokenizer(char *input, char **env)
+t_tokenlist	*tokenizer(char *input, char **env)
 {
 	t_tokenlist	*tokens;
 
 	tokens = init_tokens_list();
 	tokens = tokenize_input(input, tokens);
-	detect_tokens_type(tokens);
+	detect_tokens_type(tokens, env);
 	print_tokens_list(tokens);
-	return (tokens);	
+	return (tokens);
 }
 
 // Scan the input and return a list of tokens
 t_tokenlist	*tokenize_input(char *input, t_tokenlist *tokens)
 {
-	char		*input_ptr;
+	char	*input_ptr;
 
 	input_ptr = input;
 	while (*input_ptr)
