@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 22:40:53 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:19:54 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,17 @@ typedef enum e_tokentype
 	t_file,            // 8
 }					t_tokentype;
 
+typedef enum e_quotetype
+{
+	none,
+	single_quote,
+	double_quote,
+}					t_quotetype;
+
 typedef struct s_token
 {
 	t_tokentype		type;
+	t_quotetype		quote;
 	char			*value;
 	int				is_valid;
 	char			*cmd_path;
@@ -49,7 +57,7 @@ typedef struct s_tokenlist
 	t_token			*tail;
 }					t_tokenlist;
 
-t_tokenlist			*tokenizer(char *input);
+t_tokenlist			*tokenizer(char *input, char **env);
 t_tokenlist			*tokenize_input(char *input, t_tokenlist *tokens);
 char				*extract_tokens(char *token_start, char *token_end);
 
@@ -61,14 +69,15 @@ char				*tokenize_operator(char *input, t_tokenlist *tokens);
 
 int					count_tokens(char *input);
 
-void				detect_tokens_type(t_tokenlist *tokens);
+void				detect_tokens_type(t_tokenlist *tokens, char **env);
 
 t_tokenlist			*init_tokens_list(void);
 void				add_new_token(t_tokenlist *token, char *value);
-void				replace_token(t_token *token, char *value,
-						t_tokentype type);
+void				replace_token(t_token *token, char *value);
 void				clear_tokens_list(t_tokenlist *tokens);
 
 void				remove_quotes(t_token *token);
+
+char	*expand_variables(char *str, char **env);
 
 #endif
