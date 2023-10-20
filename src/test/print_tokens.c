@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:31:31 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 16:36:07 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:52:18 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ void	print_tokens_list(t_tokenlist *tokens)
 			printf("Type: file\n");
 		token_ptr = token_ptr->next;
 	}
+}
+
+void print_execlist(t_execlist *list)
+{
+	int i = 0;
+	while(list)
+	{
+		printf("list element nbr %d\n", i++);
+		printf("cmd_path: %s\n", list->cmd_path);
+		printf("fd_in: %d fd_out %d\n", list->fd_in, list->fd_out);
+		ft_print_tab_for_test(list->arg);
+		list = list->next;
+	}
+	printf("\nend of list\n");
 }

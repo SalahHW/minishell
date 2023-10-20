@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/19 10:58:45 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:48:42 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 int	execute_cmd(t_shell *shell)
 {
 	int	nbprocess;
-
 	format_for_exec(shell);
 	nbprocess = ft_lst_len(shell->execlist);
 	if (nbprocess == 1)

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:11:17 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/19 10:58:27 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:34:51 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,40 @@ t_shell	*ft_h(t_shell *shell)
 	return (shell);
 }
 
-void	ft_execadd_back(t_shell *shell, t_execlist *new)
+void	ft_execadd_back(t_shell *list, t_execlist *new)
 {
-	t_execlist	*tmp;
+	t_execlist	*a;
 
-	if (!shell->execlist)
+	if (list->execlist == NULL)
 	{
-		shell->execlist = new;
+		list->execlist = new;
+		new->next = NULL;
+		new->prev = NULL;
 		return ;
 	}
-	tmp = shell->execlist;
-	while (tmp->next)
-		tmp = tmp->next;
+	a = list->execlist;
+	while (a && a->next != NULL)
+	{
+		a = a->next;
+	}
 	if (new)
 	{
-		tmp->next = NULL;
-		new->prev = tmp;
+		new->next = NULL;
+		new->prev = a;
 	}
-	tmp->next = new;
+	a->next = new;
 }
 
 t_execlist	*ft_new_execlist_node(t_token *token)
 {
 	t_execlist	*new;
-
 	new = malloc(sizeof(t_execlist));
 	if (!new)
 		return (NULL);
-	new->cmd_path = token->cmd_path;
-	new->arg = token->arg;
-	new->fd_in = 0;
-	new->fd_out = 0;
+	new->cmd_path = ft_strdup(token->cmd_path);
+	new->arg = ft_tab_copy(token->arg);
+	new->fd_in = token->fd_in;
+	new->fd_out = token->fd_out;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
@@ -78,9 +81,11 @@ int	ft_lst_len(t_execlist *cmd)
 
 void	free_execlist(t_shell *exec)
 {
+	int			i;
 	t_execlist	*tmp;
 	t_execlist	*tmp2;
 
+	i = 0;
 	tmp = exec->execlist;
 	while (tmp)
 	{
@@ -91,4 +96,11 @@ void	free_execlist(t_shell *exec)
 		tmp = tmp2;
 	}
 	free(exec->execlist);
+	while (exec->general->pipes[i])
+	{
+		free(exec->general->pipes[i]);
+		i++;
+	}
+	free(exec->general->pipes);
+	free(exec->general->pids);
 }

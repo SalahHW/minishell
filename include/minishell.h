@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/19 10:58:11 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:43:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void							ft_execadd_back(t_shell *shell,
 t_execlist						*ft_new_execlist_node(t_token *token);
 int								ft_lst_len(t_execlist *cmd);
 void							free_execlist(t_shell *shell);
-t_shell						*ft_h(t_shell *shell);
+t_shell							*ft_h(t_shell *shell);
 
 // buitins//
 int								ft_cd(t_shell *exec);
@@ -108,11 +108,13 @@ int								ft_echo(t_shell *exec);
 int								ft_def_redir(t_execlist *list, int i,
 									t_general *general);
 // fork.c
-int	ft_solo_child(t_shell *shell);
-int	ft_child_process(t_shell *shell, int i);
-void	ft_parent_process(t_shell *shell, int nbprocess);
+int								ft_solo_child(t_shell *shell);
+int								ft_child_process(t_shell *shell, int i);
+void							ft_parent_process(t_shell *shell,
+									int nbprocess);
 
 // fortest//
 void							ft_print_token_list(t_token *token);
+void							print_execlist(t_execlist *list);
 
 #endif
