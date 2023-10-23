@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:11:17 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 09:56:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:17:27 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_execadd_back(t_shell *list, t_execlist *new)
 t_execlist	*ft_new_execlist_node(t_token *token)
 {
 	t_execlist	*new;
+
 	new = malloc(sizeof(t_execlist));
 	if (!new)
 		return (NULL);
@@ -96,11 +97,14 @@ void	free_execlist(t_shell *exec)
 		tmp = tmp2;
 	}
 	free(exec->execlist);
-			while (exec->general->pipes[i])
+	if (exec->general->pipes)
+	{
+		while (exec->general->pipes[i])
 		{
 			free(exec->general->pipes[i]);
 			i++;
 		}
 		free(exec->general->pipes);
-		free(exec->general->pids);
+	}
+	free(exec->general->pids);
 }

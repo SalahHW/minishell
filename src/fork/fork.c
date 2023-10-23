@@ -6,11 +6,36 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 09:56:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:22:20 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	path_for_execve(t_shell *shell)
+{
+	int		i;
+	char	*path;
+	char	*tmp;
+
+	i = 0;
+	while (shell->general->path[i])
+	{
+		path = ft_strdup(shell->general->path[i]);
+		tmp = ft_strjoin(path, shell->execlist->cmd_path);
+		free(path);
+		if (access(tmp, F_OK) == 0)
+		{
+			free(shell->execlist->cmd_path);
+			shell->execlist->cmd_path = ft_strdup(tmp);
+			free(tmp);
+			return (0);
+		}
+		free(tmp);
+		i++;
+	}
+	return (1);
+}
 
 int	ft_solo_child(t_shell *shell)
 {
@@ -22,20 +47,28 @@ int	ft_solo_child(t_shell *shell)
 	// ERROR FORK//
 	else if (pid == 0)
 	{
-				if (ft_def_redir(shell->execlist, 0, shell->general) == 1)
+		printf("putin de merde\n");
+		path_for_execve(shell);
+		printf("cmd_path = %s\n", shell->execlist->cmd_path);
+		if (ft_def_redir(shell->execlist, 0, shell->general) == 1)
 			return (1);
 		if (execve(shell->execlist->cmd_path, shell->execlist->arg, NULL) == -1)
+		{
+			printf("fail execve\n");
 			return (1);
+		}
+		printf("execve ok\n");
 		// ERROR EXECVE//
 	}
-	return(0);
+	return (0);
 }
 
 int	ft_child_process(t_shell *shell, int i)
 {
-		if (ft_def_redir(shell->execlist, i, shell->general) == 1)
+	if (ft_def_redir(shell->execlist, i, shell->general) == 1)
 		return (1);
 	// ERR on dup2
+	path_for_execve(shell);
 	if (execve(shell->execlist->cmd_path, shell->execlist->arg,
 			shell->general->env) == 1)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 09:56:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:11:28 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	ft_for_builtins(char *str)
 	return (0);
 }
 
-int	exec_builtins(t_shell *exec,int i)
+int	exec_builtins(t_shell *exec, int i)
 {
-	if (ft_def_redir(exec->execlist, i,exec->general) == 1)
+	if (ft_def_redir(exec->execlist, i, exec->general) == 1)
 		return (1);
 	if (ft_strncmp(exec->execlist->arg[0], "echo", 5) == 0)
 		ft_echo(exec);
@@ -87,10 +87,10 @@ int	ft_only_one_cmd(t_shell *shell)
 	if (shell->execlist->next == NULL)
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
-			exec_builtins(shell,0);
+			exec_builtins(shell, 0);
 		else
 		{
-						if (ft_solo_child(shell) == 1)
+			if (ft_solo_child(shell) == 1)
 				return (1);
 			// ERR solochild
 			waitpid(-1, &statut, 0);
@@ -110,7 +110,7 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 		if (shell->general->pids[i] == -1)
 			return (1);
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
-			exec_builtins(shell,i);
+			exec_builtins(shell, i);
 		// ERROR FORK//
 		else if (shell->general->pids[i] == 0)
 			if (ft_child_process(shell, i) == 1)
@@ -127,6 +127,7 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 int	execute_cmd(t_shell *shell)
 {
 	int	nbprocess;
+
 	format_for_exec(shell);
 	nbprocess = ft_lst_len(shell->execlist);
 	if (nbprocess == 1)

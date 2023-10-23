@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/19 08:49:01 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:32:11 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_def_redir_in(int fd_in, int **pipes, int i)
 
 int	ft_def_redir_out(int fd_out, int **pipes, int i, int nbpipe)
 {
-	if (fd_out != 0)
+	if (fd_out != 1)
 	{
 		close(pipes[i + 1][0]);
 		if (dup2(fd_out, STDOUT_FILENO) == -1)

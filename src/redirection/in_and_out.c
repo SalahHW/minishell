@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 09:56:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:32:18 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,15 @@ int	ft_redirections(t_shell *shell)
 	{
 		if (token->type == t_cmd)
 		{
+			shell->execlist->fd_in = 0;
+			shell->execlist->fd_out = 1;
 			printf("token->value = %s\n", token->value);
-			if(token->prev)
+			if (token->prev)
 				ft_search_redir_input(token, shell->execlist);
-			if(token->next)
+			if (token->next)
 				ft_search_redir_output(token, shell->execlist);
-							shell->execlist = shell->execlist->next;
+		if(shell->execlist->next)
+			shell->execlist = shell->execlist->next;
 		}
 		token = token->next;
 	}
