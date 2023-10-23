@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:31:31 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/20 13:52:18 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:41:22 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ void	print_tokens_list(t_tokenlist *tokens)
 			printf("Type: redirect in\n");
 		else if (token_ptr->type == t_redirect_out)
 			printf("Type: redirect out\n");
+		else if (token_ptr->type == t_redirect_append)
+			printf("Type: redirect append\n");
 		else if (token_ptr->type == t_heredoc)
 			printf("Type: heredoc\n");
 		else if (token_ptr->type == t_file)
 			printf("Type: file\n");
+		else if (token_ptr->type == t_exit_status)
+			printf("Type: exit status\n");
 		printf("Quote : %d\n", token_ptr->quote);
 		token_ptr = token_ptr->next;
 	}

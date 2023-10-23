@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:51:20 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 16:24:45 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/23 07:51:00 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*tokenize_operator(char *input, t_tokenlist *tokens)
 		else
 			token_end = input;
 	}
+	else if (is_exit_status(input))
+		token_end = input + 1;
 	new_token = extract_tokens(token_start, token_end);
 	add_new_token(tokens, new_token);
 	return (token_end + 1);

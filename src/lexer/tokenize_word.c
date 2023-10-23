@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 13:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 13:48:50 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/23 08:03:56 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ char	*tokenize_word(char *input, t_tokenlist *tokens)
 	token_start = input;
 	token_end = input;
 	while (*token_end && !is_operator(*token_end) && !is_white_space(*token_end)
-		&& !is_quote(*token_end))
-	{
+		&& !is_quote(*token_end) && !is_exit_status(token_end))
 		token_end++;
-	}
 	token_end--;
 	if (token_end < token_start)
 		return (NULL);
