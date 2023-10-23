@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/20 13:59:01 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:56:43 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	format_for_exec(t_shell *shell)
 	// ERR create execlist
 	if (ft_redirections(shell) == 1)
 		return (1);
-	printf("coucou");
+printf("coucou");
 	// ERR redir fd
 
 	return (0);

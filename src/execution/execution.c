@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/19 11:48:42 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:56:43 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	ft_only_one_cmd(t_shell *shell)
 			exec_builtins(shell,0);
 		else
 		{
-			if (ft_solo_child(shell) == 1)
+						if (ft_solo_child(shell) == 1)
 				return (1);
 			// ERR solochild
 			waitpid(-1, &statut, 0);

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/19 11:00:01 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:56:43 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_solo_child(t_shell *shell)
 	// ERROR FORK//
 	else if (pid == 0)
 	{
-		if (ft_def_redir(shell->execlist, 0, shell->general) == 1)
+				if (ft_def_redir(shell->execlist, 0, shell->general) == 1)
 			return (1);
 		if (execve(shell->execlist->cmd_path, shell->execlist->arg, NULL) == -1)
 			return (1);
@@ -33,7 +33,7 @@ int	ft_solo_child(t_shell *shell)
 
 int	ft_child_process(t_shell *shell, int i)
 {
-	if (ft_def_redir(shell->execlist, i, shell->general) == 1)
+		if (ft_def_redir(shell->execlist, i, shell->general) == 1)
 		return (1);
 	// ERR on dup2
 	if (execve(shell->execlist->cmd_path, shell->execlist->arg,
