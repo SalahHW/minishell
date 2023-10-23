@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:29:54 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/18 09:24:07 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:19:27 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static int	is_variable(char *str)
 	return (0);
 }
 
-static char *get_var_name(char *str)
+static char	*get_var_name(char *str)
 {
-	char *var_name;
-	char *var_start;
-	char *var_end;
+	char	*var_name;
+	char	*var_start;
+	char	*var_end;
 
 	if (!str || *str != '$')
 		return (NULL);
@@ -35,12 +35,12 @@ static char *get_var_name(char *str)
 	return (var_name);
 }
 
-static int get_expanded_len(char *str, char **env)
+static int	get_expanded_len(char *str, char **env)
 {
-	int len;
-	char *var_name;
-	char *var_value;
-	char *str_ptr;
+	int		len;
+	char	*var_name;
+	char	*var_value;
+	char	*str_ptr;
 
 	len = 0;
 	str_ptr = str;
@@ -60,25 +60,25 @@ static int get_expanded_len(char *str, char **env)
 			str_ptr++;
 		}
 	}
-	return len;
+	return (len);
 }
 
-char *expand_variables(char *str, char **env)
+char	*expand_variables(char *str, char **env)
 {
-	char *str_ptr = str;
-	char *expanded_str;
-	char *var_name;
-	char *var_value;
-	int len;
+	char	*str_ptr;
+	char	*expanded_str;
+	char	*var_name;
+	char	*var_value;
+	int		len;
+	char	*dst_ptr;
 
+	str_ptr = str;
 	len = get_expanded_len(str, env);
 	expanded_str = malloc(len + 1);
 	if (!expanded_str)
-		return NULL;
-
-	char *dst_ptr = expanded_str;
+		return (NULL);
+	dst_ptr = expanded_str;
 	str_ptr = str;
-
 	while (*str_ptr)
 	{
 		if (is_variable(str_ptr))
@@ -100,5 +100,5 @@ char *expand_variables(char *str, char **env)
 	}
 	*dst_ptr = '\0';
 	free(str);
-	return expanded_str;
+	return (expanded_str);
 }
