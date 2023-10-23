@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/20 13:43:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:48:10 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void							ft_parent_process(t_shell *shell,
 									int nbprocess);
 
 // fortest//
-void							ft_print_token_list(t_token *token);
+void							print_tokens_list(t_tokenlist *token);
 void							print_execlist(t_execlist *list);
 
 #endif

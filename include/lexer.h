@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/23 07:19:48 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:49:15 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void				clear_tokens_list(t_tokenlist *tokens);
 
 void				remove_quotes(t_token *token);
 
-char	*expand_variables(char *str, char **env);
+char				*expand_variables(char *str, char **env);
 
 #endif
