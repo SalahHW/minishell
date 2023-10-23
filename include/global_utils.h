@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:18 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 10:04:58 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:37:54 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int		is_redirection(char c);
 int		is_pipe(char c);
 int		is_redirect_in(char c);
 int		is_redirect_out(char c);
+int		is_exit_status(char *str);
 
 #endif
