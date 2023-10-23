@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/18 09:21:42 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/23 08:54:31 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,8 @@ SRCS 	=			main.c							\
 					global_utils/dollar.c			\
 					exec_list/ft_create_struct.c	\
 					exec_list/ft_execl_utils.c		\
+					pipe/pipe.c						\
+					format_for_exec/main_format.c	\
 					builtins/cd.c					\
 					builtins/pwd.c					\
 					builtins/unset.c				\
@@ -58,7 +60,9 @@ SRCS 	=			main.c							\
 					builtins/env.c					\
 					builtins/echo.c					\
 					execution/execution.c			\
+					fork/fork.c						\
 					test/print_tokens.c				\
+					execution/redir_for_exec.c		\
 
 					
 					

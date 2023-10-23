@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 01:26:06 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 16:40:46 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/18 10:00:23 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	parser(t_tokenlist *tokens)
 	// {
 	// 	return (1);
 	// }
-//	 ft_redirections(tokens);
-	// fin du parcer MAJ des var dans chaque token pour lexec//
+	//apres les checks il faut 1) creer la liste des commandes token-> cmd_path 2) creer la liste des arguments token->arg // pour chaque token cmd
 	return (0);
 }

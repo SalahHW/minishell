@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:45:53 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 09:26:34 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:27:55 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	pwd(void)
 	return (0);
 }
 
-int	pwd_change(t_exec *exec)
+int	pwd_change(t_shell *exec)
 {
 	if (ft_search_in_tab(exec->general->env, "PWD") != NULL)
 	{

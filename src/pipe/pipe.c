@@ -6,11 +6,27 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:36:12 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/10 11:03:10 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:23:51 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	ft_pids(int nbprocess, t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	shell->general->pids = malloc(sizeof(int) * nbprocess);
+	if (!shell->general->pids)
+		return (1);
+	while (i < nbprocess)
+	{
+		shell->general->pids[i] = 0;
+		i++;
+	}
+	return (0);
+}
 
 int	ft_malloc_pipe(int nbpipes, int **pipefd)
 {
@@ -39,7 +55,7 @@ int	ft_create_pipe(int nbpipe, t_shell *shell)
 		return (1);
 	while (i < nbpipe)
 	{
-		if (pipe(pipes[i]) == -1)
+		if (pipe(shell->general->pipes[i]) == -1)
 			return (1);
 		i++;
 	}
@@ -51,14 +67,15 @@ int	ft_general_pipe(t_shell *shell)
 	int		i;
 
 	i = 0;
-	token = shell->tokenlist->head;
+	token = shell->tokens->head;
 	while (token)
 	{
 		if (token->type == t_pipe)
 			i++;
 		token = token->next;
 	}
-	shell->general->nbpipe = i;
-	if (ft_create_pipe(shell->general->nbpipe, shell) == 1)
+	shell->general->nbpipes = i;
+	if (ft_create_pipe(shell->general->nbpipes, shell) == 1)
 		return (1);
+	return (0);
 }

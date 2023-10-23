@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/12 16:30:50 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:43:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_execlist
 	char						*cmd_path;
 	char **arg; // arg[0]=cmd arg[1]=
 				//-option(echo ou pour execve verifier dans lexec) arg[i]= un arguments//
-	int							fd_in;
-	int							fd_out;
+	int fd_in;  // 0 de base
+	int fd_out; // 1 de base
 	struct s_execlist			*next;
 	struct s_execlist			*prev;
 }								t_execlist;
@@ -52,8 +52,9 @@ typedef struct s_general
 	char						**path;
 	char						**expt;
 	char						*home;
-	int							nbpipe;
+	int							nbpipes;
 	int							**pipes;
+	int							*pids;
 }								t_general;
 typedef struct s_shell
 {
@@ -61,14 +62,8 @@ typedef struct s_shell
 	char						*user_input;
 	t_tokenlist					*tokens;
 	t_general					*general;
-}								t_shell;
-
-typedef struct s_exec
-{
-	t_general					*general;
 	t_execlist					*execlist;
-
-}								t_exec;
+}								t_shell;
 
 int								init_shell(t_shell *shell);
 void							clean_shell(t_shell *shell);
@@ -77,32 +72,49 @@ int								execute_cmd(t_shell *shell);
 // create env,path,home//
 void							ft_create_env_and_path(t_shell *shell,
 									char **env);
-// a mettre dans command.h//
-int								ft_cd(t_exec *exec);
-int								pwd(void);
-int								pwd_change(t_exec *exec);
-int								unset(t_exec *exec);
-int								ft_export(t_exec *exec);
-int								env(char **env);
-int								ft_echo(t_exec *exec);
-
-//redirect//
-int	ft_redirections(t_tokenlist *tokens);
-int	ft_close_all_fd(t_token *token);
-//utils redirection//
-int	ft_close_all_fd(t_token *token);
-int	redir_output(int output_fd);
-int	redir_input(int input_fd);
-
-// new struct
-int								ft_create_struct(t_exec *exec, t_shell *shell);
+// FORMAT//
+// fornat for exec//
+int								format_for_exec(t_shell *shell);
+// PIPE//
+// pipe//
+int								ft_general_pipe(t_shell *shell);
+int								redir_pipes(t_shell *shell);
+// redirect//
+int								ft_redirections(t_shell *shell);
+int								ft_close_all_fd(t_token *token);
+// utils redirection//
+int								ft_close_all_fd(t_token *token);
+int								redir_output(int output_fd);
+int								redir_input(int input_fd);
 
 // utils new struct//
-void							ft_execadd_back(t_exec *exec, t_execlist *new);
+void							ft_execadd_back(t_shell *shell,
+									t_execlist *new);
 t_execlist						*ft_new_execlist_node(t_token *token);
 int								ft_lst_len(t_execlist *cmd);
-void free_exec(t_exec *exec);
-//fortest//
-void ft_print_token_list(t_token *token);
-void				print_tokens_list(t_tokenlist *tokens);
+void							free_execlist(t_shell *shell);
+t_shell							*ft_h(t_shell *shell);
+
+// buitins//
+int								ft_cd(t_shell *exec);
+int								pwd(void);
+int								pwd_change(t_shell *exec);
+int								unset(t_shell *exec);
+int								ft_export(t_shell *exec);
+int								env(char **env);
+int								ft_echo(t_shell *exec);
+
+// redir in exec//
+int								ft_def_redir(t_execlist *list, int i,
+									t_general *general);
+// fork.c
+int								ft_solo_child(t_shell *shell);
+int								ft_child_process(t_shell *shell, int i);
+void							ft_parent_process(t_shell *shell,
+									int nbprocess);
+
+// fortest//
+void							ft_print_token_list(t_token *token);
+void							print_execlist(t_execlist *list);
+
 #endif

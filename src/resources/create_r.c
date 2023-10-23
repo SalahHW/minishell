@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:27:44 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/09 09:10:00 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/13 10:51:37 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_env(t_shell *shell, char **env)
 		i++;
 	}
 	shell->general->env[i] = NULL;
-	shell->general->expt = ft_ascii_sort(ft_tab_copy(shell->general->env));
+	shell->general->expt = ft_tab_copy(shell->general->env);
 }
 void	ft_create_env_and_path(t_shell *shell, char **env)
 {

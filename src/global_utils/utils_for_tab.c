@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:16:14 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 17:20:33 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:20:01 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ char	**add_char_at_back_tab(char **tab, char *str)
 	tmp = ft_tab_copy(tab);
 	tmp[i - 2] = ft_strdup(str);
 	tmp[i - 1] = NULL;
+	free_tab(tab);
 	return (tmp);
 }
 
-char	**ft_ascii_sort(char **str)
+char	**ft_ascii_sort(char **arg)
 {
 	int		i;
 	int		j;
@@ -54,14 +55,14 @@ char	**ft_ascii_sort(char **str)
 
 	i = 0;
 	j = 1;
-	l = ft_tab_size(str);
+	l = ft_tab_size(arg);
 	while (j < l)
 	{
-		if (ft_strcmp(str[i], str[j]) > 0)
+		if (ft_strcmp(arg[i], arg[j]) > 0)
 		{
-			tmp = str[i];
-			str[i] = str[j];
-			str[j] = tmp;
+			tmp = arg[i];
+			arg[i] = arg[j];
+			arg[j] = tmp;
 			i = 0;
 			j = 1;
 		}
@@ -71,7 +72,7 @@ char	**ft_ascii_sort(char **str)
 			j++;
 		}
 	}
-	return (str);
+	return (arg);
 }
 
 int	ft_tab_size(char **str)
@@ -96,6 +97,8 @@ char	**ft_tab_copy(char **tab)
 
 	i = 0;
 	l = 0;
+	if(!tab)
+		return (NULL);
 	l = ft_tab_size(tab);
 	tmp = ft_calloc(l + 1, sizeof(char *));
 	if (!tmp)
