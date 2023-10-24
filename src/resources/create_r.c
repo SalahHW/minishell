@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:27:44 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/13 10:51:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:56:17 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,14 @@ void	ft_env(t_shell *shell, char **env)
 	shell->general->env[i] = NULL;
 	shell->general->expt = ft_tab_copy(shell->general->env);
 }
+void ft_save_fd(t_shell *shell)
+{
+	shell->general->fd_in = dup(STDIN_FILENO);
+	shell->general->fd_out = dup(STDOUT_FILENO);
+}
 void	ft_create_env_and_path(t_shell *shell, char **env)
 {
 	ft_path_home(shell, env);
 	ft_env(shell, env);
+	ft_save_fd(shell);
 }

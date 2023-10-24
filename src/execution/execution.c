@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 10:11:28 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:52:15 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_for_builtins(char *str)
 
 int	exec_builtins(t_shell *exec, int i)
 {
-	if (ft_def_redir(exec->execlist, i, exec->general) == 1)
+	if (ft_def_redir(exec, i) == 1)
 		return (1);
 	if (ft_strncmp(exec->execlist->arg[0], "echo", 5) == 0)
 		ft_echo(exec);
@@ -84,17 +84,14 @@ int	ft_only_one_cmd(t_shell *shell)
 {
 	int	statut;
 
-	if (shell->execlist->next == NULL)
+	if (ft_for_builtins(shell->execlist->arg[0]) == 1)
+		exec_builtins(shell, 0);
+	else
 	{
-		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
-			exec_builtins(shell, 0);
-		else
-		{
-			if (ft_solo_child(shell) == 1)
-				return (1);
-			// ERR solochild
-			waitpid(-1, &statut, 0);
-		}
+		if (ft_solo_child(shell) == 1)
+			return (1);
+		// ERR solochild
+		waitpid(-1, &statut, 0);
 	}
 	return (0);
 }
@@ -132,14 +129,20 @@ int	execute_cmd(t_shell *shell)
 	nbprocess = ft_lst_len(shell->execlist);
 	if (nbprocess == 1)
 	{
-		ft_only_one_cmd(ft_h(shell));
-		return (1);
+		if (ft_only_one_cmd(ft_h(shell)) == 1)
+			return (1);
 	}
 	else if (nbprocess > 1)
 	{
-		ft_multi_cmd(ft_h(shell), nbprocess);
-		return (1);
+		if (ft_multi_cmd(ft_h(shell), nbprocess) == 1)
+			return (1);
 	}
-	free_execlist(ft_h(shell));
+	ft_h(shell);
+	dup2(shell->general->fd_in, STDIN_FILENO);
+	dup2(shell->general->fd_out, STDOUT_FILENO);
+	printf("nbprocess = %d\n", nbprocess);
+	print_execlist(shell->execlist);
+	ft_h(shell);
+	ft_free_exec(shell);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/23 07:42:00 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:34:51 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_tokenlist	*tokenizer(char *input, char **env)
 	tokens = init_tokens_list();
 	tokens = tokenize_input(input, tokens);
 	detect_tokens_type(tokens, env);
-	print_tokens_list(tokens);
 	return (tokens);
 }
 

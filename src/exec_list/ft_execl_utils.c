@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:11:17 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 10:17:27 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:42:30 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,33 +78,4 @@ int	ft_lst_len(t_execlist *cmd)
 		a = a->next;
 	}
 	return (i);
-}
-
-void	free_execlist(t_shell *exec)
-{
-	int			i;
-	t_execlist	*tmp;
-	t_execlist	*tmp2;
-
-	i = 0;
-	tmp = exec->execlist;
-	while (tmp)
-	{
-		tmp2 = tmp->next;
-		free(tmp->cmd_path);
-		free_tab(tmp->arg);
-		free(tmp);
-		tmp = tmp2;
-	}
-	free(exec->execlist);
-	if (exec->general->pipes)
-	{
-		while (exec->general->pipes[i])
-		{
-			free(exec->general->pipes[i]);
-			i++;
-		}
-		free(exec->general->pipes);
-	}
-	free(exec->general->pids);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_check.c                                       :+:      :+:    :+:   */
+/*   redir_for_exec2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/04 16:26:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/18 16:04:11 by aherrman         ###   ########.fr       */
+/*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
+/*   Updated: 2023/10/24 08:13:24 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_here_heredoc(t_token *token)
 	return (0);
 }
 
-int	ft_token_input(t_token *token, t_tokentype type)
+int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist)
 {
 	if (type == t_redirect_in)
 		token->fd = open(token->value, O_RDONLY, __O_DIRECTORY);
@@ -57,9 +57,10 @@ int	ft_token_input(t_token *token, t_tokentype type)
 			// heredocje sais pas atm
 		}
 	}
+	execlist->fd_in = token->fd;
 	return (0);
 }
-int	ft_token_output(t_token *token, t_tokentype type)
+int	ft_token_output(t_token *token, t_tokentype type, t_execlist *execlist)
 {
 	if (type == t_redirect_out)
 		token->fd = open(token->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -77,43 +78,49 @@ int	ft_token_output(t_token *token, t_tokentype type)
 			return (1);
 		}
 	}
+	execlist->fd_out = token->fd;
 	return (0);
 }
 
-int	ft_file_can_open(t_token *token)
+t_token	*search_next_cmd(t_token *token, int i)
 {
+	int	j;
+
+	j = 0;
 	while (token)
 	{
-		// printf("token->value = %s token type %d \n", token->value, token->type);
+		if (token->type == t_pipe)
+			j++;
+		if (j == i)
+		{
+			token = token->next;
+			return (token);
+		}
+		token = token->next;
+	}
+	return (NULL);
+}
+
+int	ft_open_fd_in_out(t_execlist *execlist, t_token *token)
+{
+	while (token && token->type != t_pipe)
+	{
 		if (token->type == t_file)
 		{
 			if (token->prev && (token->prev->type == t_redirect_in
 					|| token->prev->type == t_heredoc))
 			{
-				if (ft_token_input(token, token->prev->type) == 1)
+				if (ft_token_input(token, token->prev->type, execlist) == 1)
 					return (1);
 			}
 			else if (token->prev && (token->prev->type == t_redirect_out
 					|| token->prev->type == t_redirect_append))
 			{
-				if (ft_token_output(token, token->prev->type) == 1)
+				if (ft_token_output(token, token->prev->type, execlist) == 1)
 					return (1);
 			}
 		}
-		if (token->next)
-			token = token->next;
-		else
-			break ;
-	}
-	return (0);
-}
-
-int	check_file(t_tokenlist *tokens)
-{
-	if (ft_file_can_open(tokens->head) == 1)
-	{
-		ft_close_all_fd(tokens->head);
-		return (1);
+		token = token->next;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 10:22:20 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:31:27 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,13 @@ int	ft_solo_child(t_shell *shell)
 	// ERROR FORK//
 	else if (pid == 0)
 	{
-		printf("putin de merde\n");
 		path_for_execve(shell);
-		printf("cmd_path = %s\n", shell->execlist->cmd_path);
-		if (ft_def_redir(shell->execlist, 0, shell->general) == 1)
+		if (ft_def_redir(shell, 0) == 1)
 			return (1);
 		if (execve(shell->execlist->cmd_path, shell->execlist->arg, NULL) == -1)
 		{
-			printf("fail execve\n");
 			return (1);
 		}
-		printf("execve ok\n");
 		// ERROR EXECVE//
 	}
 	return (0);
@@ -65,7 +61,7 @@ int	ft_solo_child(t_shell *shell)
 
 int	ft_child_process(t_shell *shell, int i)
 {
-	if (ft_def_redir(shell->execlist, i, shell->general) == 1)
+	if (ft_def_redir(shell, i) == 1)
 		return (1);
 	// ERR on dup2
 	path_for_execve(shell);
