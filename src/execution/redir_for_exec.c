@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 10:17:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:11:03 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,35 @@ int	ft_def_redir_out(int fd_out, int **pipes, int i, int nbpipe)
 	return (0);
 }
 
+void	ft_define_pipe(t_execlist *list, t_general *general, int i)
+{
+	if (general->nbpipes == 0)
+		return ;
+	if (i == 0)
+	{
+		list->fd_in = 0;
+		list->fd_out = general->pipes[i][1];
+	}
+	else if (i != general->nbpipes)
+	{
+		list->fd_in = general->pipes[i][0];
+		list->fd_out = general->pipes[i + 1][1];
+	}
+	else if (i == general->nbpipes)
+	{
+		list->fd_in = general->pipes[i][0];
+		list->fd_out = 1;
+	}
+}
+
 int	ft_def_redir(t_shell *shell, int i)
 {
-	// chercher la i cmd dans la token list
+	fprintf(stderr, "\n\n je suis le fork n %d\n\n", i);
+	ft_define_pipe(shell->execlist, shell->general, i);
 	ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head, i));
-	// open tout les fd dans la liste des tokens et definir leurs place dans t_exec
+	fprintf(stderr, "dans le fork OMG fd_in = %d fd_out = %d pipenb = %d\n",
+		shell->execlist->fd_in, shell->execlist->fd_out,
+		shell->general->nbpipes);
 	if (ft_def_redir_in(shell->execlist->fd_in, shell->general->pipes, i) == 1)
 		return (1);
 	// error dup2 on in

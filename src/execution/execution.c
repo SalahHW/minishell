@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 10:52:15 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:34:50 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,15 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 		shell->general->pids[i] = fork();
 		if (shell->general->pids[i] == -1)
 			return (1);
-		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
-			exec_builtins(shell, i);
-		// ERROR FORK//
 		else if (shell->general->pids[i] == 0)
-			if (ft_child_process(shell, i) == 1)
+		{
+			if (ft_for_builtins(shell->execlist->arg[0]) == 1)
+				exec_builtins(shell, i);
+			// ERROR FORK//
+			else if (ft_child_process(shell, i) == 1)
 				return (1);
-		// error on child
+			// error on child
+		}
 		if (shell->execlist->next)
 			shell->execlist = shell->execlist->next;
 		i++;
@@ -140,7 +142,7 @@ int	execute_cmd(t_shell *shell)
 	ft_h(shell);
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
-	printf("nbprocess = %d\n", nbprocess);
+	printf("nbprocess = %d nbpipes  = %d \n", nbprocess,shell->general->nbpipes);
 	print_execlist(shell->execlist);
 	ft_h(shell);
 	ft_free_exec(shell);

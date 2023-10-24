@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 11:51:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:36:19 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,24 @@ int	ft_format_for_tokens(t_shell *shell)
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
+	int		i;
 
+	i = 0;
 	shell->execlist = NULL;
 	tmp = shell->tokens->head;
 	while (tmp)
 	{
 		if (tmp->type == t_cmd)
+		{
 			ft_execadd_back(shell, ft_new_execlist_node(tmp));
+			i++;
+		}
 		tmp = tmp->next;
 	}
+	shell->general->pids = malloc(sizeof(int) * (i + 1));
+	if (!shell->general->pids)
+		return (1);
+	// ERR malloc
 	return (0);
 }
 
@@ -93,6 +102,9 @@ int	format_for_exec(t_shell *shell)
 	if (ft_redirections(shell) == 1)
 		return (1);
 	// ERR redir fd
+	if (ft_general_pipe(shell) == 1)
+		return (1);
+	// ERR create pipes
 	ft_h(shell);
 	// print_execlist(shell->execlist);
 	ft_h(shell);

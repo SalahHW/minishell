@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:36:46 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 08:42:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:52:58 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	free_general_utils(t_general *general)
 	i = 0;
 	if (general->pipes != NULL)
 	{
-		while (general->pipes[i])
-		{
-			free(general->pipes[i]);
-			i++;
-		}
+			while (general->pipes[i])
+			{
+				free(general->pipes[i]);
+				i++;
+			}
 		free(general->pipes);
 	}
 	free(general->pids);
