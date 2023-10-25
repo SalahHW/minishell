@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 11:35:59 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:33:30 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int	execute_cmd(t_shell *shell)
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
 	printf("nbprocess = %d nbpipes  = %d \n", nbprocess,shell->general->nbpipes);
-	print_execlist(shell->execlist);
+	//print_execlist(shell->execlist);
 	ft_h(shell);
 	ft_free_exec(shell);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 08:13:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:01:38 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist)
 			// heredocje sais pas atm
 		}
 	}
+	if (execlist->fd_in != 0)
+		close(execlist->fd_in);
 	execlist->fd_in = token->fd;
 	return (0);
 }
@@ -78,6 +80,8 @@ int	ft_token_output(t_token *token, t_tokentype type, t_execlist *execlist)
 			return (1);
 		}
 	}
+	if (execlist->fd_out != 1)
+		close(execlist->fd_out);
 	execlist->fd_out = token->fd;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 12:04:25 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:02:22 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	close_pipes(int nbpipes, int **pipefd, int j)
 	i = 0;
 	if (nbpipes == 0)
 		return ;
-	while (i <= nbpipes)
+	while (i < nbpipes)
 	{
-		if (i != j || i == 0)
+		if (i != j )
 			close(pipefd[i][0]);
 		if (i != j + 1)
 			close(pipefd[i][1]);
