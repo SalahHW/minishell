@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 17:11:03 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:04:25 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,74 +41,28 @@ void	close_pipes(int nbpipes, int **pipefd, int j)
 	}
 }
 
-int	ft_def_redir_in(int fd_in, int **pipes, int i)
+int	ft_def_redir_in(int fd_in)
 {
-	if (fd_in != 0)
-	{
-		if (i != 0)
-			close(pipes[i][0]);
-		if (dup2(fd_in, STDIN_FILENO) == -1)
-			return (1);
-	}
-	else if (i != 0)
-	{
-		if (dup2(pipes[i][0], STDIN_FILENO) == -1)
-			return (1);
-	}
+	if (dup2(fd_in, STDIN_FILENO) == -1)
+		return (1);
 	return (0);
 }
 
-int	ft_def_redir_out(int fd_out, int **pipes, int i, int nbpipe)
+int	ft_def_redir_out(int fd_out)
 {
-	if (fd_out != 1)
-	{
-		if (i != 0)
-			close(pipes[i + 1][0]);
-		if (dup2(fd_out, STDOUT_FILENO) == -1)
-			return (1);
-	}
-	else if (i > nbpipe)
-	{
-		if (dup2(pipes[i + 1][0], STDOUT_FILENO) == -1)
-			return (1);
-	}
+	if (dup2(fd_out, STDOUT_FILENO) == -1)
+		return (1);
 	return (0);
-}
-
-void	ft_define_pipe(t_execlist *list, t_general *general, int i)
-{
-	if (general->nbpipes == 0)
-		return ;
-	if (i == 0)
-	{
-		list->fd_in = 0;
-		list->fd_out = general->pipes[i][1];
-	}
-	else if (i != general->nbpipes)
-	{
-		list->fd_in = general->pipes[i][0];
-		list->fd_out = general->pipes[i + 1][1];
-	}
-	else if (i == general->nbpipes)
-	{
-		list->fd_in = general->pipes[i][0];
-		list->fd_out = 1;
-	}
 }
 
 int	ft_def_redir(t_shell *shell, int i)
 {
-	fprintf(stderr, "\n\n je suis le fork n %d\n\n", i);
-	ft_define_pipe(shell->execlist, shell->general, i);
+	fprintf(stderr,"\n\n  ma cmd = %s je suis le fork n %d fd_in = %d fd_out =% d np pipe = %d\n\n ", shell->execlist->cmd_path, i,shell->execlist->fd_in,shell->execlist->fd_out,shell->general->nbpipes);
 	ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head, i));
-	fprintf(stderr, "dans le fork OMG fd_in = %d fd_out = %d pipenb = %d\n",
-		shell->execlist->fd_in, shell->execlist->fd_out,
-		shell->general->nbpipes);
-	if (ft_def_redir_in(shell->execlist->fd_in, shell->general->pipes, i) == 1)
+	if (ft_def_redir_in(shell->execlist->fd_in) == 1)
 		return (1);
 	// error dup2 on in
-	if (ft_def_redir_out(shell->execlist->fd_out, shell->general->pipes, i,
-			shell->general->nbpipes) == 1)
+	if (ft_def_redir_out(shell->execlist->fd_out) == 1)
 		return (1);
 	// error dup2 on out
 	close_pipes(shell->general->nbpipes, shell->general->pipes, i);
