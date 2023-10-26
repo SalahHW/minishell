@@ -72,7 +72,6 @@ int	ft_redirections(t_shell *shell)
 		{
 			shell->execlist->fd_in = 0;
 			shell->execlist->fd_out = 1;
-			printf("token->value = %s\n", token->value);
 			if (token->prev)
 				ft_search_redir_input(token, shell->execlist);
 			if (token->next)

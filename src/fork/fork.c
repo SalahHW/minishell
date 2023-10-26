@@ -47,9 +47,7 @@ int	ft_solo_child(t_shell *shell)
 	// ERROR FORK//
 	else if (pid == 0)
 	{
-		printf("putin de merde\n");
 		path_for_execve(shell);
-		printf("cmd_path = %s\n", shell->execlist->cmd_path);
 		if (ft_def_redir(shell->execlist, 0, shell->general) == 1)
 			return (1);
 		if (execve(shell->execlist->cmd_path, shell->execlist->arg, NULL) == -1)
