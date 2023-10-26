@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/26 06:42:11 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:40:24 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	ft_create_list(t_shell *shell)
 
 int	format_for_exec(t_shell *shell)
 {
+	shell->general->env = environement_list_to_array(shell->environement_list);
 	if (ft_format_for_tokens(shell) == 1)
 		return (1);
 	if (ft_create_list(shell) == 1)
