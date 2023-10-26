@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 09:48:10 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:38:08 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 //***** LIB *****//
 //# include "command.h"
+# include "environement.h"
 # include "global_utils.h"
 # include "lexer.h"
 # include "libft/libft.h"
@@ -37,10 +38,9 @@ extern volatile sig_atomic_t	g_sigquit_received;
 typedef struct s_execlist
 {
 	char						*cmd_path;
-	char **arg; // arg[0]=cmd arg[1]=
-				//-option(echo ou pour execve verifier dans lexec) arg[i]= un arguments//
-	int fd_in;  // 0 de base
-	int fd_out; // 1 de base
+	char						**arg;
+	int							fd_in;
+	int							fd_out;
 	struct s_execlist			*next;
 	struct s_execlist			*prev;
 }								t_execlist;
@@ -56,13 +56,16 @@ typedef struct s_general
 	int							**pipes;
 	int							*pids;
 }								t_general;
+
 typedef struct s_shell
 {
+	t_envlist					*environement_list;
 	char						*prompt;
 	char						*user_input;
 	t_tokenlist					*tokens;
 	t_general					*general;
 	t_execlist					*execlist;
+	int							last_exit_code;
 }								t_shell;
 
 int								init_shell(t_shell *shell);
