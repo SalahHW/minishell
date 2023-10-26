@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:08:15 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/17 14:25:59 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:52:50 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	add_new_token(t_tokenlist *tokens, char *value)
 	tokens->tail = new_token;
 }
 
-void replace_token(t_token *token, char *new_value)
+void	replace_token(t_token *token, char *new_value)
 {
 	free(token->value);
 	token->value = new_value;
