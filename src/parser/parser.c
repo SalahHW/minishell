@@ -12,9 +12,9 @@
 
 #include "../../include/minishell.h"
 
-int	parser(t_tokenlist *tokens)
+int	parser(t_shell *shell)
 {
-	if (!check_tokens(tokens))
+	if (!check_tokens(shell))
 		return (1);
 	return (0);
 }
