@@ -21,7 +21,7 @@ int	check_tokens(t_shell *shell)
 	{
 		if (token->type == t_cmd)
 		{
-			if (!is_valid_command(token->value))
+			if (!is_valid_command(shell, token->value))
 			{
 				token->is_valid = 0;
 				shell->last_exit_code = 127;

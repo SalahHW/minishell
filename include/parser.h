@@ -17,7 +17,7 @@ int	parser(t_shell *shell);
 
 int	check_tokens(t_shell *shell);
 
-int	is_valid_command(char *str);
+int	is_valid_command(t_shell *shell, char *cmd);
 int	check_file(t_tokenlist *tokens);
 
 #endif
