@@ -6,27 +6,18 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:29:54 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/23 09:19:27 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:53:25 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int	is_variable(char *str)
-{
-	if (*str == '$' && (ft_isalnum(*(str + 1)) || *(str + 1) == '_'))
-		return (1);
-	return (0);
-}
-
-static char	*get_var_name(char *str)
+static char	*extract_var_name(char *str)
 {
 	char	*var_name;
 	char	*var_start;
 	char	*var_end;
 
-	if (!str || *str != '$')
-		return (NULL);
 	var_start = str + 1;
 	var_end = str + 1;
 	while (*var_end && (ft_isalnum(*var_end) || *var_end == '_'))
@@ -35,7 +26,7 @@ static char	*get_var_name(char *str)
 	return (var_name);
 }
 
-static int	get_expanded_len(char *str, char **env)
+static int	get_expanded_len(t_shell *shell, char *str)
 {
 	int		len;
 	char	*var_name;
@@ -48,8 +39,8 @@ static int	get_expanded_len(char *str, char **env)
 	{
 		if (is_variable(str_ptr))
 		{
-			var_name = get_var_name(str_ptr);
-			var_value = ft_search_var_in_env(env, var_name, 2);
+			var_name = extract_var_name(str_ptr);
+			var_value = get_var_value(shell->environement_list, var_name);
 			len += ft_strlen(var_value);
 			str_ptr += ft_strlen(var_name) + 1;
 			free(var_name);
@@ -63,40 +54,50 @@ static int	get_expanded_len(char *str, char **env)
 	return (len);
 }
 
-char	*expand_variables(char *str, char **env)
+static void	replace_variable(t_shell *shell, char **str_ptr, char **dst_ptr)
+{
+	char	*var_name;
+	char	*var_value;
+
+	if (is_variable(*str_ptr))
+	{
+		var_name = extract_var_name(*str_ptr);
+		var_value = get_var_value(shell->environement_list, var_name);
+		if (var_value)
+		{
+			ft_strlcpy(*dst_ptr, var_value, ft_strlen(var_value) + 1);
+			*dst_ptr += ft_strlen(var_value);
+		}
+		*str_ptr += ft_strlen(var_name) + 1;
+		free(var_name);
+	}
+	else if (is_exit_status(*str_ptr))
+	{
+		var_value = ft_itoa(shell->last_exit_code);
+		ft_strlcpy(*dst_ptr, var_value, ft_strlen(var_value) + 1);
+		*dst_ptr += ft_strlen(var_value);
+		*str_ptr += 2;
+		free(var_value);
+	}
+}
+
+char	*expand_variables(t_shell *shell, char *str)
 {
 	char	*str_ptr;
 	char	*expanded_str;
-	char	*var_name;
-	char	*var_value;
-	int		len;
 	char	*dst_ptr;
 
 	str_ptr = str;
-	len = get_expanded_len(str, env);
-	expanded_str = malloc(len + 1);
+	expanded_str = malloc(get_expanded_len(shell, str) + 1);
+	dst_ptr = expanded_str;
 	if (!expanded_str)
 		return (NULL);
-	dst_ptr = expanded_str;
-	str_ptr = str;
 	while (*str_ptr)
 	{
-		if (is_variable(str_ptr))
-		{
-			var_name = get_var_name(str_ptr);
-			var_value = ft_search_var_in_env(env, var_name, 2);
-			if (var_value)
-			{
-				ft_strlcpy(dst_ptr, var_value, ft_strlen(var_value) + 1);
-				dst_ptr += ft_strlen(var_value);
-			}
-			str_ptr += ft_strlen(var_name) + 1;
-			free(var_name);
-		}
+		if (is_variable(str_ptr) || is_exit_status(str_ptr))
+			replace_variable(shell, &str_ptr, &dst_ptr);
 		else
-		{
 			*dst_ptr++ = *str_ptr++;
-		}
 	}
 	*dst_ptr = '\0';
 	free(str);
