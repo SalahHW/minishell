@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 08:25:31 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:55:25 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	ft_parent_process(t_shell *shell, int nbprocess)
 	while (i < nbprocess)
 	{
 		waitpid(-1, &status, 0);
-		fprintf(stderr, "\n\n je suis le parent n %d\n\n", i);
 		i++;
 	}
 }

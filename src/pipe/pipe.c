@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:36:12 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 16:06:36 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:01:23 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	ft_general_pipe(t_shell *shell)
 		return (0);
 	if (ft_create_pipe(shell->general->nbpipes, shell) == 1)
 		return (1);
-	printf("pipe[0][0]== %d pipe[0][1]==%d",shell->general->pipes[0][0],shell->general->pipes[0][1]);
 	ft_define_in_pipe(ft_h(shell), i);
 	ft_define_out_pipe(ft_h(shell), i);
 	return (0);

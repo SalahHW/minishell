@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 16:01:38 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:16:53 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_here_heredoc(t_token *token)
 	while (1)
 	{
 		line = readline("> ");
-		if (ft_strcmp(line, token->value) == 0)
+		if (ft_strncmp(line, token->value, ft_strlen(line)) == 0)
 		{
 			free(line);
 			break ;
@@ -50,12 +50,12 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist)
 			// No such file or directory
 			return (1);
 		}
-		else if (type == t_heredoc)
-		{
-			if (ft_here_heredoc(token) == 1)
-				return (1);
-			// heredocje sais pas atm
-		}
+	}
+	if (type == t_heredoc)
+	{
+		if (ft_here_heredoc(token) == 1)
+			return (1);
+		// heredocje sais pas atm
 	}
 	if (execlist->fd_in != 0)
 		close(execlist->fd_in);

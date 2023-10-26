@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 14:36:19 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:56:32 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ int	format_for_exec(t_shell *shell)
 	if (ft_general_pipe(shell) == 1)
 		return (1);
 	// ERR create pipes
-	ft_h(shell);
-	// print_execlist(shell->execlist);
 	ft_h(shell);
 	return (0);
 }

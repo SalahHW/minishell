@@ -6,34 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 15:33:30 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:55:26 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-void	ft_print_token_list(t_token *token)
-{
-	while (token)
-	{
-		printf("token->value = %s\n", token->value);
-		printf("token->type = %d\n", token->type);
-		printf(" fd in = %d fd out = %d\n", token->fd_in, token->fd_out);
-		printf("fd value %d\n", token->fd);
-		token = token->next;
-	}
-}
-
-void	ft_print_execlist(t_execlist *execlist)
-{
-	while (execlist)
-	{
-		printf("cmd_path = %s\n", execlist->cmd_path);
-		printf("fd in = %d fd out = %d\n", execlist->fd_in, execlist->fd_out);
-		ft_print_tab_for_test(execlist->arg);
-		execlist = execlist->next;
-	}
-}
 
 int	ft_for_builtins(char *str)
 {
@@ -142,8 +119,6 @@ int	execute_cmd(t_shell *shell)
 	ft_h(shell);
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
-	printf("nbprocess = %d nbpipes  = %d \n", nbprocess,shell->general->nbpipes);
-	//print_execlist(shell->execlist);
 	ft_h(shell);
 	ft_free_exec(shell);
 	return (0);
