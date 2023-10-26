@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 10:32:11 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:43:17 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,9 @@ int	ft_def_redir(t_execlist *list, int i, t_general *general)
 {
 	if (ft_def_redir_in(list->fd_in, general->pipes, i) == 1)
 		return (1);
-	// error dup2 on in
 	if (ft_def_redir_out(list->fd_out, general->pipes, i,
 			general->nbpipes) == 1)
 		return (1);
-	// error dup2 on out
 	close_pipes(general->nbpipes, general->pipes, i);
 	return (0);
 }
