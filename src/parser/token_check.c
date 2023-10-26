@@ -12,11 +12,11 @@
 
 #include "../../include/minishell.h"
 
-int	check_tokens(t_tokenlist *tokens)
+int	check_tokens(t_shell *shell)
 {
 	t_token	*token;
 
-	token = tokens->head;
+	token = shell->tokens->head;
 	while (token)
 	{
 		if (token->type == t_cmd)
@@ -24,6 +24,7 @@ int	check_tokens(t_tokenlist *tokens)
 			if (!is_valid_command(token->value))
 			{
 				token->is_valid = 0;
+				shell->last_exit_code = 127;
 			}
 			else
 			{
