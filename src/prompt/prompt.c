@@ -27,7 +27,7 @@ void	read_user_input(t_shell *shell)
 			{
 				tokenizer(input, shell);
 				print_tokens_list(shell->tokens);
-				if (!parser(shell->tokens))
+				if (!parser(shell))
 				{
 				}
 				execute_cmd(shell);
