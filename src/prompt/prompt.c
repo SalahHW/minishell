@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/27 10:04:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:24:07 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	read_user_input(t_shell *shell)
 				if (!parser(shell))
 				{
 				}
-				//execute_cmd(shell);
+				execute_cmd(shell);
 			}
 			free(input);
 			if (!g_sigquit_received)

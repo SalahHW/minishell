@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 09:36:06 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:10:27 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 		else if (shell->general->pids[i] == 0)
 		{
 			if (ft_for_builtins(shell->execlist->arg[0]) == 1)
+			{
 				exec_builtins(shell, i);
+				exit(0);
+			}
 			// ERROR FORK//
 			else if (ft_child_process(shell, i) == 1)
 				return (1);

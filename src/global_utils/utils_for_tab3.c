@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 11:38:45 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 16:58:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:36:08 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**ft_change_value_in_var_in_tab(char **tab, char *var, char *value)
 	i = 0;
 	while (tab[i])
 	{
-		if (ft_strncmp(tab[i]+1, var, ft_strlen(var)) == 0)
+		if (ft_strncmp(tab[i], var, ft_strlen(var)) == 0)
 		{
 			tmp = ft_strjoin(var, "=");
 			free(tab[i]);

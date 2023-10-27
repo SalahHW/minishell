@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:36:46 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 16:16:59 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:41:20 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_general_utils(t_general *general)
 	{
 		if (general->pipes != NULL)
 		{
-			while (i < general->nbpipes-1)
+			while (i < general->nbpipes)
 			{
 				free(general->pipes[i]);
 				i++;
