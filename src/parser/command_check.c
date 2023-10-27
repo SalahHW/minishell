@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:11:23 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/12 17:20:59 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:53:52 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ static int	is_executable_cmd(char *cmd_path)
 	return (0);
 }
 
-static int	is_path_cmd(char *cmd)
+static int	is_path_cmd(t_envlist *envlist, char *cmd)
 {
 	char	*path;
 	char	**paths;
 	char	*cmd_path;
 	int		i;
 
-	path = getenv("PATH");
+	path = get_var_value(envlist, "PATH");
 	if (!path)
 		return (0);
 	paths = ft_split(path, ':');
@@ -87,11 +87,11 @@ static int	is_path_cmd(char *cmd)
 	return (0);
 }
 
-int	is_valid_command(char *cmd)
+int	is_valid_command(t_shell *shell, char *cmd)
 {
 	if (is_bultin_cmd(cmd))
 		return (1);
-	if (is_path_cmd(cmd))
+	if (is_path_cmd(shell->environement_list, cmd))
 		return (1);
 	printf("%s: command not found\n", cmd);
 	return (0);

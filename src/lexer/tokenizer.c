@@ -3,41 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/26 10:56:33 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:56:14 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-t_tokenlist	*tokenizer(char *input, char **env)
+void	tokenizer(char *input, t_shell *shell)
 {
-	t_tokenlist	*tokens;
-
-	tokens = init_tokens_list();
-	tokens = tokenize_input(input, tokens);
-	detect_tokens_type(tokens, env);
-	return (tokens);
+	shell->tokens = init_tokens_list();
+	shell->tokens = tokenize_input(input, shell);
 }
 
 // Scan the input and return a list of tokens
-t_tokenlist	*tokenize_input(char *input, t_tokenlist *tokens)
+t_tokenlist	*tokenize_input(char *input, t_shell *shell)
 {
-	char	*input_ptr;
+	char		*input_ptr;
+	t_tokenlist	*tokens;
 
+	tokens = shell->tokens;
 	input_ptr = input;
 	while (*input_ptr)
 	{
 		if (*input_ptr == '\'' || *input_ptr == '\"')
 			input_ptr = tokenize_quote(input_ptr, tokens);
-		else if (*input_ptr == '|' || *input_ptr == '<' || *input_ptr == '>' || is_exit_status(input_ptr))
+		else if (*input_ptr == '|' || *input_ptr == '<' || *input_ptr == '>')
 			input_ptr = tokenize_operator(input_ptr, tokens);
 		else if (is_white_space(*input_ptr))
 			input_ptr++;
 		else
 			input_ptr = tokenize_word(input_ptr, tokens);
+		if (tokens->tail)
+		{
+			detect_tokens_type(tokens->tail);
+			if (tokens->tail->quote != single_quote)
+				tokens->tail->value = expand_variables(shell,
+						tokens->tail->value);
+		}
 	}
 	return (tokens);
 }

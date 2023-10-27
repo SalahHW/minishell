@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/16 21:59:51 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:47:59 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void	read_user_input(t_shell *shell)
 				add_history(input);
 			if (!g_sigquit_received)
 			{
-				shell->tokens = tokenizer(input, shell->general->env);
-				if (!parser(shell->tokens))
+				tokenizer(input, shell);
+				print_tokens_list(shell->tokens);
+				if (!parser(shell))
 				{
 				}
 				execute_cmd(shell);

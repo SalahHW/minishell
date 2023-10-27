@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
+#    By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/24 10:22:13 by aherrman         ###   ########.fr        #
+#    Updated: 2023/10/27 02:45:21 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,53 +18,53 @@ CFLAGS	= 			-g3 -Wall -Wextra -Werror
 RM		=			rm -rf
 LIBS 	=			include/libft/libft.a
 INC 	=			-I 
-SRCS 	=			main.c							\
-					lexer/tokenizer.c				\
-					lexer/tokenize_operator.c		\
-					lexer/tokenize_quote.c			\
-					lexer/tokenize_word.c			\
-					lexer/token_type.c				\
-					lexer/token_list.c				\
-					lexer/quote_process.c			\
-					lexer/expansion.c				\
-					parser/parser.c					\
-					parser/command_check.c			\
-					parser/token_check.c			\
-					prompt/prompt.c					\
-					redirection/in_and_out.c		\
-					signal/setup_signals.c			\
-					signal/handle_sigquit.c			\
-					signal/handle_sigint.c			\
-					resources/create_r.c			\
-					resources/init.c				\
-					resources/clean.c				\
-					global_utils/utils_for_char.c	\
-					global_utils/utils_for_tab.c	\
-					global_utils/utils_for_tab2.c	\
-					global_utils/utils_for_tab3.c	\
-					global_utils/utils_for_env.c	\
-					global_utils/utils_for_test.c	\
-					global_utils/is_operator.c		\
-					global_utils/is_quote.c			\
-					global_utils/is_dollar.c		\
-					exec_list/ft_create_struct.c	\
-					exec_list/ft_execl_utils.c		\
-					exec_list/exec_free.c			\
-					pipe/pipe.c						\
-					format_for_exec/main_format.c	\
-					builtins/cd.c					\
-					builtins/pwd.c					\
-					builtins/unset.c				\
-					builtins/export.c				\
-					builtins/env.c					\
-					builtins/echo.c					\
-					execution/execution.c			\
-					execution/redir_for_exec.c		\
-					execution/redir_for_exec2.c		\
-					fork/fork.c						\
-					test/print_tokens.c				\
-
-
+SRCS 	=			main.c									\
+					environement/environement.c				\
+					environement/environement_extraction.c	\
+					environement/environement_list.c		\
+					lexer/tokenizer.c						\
+					lexer/tokenize_operator.c				\
+					lexer/tokenize_quote.c					\
+					lexer/tokenize_word.c					\
+					lexer/token_type.c						\
+					lexer/token_list.c						\
+					lexer/quote_process.c					\
+					lexer/expansion.c						\
+					parser/parser.c							\
+					parser/token_check.c					\
+					parser/command_check.c					\
+					prompt/prompt.c							\
+					redirection/in_and_out.c				\
+					signal/setup_signals.c					\
+					signal/handle_sigquit.c					\
+					signal/handle_sigint.c					\
+					resources/init.c						\
+					resources/clean.c						\
+					global_utils/utils_for_char.c			\
+					global_utils/utils_for_tab.c			\
+					global_utils/utils_for_tab2.c			\
+					global_utils/utils_for_tab3.c			\
+					global_utils/utils_for_env.c			\
+					global_utils/utils_redir.c				\
+					global_utils/is_operator.c				\
+					global_utils/is_quote.c					\
+					global_utils/is_variable.c				\
+					global_utils/is_exit_code.c				\
+					exec_list/ft_create_struct.c			\
+					exec_list/ft_execl_utils.c				\
+					pipe/pipe.c								\
+					format_for_exec/main_format.c			\
+					builtins/cd.c							\
+					builtins/pwd.c							\
+					builtins/unset.c						\
+					builtins/export.c						\
+					builtins/env.c							\
+					builtins/echo.c							\
+					execution/execution.c					\
+					fork/fork.c								\
+					test/print_tokens.c						\
+					execution/redir_for_exec.c				\
+				
 					
 					
 

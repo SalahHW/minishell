@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 01:40:17 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/20 13:45:04 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:39:18 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 volatile sig_atomic_t	g_sigquit_received;
 
-int init_general_data(t_shell *shell)
+int	init_general_data(t_shell *shell)
 {
 	shell->general->env = NULL;
 	shell->general->path = NULL;
@@ -22,7 +22,7 @@ int init_general_data(t_shell *shell)
 	shell->general->home = NULL;
 	shell->general->pipes = NULL;
 	shell->general->nbpipes = 0;
-	return(0);
+	return (0);
 }
 
 static int	init_prompt(t_shell *shell)
@@ -43,9 +43,10 @@ int	init_shell(t_shell *shell)
 {
 	shell->general = malloc(sizeof(t_general));
 	shell->general->status = 1;
+	shell->last_exit_code = 0;
 	if (init_prompt(shell) == -1)
 		return (-1);
-	if(init_general_data(shell) == -1)
+	if (init_general_data(shell) == -1)
 		return (-1);
 	g_sigquit_received = 0;
 	setup_signal_handlers();
