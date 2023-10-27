@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+         #
+#    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/27 02:45:21 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/27 08:48:49 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,13 +45,13 @@ SRCS 	=			main.c									\
 					global_utils/utils_for_tab2.c			\
 					global_utils/utils_for_tab3.c			\
 					global_utils/utils_for_env.c			\
-					global_utils/utils_redir.c				\
 					global_utils/is_operator.c				\
 					global_utils/is_quote.c					\
 					global_utils/is_variable.c				\
 					global_utils/is_exit_code.c				\
 					exec_list/ft_create_struct.c			\
 					exec_list/ft_execl_utils.c				\
+					exec_list/exec_free.c					\
 					pipe/pipe.c								\
 					format_for_exec/main_format.c			\
 					builtins/cd.c							\
@@ -61,9 +61,12 @@ SRCS 	=			main.c									\
 					builtins/env.c							\
 					builtins/echo.c							\
 					execution/execution.c					\
+					execution/redir_for_exec.c				\
+					execution/redir_for_exec2.c				\
 					fork/fork.c								\
 					test/print_tokens.c						\
-					execution/redir_for_exec.c				\
+					resources/create_r.c					\
+
 				
 					
 					

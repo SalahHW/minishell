@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/26 06:47:59 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/27 09:12:17 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	read_user_input(t_shell *shell)
 {
-	char	*input;
+	char *input;
 
 	while (shell->general->status)
 	{
@@ -26,7 +26,6 @@ void	read_user_input(t_shell *shell)
 			if (!g_sigquit_received)
 			{
 				tokenizer(input, shell);
-				print_tokens_list(shell->tokens);
 				if (!parser(shell))
 				{
 				}
