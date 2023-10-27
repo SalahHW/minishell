@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
+#    By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/26 06:49:25 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/27 02:45:21 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ SRCS 	=			main.c									\
 					fork/fork.c								\
 					test/print_tokens.c						\
 					execution/redir_for_exec.c				\
-
+				
 					
 					
 

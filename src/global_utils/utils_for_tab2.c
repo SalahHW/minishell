@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:02:02 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 17:35:59 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:14:24 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_tab_on_one_line(char **tab)
 		j = 0;
 		while (tab[i][j])
 			tmp[k++] = tab[i][j++];
-		tmp[k++] = ' ';
+		//tmp[k++] = ' ';
 		i++;
 	}
 	tmp[k] = '\0';

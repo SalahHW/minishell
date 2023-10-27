@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_format.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/26 18:40:24 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/27 02:52:49 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,21 @@ int	ft_format_for_tokens(t_shell *shell)
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
-
 	shell->execlist = NULL;
 	tmp = shell->tokens->head;
 	while (tmp)
 	{
 		if (tmp->type == t_cmd)
+		{
 			ft_execadd_back(shell, ft_new_execlist_node(tmp));
+			i++;
+		}
 		tmp = tmp->next;
 	}
+	shell->general->pids = malloc(sizeof(int) * (i + 1));
+	if (!shell->general->pids)
+		return (1);
+	// ERR malloc
 	return (0);
 }
 
@@ -90,7 +96,10 @@ int	format_for_exec(t_shell *shell)
 		return (1);
 	if (ft_create_list(shell) == 1)
 		return (1);
+	// ERR create execlist
 	if (ft_redirections(shell) == 1)
 		return (1);
+	// ERR redir fd
+
 	return (0);
 }

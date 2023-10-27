@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 16:27:47 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:39:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ int	ft_export(t_shell *exec)
 					exec->execlist->arg[i]);
 		i++;
 	}
-	ft_print_for_export(ft_ascii_sort(exec->general->expt));
 	return (0);
 }
