@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/20 16:25:44 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:37:31 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_search_redir_input(t_token *token, t_execlist *execlist)
 			execlist->fd_in = token->fd;
 			return (1);
 		}
-			tmp = tmp->prev;
+		tmp = tmp->prev;
 	}
 	return (0);
 }
@@ -56,7 +56,7 @@ int	ft_search_redir_output(t_token *token, t_execlist *execlist)
 				return (1);
 			}
 		}
-			tmp = tmp->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }
@@ -64,17 +64,19 @@ int	ft_search_redir_output(t_token *token, t_execlist *execlist)
 int	ft_redirections(t_shell *shell)
 {
 	t_token *token;
-	
+
 	token = shell->tokens->head;
 	while (token)
 	{
 		if (token->type == t_cmd)
 		{
-			printf("token->value = %s\n", token->value);
-			if(token->prev)
-			ft_search_redir_input(token, shell->execlist);
-			if(token->next)
-			ft_search_redir_output(token, shell->execlist);
+			shell->execlist->fd_in = 0;
+			shell->execlist->fd_out = 1;
+			if (token->prev)
+				ft_search_redir_input(token, shell->execlist);
+			if (token->next)
+				ft_search_redir_output(token, shell->execlist);
+		if(shell->execlist->next)
 			shell->execlist = shell->execlist->next;
 		}
 		token = token->next;

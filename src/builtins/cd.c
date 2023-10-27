@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/17 16:26:50 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:26:26 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	ft_cd(t_shell *exec)
 		err = chdir(exec->execlist->arg[1]);
 	if (err != 0)
 		return (1);
+	pwd_change(exec);
 	return (0);
 }

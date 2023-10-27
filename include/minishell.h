@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 09:48:10 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:19:41 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_general
 	int							nbpipes;
 	int							**pipes;
 	int							*pids;
+	int							fd_in;
+	int							fd_out;
 }								t_general;
 typedef struct s_shell
 {
@@ -81,19 +83,14 @@ int								ft_general_pipe(t_shell *shell);
 int								redir_pipes(t_shell *shell);
 // redirect//
 int								ft_redirections(t_shell *shell);
-int								ft_close_all_fd(t_token *token);
-// utils redirection//
-int								ft_close_all_fd(t_token *token);
-int								redir_output(int output_fd);
-int								redir_input(int input_fd);
-
 // utils new struct//
 void							ft_execadd_back(t_shell *shell,
 									t_execlist *new);
 t_execlist						*ft_new_execlist_node(t_token *token);
 int								ft_lst_len(t_execlist *cmd);
-void							free_execlist(t_shell *shell);
 t_shell							*ft_h(t_shell *shell);
+// exec_free//
+void							ft_free_exec(t_shell *shell);
 
 // buitins//
 int								ft_cd(t_shell *exec);
@@ -105,8 +102,12 @@ int								env(char **env);
 int								ft_echo(t_shell *exec);
 
 // redir in exec//
-int								ft_def_redir(t_execlist *list, int i,
-									t_general *general);
+int								ft_def_redir(t_shell *shell, int i);
+int								ft_close_all_fd(t_token *token);
+// redir in exec2//
+t_token							*search_next_cmd(t_token *token, int i);
+int								ft_open_fd_in_out(t_execlist *execlist,
+									t_token *token);
 // fork.c
 int								ft_solo_child(t_shell *shell);
 int								ft_child_process(t_shell *shell, int i);

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/20 13:59:01 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:56:32 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	**ft_for_arg(t_token *token)
 	arg = malloc(sizeof(char *) * (ft_count_t_arg(token->next) + 1));
 	if (!arg)
 		return (NULL);
-	
 	arg[0] = ft_strdup(token->value);
 	tmp = token->next;
 	while (tmp && tmp->type == t_arg)
@@ -71,14 +70,24 @@ int	ft_format_for_tokens(t_shell *shell)
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
+	int		i;
+
+	i = 0;
 	shell->execlist = NULL;
 	tmp = shell->tokens->head;
 	while (tmp)
 	{
 		if (tmp->type == t_cmd)
+		{
 			ft_execadd_back(shell, ft_new_execlist_node(tmp));
+			i++;
+		}
 		tmp = tmp->next;
 	}
+	shell->general->pids = malloc(sizeof(int) * (i + 1));
+	if (!shell->general->pids)
+		return (1);
+	// ERR malloc
 	return (0);
 }
 
@@ -89,12 +98,13 @@ int	format_for_exec(t_shell *shell)
 	// ERR format for tokens//
 	if (ft_create_list(shell) == 1)
 		return (1);
-	print_execlist(shell->execlist);
 	// ERR create execlist
 	if (ft_redirections(shell) == 1)
 		return (1);
-	printf("coucou");
 	// ERR redir fd
-
+	if (ft_general_pipe(shell) == 1)
+		return (1);
+	// ERR create pipes
+	ft_h(shell);
 	return (0);
 }
