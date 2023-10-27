@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 02:52:49 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/27 03:17:08 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ int	ft_format_for_tokens(t_shell *shell)
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
+	int i;
+
+	i=0;
 	shell->execlist = NULL;
 	tmp = shell->tokens->head;
 	while (tmp)
