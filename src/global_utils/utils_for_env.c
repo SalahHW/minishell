@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:41:21 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/02 16:40:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:19:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*ft_search_var_in_env(char **env, char *search, int need)
 		if (ft_strncmp(search, env[i], ft_strlen(search)) == 0)
 		{
 			// printf("env[%d]: %s for need = %d\n",i, env[i],need);
-			printf("need = %d\n", need);
 			if (need == 0)
 				return (ft_before(env[i], '='));
 			else if (need == 1)

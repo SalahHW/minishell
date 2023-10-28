@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:02:02 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/26 15:14:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:52:12 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_tab_on_one_line(char **tab)
 		j = 0;
 		while (tab[i][j])
 			tmp[k++] = tab[i][j++];
-		//tmp[k++] = ' ';
+		// tmp[k++] = ' ';
 		i++;
 	}
 	tmp[k] = '\0';
@@ -98,18 +98,13 @@ char	**ft_delete_elem_in_tab(char *str, char **tab)
 }
 char	*ft_search_in_tab(char **tab, char *str)
 {
-	int		i;
-	char	*tmp;
+	int	i;
 
 	i = 0;
 	while (tab[i])
 	{
-		if (ft_strncmp(tab[i]+1, str, ft_strlen(str)) == 0)
-		{
-			tmp = ft_strdup(tab[i]);
-			free(tab);
-			return (tmp);
-		}
+		if (ft_strncmp(tab[i], str, ft_strlen(str)) == 0)
+			return (tab[i]);
 		i++;
 	}
 	return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 02:51:49 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:50:11 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,9 @@ int	ft_child_process(t_shell *shell, int i)
 
 void	ft_parent_process(t_shell *shell, int nbprocess)
 {
-	int i;
-	int status;
+	int	i;
+	int	status;
+
 	i = 0;
 	while (i < shell->general->nbpipes)
 	{
@@ -87,6 +88,8 @@ void	ft_parent_process(t_shell *shell, int nbprocess)
 	while (i < nbprocess)
 	{
 		waitpid(-1, &status, 0);
+		if (WIFEXITED(status))
+			shell->last_exit_code = WEXITSTATUS(status) % 255;
 		i++;
 	}
 }

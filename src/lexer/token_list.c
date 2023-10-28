@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:08:15 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/26 06:52:50 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:08:02 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	add_new_token(t_tokenlist *tokens, char *value)
 	}
 	new_token->value = value;
 	new_token->type = t_undifined;
+	new_token->cmd_path = NULL;
+	new_token->arg = NULL;
 	new_token->quote = none;
 	new_token->next = NULL;
 	new_token->prev = tokens->tail;
@@ -62,6 +64,8 @@ void	clear_tokens_list(t_tokenlist *tokens)
 	while (token_ptr)
 	{
 		next_token = token_ptr->next;
+		free(token_ptr->cmd_path);
+		free_tab(token_ptr->arg);
 		free(token_ptr->value);
 		token_ptr->value = NULL;
 		free(token_ptr);

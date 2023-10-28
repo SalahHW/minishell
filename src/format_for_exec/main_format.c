@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_format.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 03:17:08 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:29:11 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ int	ft_format_for_tokens(t_shell *shell)
 	}
 	return (0);
 }
-
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
 	int i;
 
-	i=0;
+	i = 0;
 	shell->execlist = NULL;
 	tmp = shell->tokens->head;
 	while (tmp)
@@ -94,15 +93,18 @@ int	ft_create_list(t_shell *shell)
 
 int	format_for_exec(t_shell *shell)
 {
-	shell->general->env = environement_list_to_array(shell->environement_list);
 	if (ft_format_for_tokens(shell) == 1)
 		return (1);
+	// ERR format for tokens//
 	if (ft_create_list(shell) == 1)
 		return (1);
 	// ERR create execlist
 	if (ft_redirections(shell) == 1)
 		return (1);
 	// ERR redir fd
-
+	if (ft_general_pipe(shell) == 1)
+		return (1);
+	// ERR create pipes
+	ft_h(shell);
 	return (0);
 }

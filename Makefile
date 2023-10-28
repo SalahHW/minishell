@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+         #
+#    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/27 03:25:07 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/28 17:28:17 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,10 +61,12 @@ SRCS 	=			main.c									\
 					builtins/env.c							\
 					builtins/echo.c							\
 					execution/execution.c					\
+					execution/redir_for_exec.c				\
 					execution/redir_for_exec2.c				\
 					fork/fork.c								\
 					test/print_tokens.c						\
-					execution/redir_for_exec.c				\
+					resources/create_r.c					\
+
 				
 					
 					
