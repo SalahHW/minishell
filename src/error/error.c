@@ -6,28 +6,61 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:15:08 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 10:23:03 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:06:24 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/minishell.h"
+
+void	write_error(char *cmd, char *input, int error_no)
+{
+	int		len;
+	char	*err_str;
+
+	write(STDERR_FILENO, "Minishell: ", 11);
+	if (cmd != NULL)
+	{
+		len = ft_strlen(cmd);
+		write(STDERR_FILENO, cmd, len);
+		write(STDERR_FILENO, ": ", 2);
+	}
+	if (input != NULL)
+	{
+		len = ft_strlen(input);
+		write(STDERR_FILENO, input, len);
+		write(STDERR_FILENO, ": ", 2);
+	}
+	err_str = strerror(error_no);
+	len = ft_strlen(err_str);
+	write(STDERR_FILENO, err_str, len);
+	write(STDERR_FILENO, "\n", 2);
+}
+void	write_preset_error(char *err, char *cmd)
+{
+	int	len;
+
+	len = 0;
+	write(STDERR_FILENO, "Minishell: ", 11);
+	if (cmd != NULL)
+	{
+		len = ft_strlen(cmd);
+		write(STDERR_FILENO, cmd, len);
+		write(STDERR_FILENO, ": ", 2);
+	}
+	if (err != NULL)
+	{
+		len = ft_strlen(err);
+		write(STDERR_FILENO, err, len);
+		write(STDERR_FILENO, " \n", 2);
+	}
+}
 
 int	error(char *cmd, char *input, int error)
 {
 	if (error == 0)
 		return (error);
-	else if (error == -3)
-		printf("Minishell: syntax error near unexpected token `newline'\n");
-	else if (error == -2)
-		printf("Minishell: %s: ambiguous redirect \n", cmd);
 	else if (error == 127)
-		printf("Minishell: %s: command not found \n", cmd);
-	else if (error == -5 && ft_strncmp(cmd, "exit", 4) == 0)
-		printf("Minishell: %s: too many arguments\n", cmd);
-	else if (error == -5)
-		printf("Minishell: %s: `%s': not a valid identifier\n", cmd, input);
-	else if (error == -4)
-		printf("Minishell: %s: argument numérique nécessaire\n", cmd);
-	else if (error == -10)
-		printf("Minishell: %s: too many arguments\n", cmd);
+		write_preset_error("command not found", cmd);
 	else
 		write_error(cmd, input, error);
 	return (errno);

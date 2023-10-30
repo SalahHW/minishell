@@ -6,24 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/23 16:37:31 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 08:57:18 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-//
-// <f1 < f3 cat
-//	-e > f2 ---- f1 ne sert a rien f3 est utils2 comme input pour cat
-//	-e et f2 est utils2 comme output pour cat -e
-// f1 < ou < f1 cest pareil
-// <<f1 << f2 << f3 doit ouvrir les 3 here doc pour ecrire dedans mais n utiliser que le dernier
-//< f1 cat -e > f2 | ls ------ f1 est input pour cat -e f2 est output pour cat
-//	-e apres le pipe ls est sur sortie standard
-//< f1 < f3 cat -e > f2 | cat -e le second cat
-//	-e ne sers a rien mais il est execute
-// < f1 < f3 cat -e > f2 | ls -la > f4 | cat -e > f5 ls va dans f4 cat
-//	-e sur f5(fichier qui nexiste pas est cree mais rien dedans)
 
 int	ft_search_redir_input(t_token *token, t_execlist *execlist)
 {
@@ -76,8 +63,8 @@ int	ft_redirections(t_shell *shell)
 				ft_search_redir_input(token, shell->execlist);
 			if (token->next)
 				ft_search_redir_output(token, shell->execlist);
-		if(shell->execlist->next)
-			shell->execlist = shell->execlist->next;
+			if (shell->execlist->next)
+				shell->execlist = shell->execlist->next;
 		}
 		token = token->next;
 	}
