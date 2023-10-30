@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/26 10:16:53 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:14:55 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist)
 		token->fd = open(token->value, O_RDONLY);
 		if (token->fd < 0)
 		{
-			// No such file or directory
+			error(token->value, NULL, 1);
 			return (1);
 		}
 	}
@@ -55,7 +55,6 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist)
 	{
 		if (ft_here_heredoc(token) == 1)
 			return (1);
-		// heredocje sais pas atm
 	}
 	if (execlist->fd_in != 0)
 		close(execlist->fd_in);
@@ -67,18 +66,12 @@ int	ft_token_output(t_token *token, t_tokentype type, t_execlist *execlist)
 	if (type == t_redirect_out)
 		token->fd = open(token->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (token->fd < 0)
-	{
-		//  fail creat file
 		return (1);
-	}
 	else if (type == t_redirect_append)
 	{
 		token->fd = open(token->value, O_WRONLY | O_CREAT | O_APPEND, 0644);
 		if (token->fd < 0)
-		{
-			// fail create file
 			return (1);
-		}
 	}
 	if (execlist->fd_out != 1)
 		close(execlist->fd_out);
@@ -109,6 +102,7 @@ int	ft_open_fd_in_out(t_execlist *execlist, t_token *token)
 {
 	while (token && token->type != t_pipe)
 	{
+		token->fd = 0;
 		if (token->type == t_file)
 		{
 			if (token->prev && (token->prev->type == t_redirect_in

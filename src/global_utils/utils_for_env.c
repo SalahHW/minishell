@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 12:41:21 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 11:19:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 16:05:39 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*ft_before(const char *s, int c)
 	if (s[i] == (char)c)
 	{
 		result = (char *)s;
+		printf("result: %s\n", result);
 		return (result);
 	}
 	return (NULL);

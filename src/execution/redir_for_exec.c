@@ -6,23 +6,22 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 08:57:16 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:44:32 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_close_all_fd(t_token *token)
+void	ft_close_all_fd(t_shell *shell)
 {
-	while (token)
+	while (shell->execlist)
 	{
-		if (token->type == t_file)
-		{
-			if (token->fd_in != 0)
-				close(token->fd_in);
-			if (token->fd_out != 1)
-				close(token->fd_out);
-		}
+		if (shell->execlist->fd_in != 0)
+			close(shell->execlist->fd_in);
+		if (shell->execlist->fd_out != 1)
+			close(shell->execlist->fd_out);
+		if (shell->execlist->next != NULL)
+			shell->execlist = shell->execlist->next;
 	}
 }
 
@@ -58,7 +57,12 @@ int	ft_def_redir_out(int fd_out)
 
 int	ft_def_redir(t_shell *shell, int i)
 {
-	ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head, i));
+	if (ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head,
+				i)) == 1)
+	{
+		shell->last_exit_code = 1;
+		exit(1);
+	}
 	if (ft_def_redir_in(shell->execlist->fd_in) == 1)
 		return (1);
 	// error dup2 on in

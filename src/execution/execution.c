@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 10:35:23 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:18:56 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	ft_only_one_cmd(t_shell *shell)
 		{
 			if (ft_solo_child(shell) == 1)
 				return (1);
-			// ERR solochild
 		}
 	}
 	else
@@ -83,7 +82,10 @@ int	ft_multi_cmd2(t_shell *shell, int i)
 	if (shell->general->path != NULL)
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
+		{
 			exec_builtins(shell, i);
+			exit(0);
+		}
 		else
 			ft_child_process(shell, i);
 	}
@@ -124,11 +126,13 @@ int	execute_cmd(t_shell *shell)
 		ft_only_one_cmd(ft_h(shell));
 	else if (nbprocess > 1)
 		ft_multi_cmd(ft_h(shell), nbprocess);
-	ft_parent_process(shell, nbprocess);
+	else
+		ft_heredoc(shell);
 	ft_h(shell);
-	// ft_close_all_fd(shell->tokens->head);
+	//	ft_close_all_fd(shell);
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
+	ft_parent_process(shell, nbprocess);
 	ft_h(shell);
 	ft_free_exec(shell);
 	return (0);
