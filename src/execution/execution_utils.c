@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 11:42:13 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/30 09:56:22 by aherrman         ###   ########.fr       */
+/*   Created: 2023/10/30 13:12:55 by aherrman          #+#    #+#             */
+/*   Updated: 2023/10/30 13:42:21 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	ft_heredoc(t_shell *shell)
 {
-	t_shell	shell;
+	t_token *token;
 
-	(void)argc;
-	(void)argv;
-	if (init_shell(&shell) == -1)
-		return (EXIT_FAILURE);
-	ft_create_env_and_path(&shell, envp);
-	shell.environement_list = get_parent_environement(envp);
-	read_user_input(&shell);
-	clean_shell(&shell);
+	token = shell->tokens->head;
+
+	while (token)
+	{
+		if (token->type == t_file)
+		{
+			if (token->prev && token->prev->type == t_heredoc)
+				ft_here_heredoc(token);
+		}
+		token = token->next;
+	}
 }

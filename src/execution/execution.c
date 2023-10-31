@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 11:10:27 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:18:56 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,40 @@ int	exec_builtins(t_shell *exec, int i)
 
 int	ft_only_one_cmd(t_shell *shell)
 {
-	int	statut;
-
-	if (ft_for_builtins(shell->execlist->arg[0]) == 1)
-		exec_builtins(shell, 0);
+	if (shell->general->path != NULL)
+	{
+		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
+			exec_builtins(shell, 0);
+		else
+		{
+			if (ft_solo_child(shell) == 1)
+				return (1);
+		}
+	}
 	else
 	{
-		if (ft_solo_child(shell) == 1)
-			return (1);
-		// ERR solochild
-		waitpid(-1, &statut, 0);
+		error(shell->execlist->arg[0], NULL, 2);
+		exit(127);
+	}
+	return (0);
+}
+
+int	ft_multi_cmd2(t_shell *shell, int i)
+{
+	if (shell->general->path != NULL)
+	{
+		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
+		{
+			exec_builtins(shell, i);
+			exit(0);
+		}
+		else
+			ft_child_process(shell, i);
+	}
+	else
+	{
+		error(shell->execlist->arg[0], NULL, 2);
+		exit(127);
 	}
 	return (0);
 }
@@ -84,22 +108,11 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 		if (shell->general->pids[i] == -1)
 			return (1);
 		else if (shell->general->pids[i] == 0)
-		{
-			if (ft_for_builtins(shell->execlist->arg[0]) == 1)
-			{
-				exec_builtins(shell, i);
-				exit(0);
-			}
-			// ERROR FORK//
-			else if (ft_child_process(shell, i) == 1)
-				return (1);
-			// error on child
-		}
+			ft_multi_cmd2(shell, i);
 		if (shell->execlist->next)
 			shell->execlist = shell->execlist->next;
 		i++;
 	}
-	ft_parent_process(shell, nbprocess);
 	return (0);
 }
 
@@ -110,18 +123,16 @@ int	execute_cmd(t_shell *shell)
 	format_for_exec(shell);
 	nbprocess = ft_lst_len(shell->execlist);
 	if (nbprocess == 1)
-	{
-		if (ft_only_one_cmd(ft_h(shell)) == 1)
-			return (1);
-	}
+		ft_only_one_cmd(ft_h(shell));
 	else if (nbprocess > 1)
-	{
-		if (ft_multi_cmd(ft_h(shell), nbprocess) == 1)
-			return (1);
-	}
+		ft_multi_cmd(ft_h(shell), nbprocess);
+	else
+		ft_heredoc(shell);
 	ft_h(shell);
+	//	ft_close_all_fd(shell);
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
+	ft_parent_process(shell, nbprocess);
 	ft_h(shell);
 	ft_free_exec(shell);
 	return (0);

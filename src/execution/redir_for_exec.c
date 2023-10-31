@@ -6,37 +6,37 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/26 10:55:23 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:44:32 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_close_all_fd(t_token *token)
+void	ft_close_all_fd(t_shell *shell)
 {
-	while (token && token->type != t_pipe)
+	while (shell->execlist)
 	{
-		if (token->type == t_file)
-			if (close(token->fd) == 1)
-				return (1);
-		token = token->next;
+		if (shell->execlist->fd_in != 0)
+			close(shell->execlist->fd_in);
+		if (shell->execlist->fd_out != 1)
+			close(shell->execlist->fd_out);
+		if (shell->execlist->next != NULL)
+			shell->execlist = shell->execlist->next;
 	}
-	return (0);
 }
 
 void	close_pipes(int nbpipes, int **pipefd, int j)
 {
 	int	i;
+
 	(void)j;
 	i = 0;
 	if (nbpipes == 0)
 		return ;
 	while (i < nbpipes)
 	{
-		//if (i != j )
-			close(pipefd[i][0]);
-		//if (i != j + 1)
-			close(pipefd[i][1]);
+		close(pipefd[i][0]);
+		close(pipefd[i][1]);
 		i++;
 	}
 }
@@ -57,7 +57,12 @@ int	ft_def_redir_out(int fd_out)
 
 int	ft_def_redir(t_shell *shell, int i)
 {
-	ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head, i));
+	if (ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head,
+				i)) == 1)
+	{
+		shell->last_exit_code = 1;
+		exit(1);
+	}
 	if (ft_def_redir_in(shell->execlist->fd_in) == 1)
 		return (1);
 	// error dup2 on in

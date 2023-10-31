@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/28 17:28:17 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/31 02:10:52 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,10 @@ SRCS 	=			main.c									\
 					builtins/env.c							\
 					builtins/echo.c							\
 					execution/execution.c					\
+					execution/execution_utils.c				\
 					execution/redir_for_exec.c				\
 					execution/redir_for_exec2.c				\
+					error/error.c							\
 					fork/fork.c								\
 					test/print_tokens.c						\
 					resources/create_r.c					\

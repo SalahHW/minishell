@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 14:50:11 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:52:39 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ int	ft_solo_child(t_shell *shell)
 	pid = fork();
 	if (pid == -1)
 		return (1);
-	// ERROR FORK//
 	else if (pid == 0)
 	{
 		path_for_execve(shell);
 		if (ft_def_redir(shell, 0) == 1)
 			return (1);
-		if (execve(shell->execlist->cmd_path, shell->execlist->arg, NULL) == -1)
+		if (execve(shell->execlist->cmd_path, shell->execlist->arg,
+				shell->general->env) == -1)
 		{
-			return (1);
+			error(shell->execlist->arg[0], NULL, 127);
+			exit(127);
 		}
-		// ERROR EXECVE//
 	}
 	return (0);
 }
@@ -63,12 +63,14 @@ int	ft_child_process(t_shell *shell, int i)
 {
 	if (ft_def_redir(shell, i) == 1)
 		return (1);
-	// ERR on dup2
 	path_for_execve(shell);
 	if (execve(shell->execlist->cmd_path, shell->execlist->arg,
-			shell->general->env) == 1)
-		return (1);
-	// ERR on execve
+			shell->general->env) == -1)
+	{
+		fprintf(stderr,"error");
+		error(shell->execlist->arg[0], NULL, 127);
+		exit(127);
+	}
 	return (0);
 }
 
@@ -88,8 +90,7 @@ void	ft_parent_process(t_shell *shell, int nbprocess)
 	while (i < nbprocess)
 	{
 		waitpid(-1, &status, 0);
-		if (WIFEXITED(status))
-			shell->last_exit_code = WEXITSTATUS(status) % 255;
+		shell->last_exit_code = status % 255;
 		i++;
 	}
 }
