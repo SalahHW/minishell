@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 16:58:29 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:26:55 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void	ft_del_if_need(t_shell *shell, char *str)
 
 	tmp = get_var_value(shell->export_list, extract_varname(str));
 	if (tmp != NULL)
-		delete_var(shell->export_list, tmp);
+		remove_var(shell->export_list, tmp);
 	tmp2 = get_var_value(shell->environement_list, extract_varname(str));
 	if (tmp2 != NULL)
-		delete_var(shell->environement_list, tmp2);
+		remove_var(shell->environement_list, tmp2);
 	free(tmp);
 	free(tmp2);
 }
@@ -101,10 +101,11 @@ int	ft_export(t_shell *exec)
 	while (exec->execlist->arg[i])
 	{
 		ft_del_if_need(exec, exec->execlist->arg[i]);
-		if (check_if_egal(exec->execlist->arg[0]) == 0)
+		if (check_if_egal(exec->execlist->arg[i]) == 0)
 			ft_add_list(exec->export_list, exec->execlist->arg[i]);
 		else
 		{
+			printf("coucou\n");
 			ft_add_list(exec->export_list, exec->execlist->arg[i]);
 			ft_add_list(exec->environement_list, exec->execlist->arg[i]);
 		}
