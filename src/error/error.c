@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:15:08 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 13:41:12 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:33:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	error(char *cmd, char *input, int error)
 		return (error);
 	else if (error == 1)
 		write_preset_error("No such file or directory", cmd);
+		else if (error == 2)
+		write_preset_error("`=': not a valid identifier",cmd);
 	else if (error == 127)
 		write_preset_error("command not found", cmd);
 	else

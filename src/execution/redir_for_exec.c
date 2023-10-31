@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 13:44:32 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:36:52 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_def_redir_out(int fd_out)
 int	ft_def_redir(t_shell *shell, int i)
 {
 	if (ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head,
-				i)) == 1)
+				i), shell) == 1)
 	{
 		shell->last_exit_code = 1;
 		exit(1);

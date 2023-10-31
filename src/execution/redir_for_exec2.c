@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 14:14:55 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:46:31 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_here_heredoc(t_token *token)
+int	ft_here_heredoc(t_token *token,t_shell *shell)
 {
 	int		fd;
 	char	*line;
@@ -28,8 +28,7 @@ int	ft_here_heredoc(t_token *token)
 			free(line);
 			break ;
 		}
-		ft_putendl_fd(line, fd);
-		free(line);
+		ft_putendl_fd(expand_variables(shell,line), fd);
 	}
 	close(fd);
 	token->fd = open(".tmp", O_RDONLY);
@@ -38,7 +37,7 @@ int	ft_here_heredoc(t_token *token)
 	return (0);
 }
 
-int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist)
+int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist,t_shell *shell)
 {
 	if (type == t_redirect_in)
 		token->fd = open(token->value, O_RDONLY, __O_DIRECTORY);
@@ -53,7 +52,7 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist)
 	}
 	if (type == t_heredoc)
 	{
-		if (ft_here_heredoc(token) == 1)
+		if (ft_here_heredoc(token,shell) == 1)
 			return (1);
 	}
 	if (execlist->fd_in != 0)
@@ -98,7 +97,7 @@ t_token	*search_next_cmd(t_token *token, int i)
 	return (NULL);
 }
 
-int	ft_open_fd_in_out(t_execlist *execlist, t_token *token)
+int	ft_open_fd_in_out(t_execlist *execlist, t_token *token,t_shell *shell)
 {
 	while (token && token->type != t_pipe)
 	{
@@ -108,7 +107,7 @@ int	ft_open_fd_in_out(t_execlist *execlist, t_token *token)
 			if (token->prev && (token->prev->type == t_redirect_in
 					|| token->prev->type == t_heredoc))
 			{
-				if (ft_token_input(token, token->prev->type, execlist) == 1)
+				if (ft_token_input(token, token->prev->type, execlist,shell) == 1)
 					return (1);
 			}
 			else if (token->prev && (token->prev->type == t_redirect_out

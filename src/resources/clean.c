@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 01:42:05 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/27 09:35:03 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 15:19:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	clean_shell(t_shell *shell)
 	free_for_general(shell);
 	free(shell->prompt);
 	clear_environement_list(shell->environement_list);
+	clear_environement_list(shell->export_list);
 }
