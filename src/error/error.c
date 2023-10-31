@@ -60,10 +60,8 @@ int	error(char *cmd, char *input, int error)
 		return (error);
 	else if (error == 1)
 		write_preset_error("No such file or directory", cmd);
-	else if (error == 2)
-		write_preset_error("`=': not a valid identifier", cmd);
-	else if (error == 3)
-		write_preset_error("`=': : HOME not set", cmd);
+		else if (error == 2)
+		write_preset_error("`=': not a valid identifier",cmd);
 	else if (error == 127)
 		write_preset_error("command not found", cmd);
 	else

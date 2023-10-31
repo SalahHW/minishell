@@ -59,6 +59,7 @@ typedef struct s_general
 typedef struct s_shell
 {
 	t_envlist					*environement_list;
+	t_envlist					*export_list;
 	char						*prompt;
 	char						*user_input;
 	t_tokenlist					*tokens;
@@ -100,6 +101,7 @@ int								ft_export(t_shell *exec);
 int								env(t_shell *shell);
 int								ft_echo(t_shell *exec);
 // UTILSBUILTINS//
+// UTILSBUILTINS//
 
 int								check_if_egal(char *str);
 void							ft_add_list(t_envlist *list, char *str);
@@ -109,6 +111,8 @@ void							ft_close_all_fd(t_shell *shell);
 // redir in exec2//
 t_token							*search_next_cmd(t_token *token, int i);
 int								ft_open_fd_in_out(t_execlist *execlist,
+									t_token *token, t_shell *shell);
+int								ft_here_heredoc(t_token *token, t_shell *shell);
 									t_token *token, t_shell *shell);
 int								ft_here_heredoc(t_token *token, t_shell *shell);
 void							ft_heredoc(t_shell *shell);

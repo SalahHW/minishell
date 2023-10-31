@@ -224,7 +224,8 @@ static int	export_variable(t_envlist *env_list, char *str)
 
 int	ft_export(t_shell *exec)
 {
-	int	i;
+	int		i;
+	char	**tmp;
 
 	i = 1;
 	if (exec->execlist->arg[i] == NULL)
