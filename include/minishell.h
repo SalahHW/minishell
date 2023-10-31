@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 13:49:22 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:20:26 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_general
 typedef struct s_shell
 {
 	t_envlist					*environement_list;
+	t_envlist					*export_list;
 	char						*prompt;
 	char						*user_input;
 	t_tokenlist					*tokens;
@@ -104,15 +105,18 @@ int								unset(t_shell *exec);
 int								ft_export(t_shell *exec);
 int								env(char **env);
 int								ft_echo(t_shell *exec);
+// UTILSBUILTINS//
 
+int								check_if_egal(char *str);
+void							ft_add_list(t_envlist *list, char *str);
 // redir in exec//
 int								ft_def_redir(t_shell *shell, int i);
 void							ft_close_all_fd(t_shell *shell);
 // redir in exec2//
 t_token							*search_next_cmd(t_token *token, int i);
 int								ft_open_fd_in_out(t_execlist *execlist,
-									t_token *token);
-int								ft_here_heredoc(t_token *token);
+									t_token *token, t_shell *shell);
+int								ft_here_heredoc(t_token *token, t_shell *shell);
 void							ft_heredoc(t_shell *shell);
 // fork.c
 int								ft_solo_child(t_shell *shell);

@@ -24,4 +24,5 @@ void	clean_shell(t_shell *shell)
 {
 	free(shell->prompt);
 	clear_environement_list(shell->environement_list);
+	clear_environement_list(shell->export_list);
 }

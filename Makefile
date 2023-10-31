@@ -57,6 +57,7 @@ SRCS 	=			main.c									\
 					builtins/pwd.c							\
 					builtins/unset.c						\
 					builtins/export.c						\
+					builtins/export2.c						\
 					builtins/env.c							\
 					builtins/echo.c							\
 					execution/execution.c					\

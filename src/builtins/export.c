@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 16:03:01 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:58:29 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,6 @@ void	export_print2(char *str)
 	}
 	write(1, "\n", 1);
 }
-int	check_if_egal(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 void	ft_print_for_export(char **tmp)
 {
@@ -86,50 +73,41 @@ void	ft_print_for_export(char **tmp)
 void	ft_del_if_need(t_shell *shell, char *str)
 {
 	char	*tmp;
+	char	*tmp2;
 
-	printf("%s\n", str);
-	printf("i = %d j = %d\n", ft_tab_size(shell->general->env),
-		ft_tab_size(shell->general->expt));
-	tmp = ft_search_var_in_env(shell->general->env, str, 0);
-	if (tmp == NULL)
-		return ;
-	else
-	{
-		printf("tmp = %s\n", tmp);
-		shell->general->env = ft_delete_elem_in_tab(tmp, shell->general->env);
-	}
-	tmp = ft_search_var_in_env(shell->general->expt, str, 0);
-	if (tmp == NULL)
-		return ;
-	else
-		shell->general->expt = ft_delete_elem_in_tab(tmp, shell->general->expt);
-	printf("i = %d j = %d\n", ft_tab_size(shell->general->env),
-		ft_tab_size(shell->general->expt));
+	tmp = get_var_value(shell->export_list, extract_varname(str));
+	if (tmp != NULL)
+		delete_var(shell->export_list, tmp);
+	tmp2 = get_var_value(shell->environement_list, extract_varname(str));
+	if (tmp2 != NULL)
+		delete_var(shell->environement_list, tmp2);
+	free(tmp);
+	free(tmp2);
 }
 
 int	ft_export(t_shell *exec)
 {
-	int	i;
+	int		i;
+	char	**tmp;
 
 	i = 1;
 	if (exec->execlist->arg[i] == NULL)
 	{
-		ft_print_for_export(ft_ascii_sort(exec->general->expt));
+		tmp = environement_list_to_array(exec->export_list);
+		ft_print_for_export(ft_ascii_sort(tmp));
+		free(tmp);
 		return (0);
 	}
 	while (exec->execlist->arg[i])
 	{
 		ft_del_if_need(exec, exec->execlist->arg[i]);
-		if (ft_check_char_in_str(exec->execlist->arg[i], '='))
-		{
-			exec->general->expt = add_char_at_back_tab(exec->general->expt,
-					exec->execlist->arg[i]);
-			exec->general->env = add_char_at_back_tab(exec->general->env,
-					exec->execlist->arg[i]);
-		}
+		if (check_if_egal(exec->execlist->arg[0]) == 0)
+			ft_add_list(exec->export_list, exec->execlist->arg[i]);
 		else
-			exec->general->expt = add_char_at_back_tab(exec->general->expt,
-					exec->execlist->arg[i]);
+		{
+			ft_add_list(exec->export_list, exec->execlist->arg[i]);
+			ft_add_list(exec->environement_list, exec->execlist->arg[i]);
+		}
 		i++;
 	}
 	return (0);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
 /*   Updated: 2023/11/01 21:13:05 by sbouheni         ###   ########.fr       */

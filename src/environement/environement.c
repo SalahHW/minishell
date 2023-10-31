@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environement.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:44:18 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/26 18:19:13 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:53:21 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,21 @@ char	**environement_list_to_array(t_envlist *envlist)
 		i++;
 	}
 	return (env_array);
+}
+
+void remove_var(t_envlist *envlist, char *varname)
+{
+	t_env *env_ptr;
+
+	env_ptr = envlist->head;
+	while (env_ptr)
+	{
+		if (ft_strncmp(env_ptr->var_name, varname, ft_strlen(varname) + 1) == 0)
+		{
+			delete_var(envlist, env_ptr);
+			return ;
+		}
+		env_ptr = env_ptr->next;
+	}
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 15:18:56 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:34:33 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ int	execute_cmd(t_shell *shell)
 	else
 		ft_heredoc(shell);
 	ft_h(shell);
-	//	ft_close_all_fd(shell);
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
 	ft_parent_process(shell, nbprocess);

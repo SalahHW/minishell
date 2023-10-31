@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:12:55 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 13:42:21 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:35:45 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_heredoc(t_shell *shell)
 		if (token->type == t_file)
 		{
 			if (token->prev && token->prev->type == t_heredoc)
-				ft_here_heredoc(token);
+				ft_here_heredoc(token,shell);
 		}
 		token = token->next;
 	}

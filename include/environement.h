@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environement.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:49:10 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/26 18:18:06 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:53:22 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct s_envlist
 t_envlist			*init_environement_list(void);
 void				add_new_var(t_envlist *envlist, char *varname,
 						char *varvalue);
-void				remove_var(t_envlist *envlist);
+void				remove_var(t_envlist *envlist, char *varname);
+void				delete_var(t_envlist *envlist, t_env *env_var);
 void				clear_environement_list(t_envlist *envlist);
 int					environement_list_size(t_envlist *envlist);
 
