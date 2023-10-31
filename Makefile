@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/31 02:10:52 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/10/31 16:00:35 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ SRCS 	=			main.c									\
 					prompt/prompt.c							\
 					redirection/in_and_out.c				\
 					signal/setup_signals.c					\
-					signal/handle_sigquit.c					\
 					signal/handle_sigint.c					\
 					resources/init.c						\
 					resources/clean.c						\
