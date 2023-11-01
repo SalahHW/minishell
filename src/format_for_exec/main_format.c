@@ -94,7 +94,7 @@ int	ft_create_list(t_shell *shell)
 int	format_for_exec(t_shell *shell)
 {
 	int cmd;
-
+	ft_create_env_and_path(shell);
 	cmd = 0;
 	ft_save_fd(shell);
 	shell->general->env = environement_list_to_array(shell->environement_list);
