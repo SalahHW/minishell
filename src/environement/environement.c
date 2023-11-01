@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:44:18 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/31 16:53:21 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:53:33 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	**environement_list_to_array(t_envlist *envlist)
 		env_ptr = env_ptr->next;
 		i++;
 	}
+	env_array[i] = NULL;
 	return (env_array);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:46:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 10:21:58 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:08:25 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ int	unset(t_shell *exec)
 				extract_varname(exec->execlist->arg[i]));
 		if (tmp2 != NULL)
 			remove_var(exec->environement_list, tmp2);
-		if (tmp)
-			free(tmp);
-		if (tmp2)
-			free(tmp2);
 		i++;
 	}
 	return (0);

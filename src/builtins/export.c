@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 10:15:18 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:39:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,23 @@ void	ft_print_for_export(char **tmp)
 		j++;
 	}
 }
-void	ft_del_if_need(t_shell *shell, char *str)
+int	ft_del_if_need(t_shell *shell, char *str)
 {
 	char	*tmp;
 	char	*tmp2;
 
+	if (ft_strncmp(str, "=", 2) == 0)
+	{
+		error(shell->execlist->arg[0], NULL, 2);
+		return (1);
+	}
 	tmp = get_var_value(shell->export_list, extract_varname(str));
 	if (tmp != NULL)
 		remove_var(shell->export_list, tmp);
 	tmp2 = get_var_value(shell->environement_list, extract_varname(str));
-	if (tmp2 != NULL)
+	if (tmp2 != NULL )
 		remove_var(shell->environement_list, tmp2);
-	free(tmp);
-	free(tmp2);
+	return (0);
 }
 
 int	ft_export(t_shell *exec)
@@ -100,7 +104,8 @@ int	ft_export(t_shell *exec)
 	}
 	while (exec->execlist->arg[i])
 	{
-		ft_del_if_need(exec, exec->execlist->arg[i]);
+		if (ft_del_if_need(exec, exec->execlist->arg[i]) == 1)
+			return (0);
 		if (check_if_egal(exec->execlist->arg[i]) == 0)
 			ft_add_list(exec->export_list, exec->execlist->arg[i]);
 		else

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:27:44 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 10:13:47 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:51:02 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	ft_path_home(t_shell *shell, char **env)
 	char	*temp;
 
 	i = 0;
+	if(!env)
+		return ;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH", 4) == 0)
-		{
 			shell->general->path = ft_split(env[i] + 5, ':');
-		}
 		if (ft_strncmp(env[i], "HOME", 4) == 0)
 		{
 			shell->general->home = ft_strdup(env[i] + 5);
@@ -44,6 +44,8 @@ void	ft_env(t_shell *shell, char **env)
 	int	i;
 
 	i = 0;
+	if(!env)
+		return ;
 	while (env[i])
 		i++;
 	shell->general->env = malloc(sizeof(char *) * (i + 1));
@@ -61,13 +63,24 @@ void	ft_save_fd(t_shell *shell)
 	shell->general->fd_in = dup(STDIN_FILENO);
 	shell->general->fd_out = dup(STDOUT_FILENO);
 }
+void	print_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
+}
 void	ft_create_env_and_path(t_shell *shell)
 {
 	char **env;
-	
+
 	env = environement_list_to_array(shell->environement_list);
 	ft_path_home(shell, env);
 	ft_env(shell, env);
 	ft_save_fd(shell);
-	free(env);
+	free_tab(env);
 }
