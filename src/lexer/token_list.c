@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 05:08:15 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/27 10:08:02 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 20:46:57 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	add_new_token(t_tokenlist *tokens, char *value)
 	new_token->value = value;
 	new_token->type = t_undifined;
 	new_token->cmd_path = NULL;
+	new_token->quote = 0;
 	new_token->arg = NULL;
-	new_token->quote = none;
 	new_token->next = NULL;
 	new_token->prev = tokens->tail;
 	if (tokens->tail)

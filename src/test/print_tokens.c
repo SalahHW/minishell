@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:31:31 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/24 12:17:41 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/01 08:06:43 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	print_tokens_list(t_tokenlist *tokens)
 			printf("Type: file\n");
 		else if (token_ptr->type == t_exit_status)
 			printf("Type: exit status\n");
-		printf("Quote : %d\n", token_ptr->quote);
 		token_ptr = token_ptr->next;
 	}
 }
