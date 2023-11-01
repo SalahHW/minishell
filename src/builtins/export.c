@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 17:26:55 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:15:18 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int	ft_export(t_shell *exec)
 			ft_add_list(exec->export_list, exec->execlist->arg[i]);
 		else
 		{
-			printf("coucou\n");
 			ft_add_list(exec->export_list, exec->execlist->arg[i]);
 			ft_add_list(exec->environement_list, exec->execlist->arg[i]);
 		}

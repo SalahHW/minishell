@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 16:20:26 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:00:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void							clean_shell(t_shell *shell);
 void							read_user_input(t_shell *shell);
 int								execute_cmd(t_shell *shell);
 // create env,path,home//
-void							ft_create_env_and_path(t_shell *shell,
-									char **env);
+void							ft_create_env_and_path(t_shell *shell);
 // FORMAT//
 // fornat for exec//
 int								format_for_exec(t_shell *shell);

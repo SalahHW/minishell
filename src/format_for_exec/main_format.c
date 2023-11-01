@@ -94,24 +94,20 @@ int	ft_create_list(t_shell *shell)
 int	format_for_exec(t_shell *shell)
 {
 	int cmd;
-
+	ft_create_env_and_path(shell);
 	cmd = 0;
 	if (ft_format_for_tokens(shell) == 1)
 		return (1);
-	// ERR format for tokens//
 	if (ft_create_list(shell) == 1)
 		return (1);
 	cmd = ft_lst_len(shell->execlist);
-	// ERR create execlist
 	if (cmd != 0)
 	{
 		if (ft_redirections(shell) == 1)
 			return (1);
-		// ERR redir fd
 		if (ft_general_pipe(shell) == 1)
 			return (1);
 	}
-	// ERR create pipes
 	ft_h(shell);
 	return (0);
 }
