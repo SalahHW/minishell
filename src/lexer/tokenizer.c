@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/01 20:58:03 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:13:05 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_tokenlist	*tokenize_input(char *input, t_shell *shell)
 	{
 		token_value = expand_variables(shell, token_value);
 		quoted = has_quote(token_value);
+		token_value = remove_quotes(token_value);
 		add_new_token(tokens_list, token_value);
 		tokens_list->tail->quote = quoted;
 		detect_tokens_type(tokens_list->tail);
