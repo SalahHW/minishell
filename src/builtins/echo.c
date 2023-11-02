@@ -39,4 +39,3 @@ int	ft_echo(t_shell *exec)
 		write(1, "\n", 1);
 	return (0);
 }
-// PERROR a lire

@@ -58,9 +58,8 @@ char	**environement_list_to_array(t_envlist *envlist)
 	env_array = malloc(sizeof(char **) * (environement_list_size(envlist) + 1));
 	while (env_ptr)
 	{
-		variable = ft_strjoin(env_ptr->var_name, "=");
-		tmp = variable;
-		variable = ft_strjoin(variable, env_ptr->var_value);
+		tmp = ft_strjoin(env_ptr->var_name, "=");
+		variable = ft_strjoin(tmp, env_ptr->var_value);
 		free(tmp);
 		env_array[i] = variable;
 		env_ptr = env_ptr->next;

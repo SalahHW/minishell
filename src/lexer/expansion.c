@@ -121,3 +121,26 @@ char	*expand_variables(t_shell *shell, char *str)
 	free(str);
 	return (expanded_str);
 }
+
+char	*expand_heredoc_variables(t_shell *shell, char *str)
+{
+	char	*str_ptr;
+	char	*expanded_str;
+	char	*dst_ptr;
+
+	str_ptr = str;
+	expanded_str = malloc(get_expanded_len(shell, str) + 1);
+	dst_ptr = expanded_str;
+	if (!expanded_str)
+		return (NULL);
+	while (*str_ptr)
+	{
+		if (is_variable(str_ptr) || is_exit_status(str_ptr))
+			replace_variable(shell, &str_ptr, &dst_ptr);
+		else
+			*dst_ptr++ = *str_ptr++;
+	}
+	*dst_ptr = '\0';
+	free(str);
+	return (expanded_str);
+}
