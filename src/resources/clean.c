@@ -12,14 +12,6 @@
 
 #include "../../include/minishell.h"
 
-void	free_for_general(t_shell *shell)
-{
-	free_tab(shell->general->env);
-	free_tab(shell->general->path);
-	free_tab(shell->general->expt);
-	free(shell->general->home);
-	free(shell->general);
-}
 void	clean_shell(t_shell *shell)
 {
 	free(shell->prompt);
