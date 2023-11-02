@@ -26,21 +26,22 @@ int	pwd(void)
 
 int	pwd_change(t_shell *exec)
 {
-	char	*tmp;
+	(void)exec;
+	// char	*tmp;
 
-	if (ft_search_in_tab(exec->general->env, "PWD") != NULL)
-	{
-		if (ft_search_in_tab(exec->general->env, "OLDPWD") != NULL)
-			exec->general->env = ft_change_value_in_var_in_tab(exec->general->env,
-					"OLDPWD", ft_search_var_in_env(exec->general->env, "PWD",
-						2));
-		tmp = getcwd(NULL, 0);
-		exec->general->env = ft_change_value_in_var_in_tab(exec->general->env,
-				"PWD", tmp);
-		free(tmp);
-	}
-	else if (ft_search_in_tab(exec->general->env, "OLDPWD") != NULL)
-		exec->general->env = ft_delete_elem_in_tab("OLDPWD",
-				exec->general->env);
+	// if (ft_search_in_tab(exec->general->env, "PWD") != NULL)
+	// {
+	// 	if (ft_search_in_tab(exec->general->env, "OLDPWD") != NULL)
+	// 		exec->general->env = ft_change_value_in_var_in_tab(exec->general->env,
+	// 				"OLDPWD", ft_search_var_in_env(exec->general->env, "PWD",
+	// 					2));
+	// 	tmp = getcwd(NULL, 0);
+	// 	exec->general->env = ft_change_value_in_var_in_tab(exec->general->env,
+	// 			"PWD", tmp);
+	// 	free(tmp);
+	// }
+	// else if (ft_search_in_tab(exec->general->env, "OLDPWD") != NULL)
+	// 	exec->general->env = ft_delete_elem_in_tab("OLDPWD",
+	// 			exec->general->env);
 	return (0);
 }
