@@ -97,6 +97,7 @@ int	format_for_exec(t_shell *shell)
 
 	cmd = 0;
 	ft_save_fd(shell);
+	shell->general->env = environement_list_to_array(shell->environement_list);
 	if (ft_format_for_tokens(shell) == 1)
 		return (1);
 	if (ft_create_list(shell) == 1)
