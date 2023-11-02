@@ -22,6 +22,7 @@ SRCS 	=			main.c									\
 					environement/environement.c				\
 					environement/environement_extraction.c	\
 					environement/environement_list.c		\
+					environement/get_path.c					\
 					lexer/tokenizer.c						\
 					lexer/tokenize_operator.c				\
 					lexer/token_type.c						\
