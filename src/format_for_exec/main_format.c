@@ -94,8 +94,9 @@ int	ft_create_list(t_shell *shell)
 int	format_for_exec(t_shell *shell)
 {
 	int cmd;
-	ft_create_env_and_path(shell);
+
 	cmd = 0;
+	ft_save_fd(shell);
 	if (ft_format_for_tokens(shell) == 1)
 		return (1);
 	if (ft_create_list(shell) == 1)

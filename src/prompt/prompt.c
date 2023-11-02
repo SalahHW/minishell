@@ -26,14 +26,11 @@ void	read_user_input(t_shell *shell)
 			if (!g_sigquit_received)
 			{
 				tokenizer(input, shell);
-				if (!parser(shell))
-				{
-				}
 				execute_cmd(shell);
 			}
 			free(input);
-			if (!g_sigquit_received)
-				clear_tokens_list(shell->tokens);
+			// if (!g_sigquit_received)
+			// 	clear_tokens_list(shell->tokens);
 		}
 		if (!input)
 			shell->general->status = 0;
