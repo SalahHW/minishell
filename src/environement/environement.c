@@ -50,6 +50,7 @@ char	**environement_list_to_array(t_envlist *envlist)
 	t_env	*env_ptr;
 	char	**env_array;
 	char	*variable;
+	char 	*tmp;
 	int		i;
 
 	i = 0;
@@ -58,7 +59,9 @@ char	**environement_list_to_array(t_envlist *envlist)
 	while (env_ptr)
 	{
 		variable = ft_strjoin(env_ptr->var_name, "=");
+		tmp = variable;
 		variable = ft_strjoin(variable, env_ptr->var_value);
+		free(tmp);
 		env_array[i] = variable;
 		env_ptr = env_ptr->next;
 		i++;

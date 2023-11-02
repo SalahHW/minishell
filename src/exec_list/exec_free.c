@@ -46,6 +46,7 @@ void	free_general_utils(t_general *general)
 			free(general->pipes);
 		}
 	}
+	free_tab(general->env);
 	free(general->pids);
 }
 
