@@ -40,7 +40,6 @@ void	write_preset_error(char *err, char *cmd)
 	int	len;
 
 	len = 0;
-	write(STDERR_FILENO, "Minishell: ", 11);
 	if (cmd != NULL)
 	{
 		len = ft_strlen(cmd);

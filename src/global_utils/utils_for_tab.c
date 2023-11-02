@@ -12,6 +12,18 @@
 
 #include "../../include/minishell.h"
 
+static int ft_strcmp(char *s1, char *s2)
+{
+	int i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+	{
+		i++;
+	}
+	return (s1[i] - s2[i]);
+}
+
 void	free_tab(char **tab)
 {
 	int	i;
@@ -31,30 +43,6 @@ void	free_tab(char **tab)
 		free(tab);
 		tab = NULL;
 	}
-}
-
-char	**add_char_at_back_tab(char **tab, char *str)
-{
-	int		i;
-	char	**tmp;
-
-	i = ft_tab_size(tab);
-	tmp = ft_calloc(i + 2, sizeof(char *));
-	i = 0;
-	while (tab[i])
-	{
-		tmp[i] = ft_strdup(tab[i]);
-		if (!tmp[i])
-		{
-			free_tab(tmp);
-			return (NULL);
-		}
-		i++;
-	}
-	tmp[i] = ft_strdup(str);
-	tmp[i + 1] = NULL;
-	free_tab(tab);
-	return (tmp);
 }
 
 char	**ft_ascii_sort(char **arg)
@@ -98,32 +86,4 @@ int	ft_tab_size(char **str)
 		i++;
 	}
 	return (i);
-}
-
-char	**ft_tab_copy(char **tab)
-{
-	int		l;
-	int		i;
-	char	**tmp;
-
-	i = 0;
-	l = 0;
-	if (!tab)
-		return (NULL);
-	l = ft_tab_size(tab);
-	tmp = ft_calloc(l + 1, sizeof(char *));
-	if (!tmp)
-		return (NULL);
-	while (tab[i])
-	{
-		tmp[i] = ft_strdup(tab[i]);
-		if (!tmp[i])
-		{
-			free_tab(tmp);
-			return (NULL);
-		}
-		i++;
-	}
-	tmp[i] = NULL;
-	return (tmp);
 }
