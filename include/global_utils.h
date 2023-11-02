@@ -14,7 +14,6 @@
 # define GLOBAL_UTILS_H
 
 // utils_for_char//
-int		ft_strcmp(char *s1, char *s2);
 int		ft_strcat(char *src, char *dst);
 int		ft_only_spaces(char *str);
 int		ft_check_char_in_str(char *str, char c);
