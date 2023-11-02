@@ -43,7 +43,7 @@ int	exec_builtins(t_shell *exec, int i)
 	if (ft_strncmp(exec->execlist->arg[0], "echo", 5) == 0)
 		ft_echo(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "env", 4) == 0)
-		env(exec->general->env);
+		env(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "cd", 3) == 0)
 		ft_cd(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "pwd", 4) == 0)
