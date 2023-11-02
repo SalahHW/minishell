@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/10/31 16:01:45 by aherrman         ###   ########.fr        #
+#    Updated: 2023/11/02 09:15:13 by aherrman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,9 @@ SRCS 	=			main.c									\
 					environement/environement.c				\
 					environement/environement_extraction.c	\
 					environement/environement_list.c		\
+					environement/get_path.c					\
 					lexer/tokenizer.c						\
 					lexer/tokenize_operator.c				\
-					lexer/tokenize_quote.c					\
-					lexer/tokenize_word.c					\
 					lexer/token_type.c						\
 					lexer/token_list.c						\
 					lexer/quote_process.c					\
@@ -36,7 +35,6 @@ SRCS 	=			main.c									\
 					prompt/prompt.c							\
 					redirection/in_and_out.c				\
 					signal/setup_signals.c					\
-					signal/handle_sigquit.c					\
 					signal/handle_sigint.c					\
 					resources/init.c						\
 					resources/clean.c						\
@@ -49,6 +47,8 @@ SRCS 	=			main.c									\
 					global_utils/is_quote.c					\
 					global_utils/is_variable.c				\
 					global_utils/is_exit_code.c				\
+					global_utils/is_token_delimiter.c		\
+					global_utils/get_str.c					\
 					exec_list/ft_create_struct.c			\
 					exec_list/ft_execl_utils.c				\
 					exec_list/exec_free.c					\

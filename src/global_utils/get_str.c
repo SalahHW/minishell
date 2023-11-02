@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_word.c                                    :+:      :+:    :+:   */
+/*   get_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 13:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/25 17:11:51 by sbouheni         ###   ########.fr       */
+/*   Created: 2023/11/01 05:21:44 by sbouheni          #+#    #+#             */
+/*   Updated: 2023/11/01 05:22:52 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*tokenize_word(char *input, t_tokenlist *tokens)
+// Take a start and a end and make a string with char beetween
+char	*get_str(char *start, char *end)
 {
-	char	*token_start;
-	char	*token_end;
-	char	*new_token;
+	char	*new_str;
+	int		new_str_len;
 
-	token_start = input;
-	token_end = input;
-	while (*token_end && !is_operator(*token_end) && !is_white_space(*token_end)
-		&& !is_quote(*token_end))
-		token_end++;
-	token_end--;
-	if (token_end < token_start)
+	new_str_len = end - start + 1;
+	new_str = malloc(sizeof(char) * new_str_len);
+	if (!new_str)
 		return (NULL);
-	new_token = extract_tokens(token_start, token_end);
-	add_new_token(tokens, new_token);
-	return (token_end + 1);
+	ft_strlcpy(new_str, start, new_str_len);
+	return (new_str);
 }

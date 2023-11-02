@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 18:11:23 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/30 08:12:38 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:28:26 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	is_bultin_cmd(char *cmd)
 	return (0);
 }
 
-static char	*get_cmd_path(char *path, char *cmd)
+static char	*gget_cmd_path(char *path, char *cmd)
 {
 	char	*cmd_path;
 	char	*tmp;
@@ -74,7 +74,7 @@ static int	is_path_cmd(t_envlist *envlist, char *cmd)
 	i = 0;
 	while (paths[i])
 	{
-		cmd_path = get_cmd_path(paths[i], cmd);
+		cmd_path = gget_cmd_path(paths[i], cmd);
 		if (is_executable_cmd(cmd_path))
 		{
 			p_free_splited_str(paths);

@@ -6,23 +6,24 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:09:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 11:24:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:51:07 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	env(char **env)
+int	env(t_shell *shell)
 {
+	char **tmp;
 	int i;
 
 	i = 0;
-	if (!env)
-		return (1);
-	while (env[i])
+	tmp = environement_list_to_array(shell->environement_list);
+	while (tmp[i])
 	{
-		printf("%s\n", env[i]);
+		printf("%s\n", tmp[i]);
 		i++;
 	}
+	free_tab(tmp);
 	return (0);
 }

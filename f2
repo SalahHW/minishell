@@ -1,0 +1,8 @@
+total 408
+-rw-r--r--  1 aherrman 2022_mulhouse   3561 Nov  2 09:15 Makefile
+-rw-r--r--  1 aherrman 2022_mulhouse     60 Nov  2 09:36 f1
+-rw-r--r--  1 aherrman 2022_mulhouse      0 Nov  2 09:36 f2
+drwxr-xr-x  3 aherrman 2022_mulhouse   4096 Nov  2 09:14 include
+-rwxr-xr-x  1 aherrman 2022_mulhouse 396600 Nov  2 09:29 minishell
+drwxr-xr-x 18 aherrman 2022_mulhouse   4096 Nov  2 09:24 src
+-rw-r--r--  1 aherrman 2022_mulhouse    112 Nov  2 09:14 valgrind_ignore_leaks.txt

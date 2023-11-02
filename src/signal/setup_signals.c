@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 00:22:08 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/22 03:57:53 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:39:18 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	setup_sigquit(void)
 	struct sigaction	sa;
 
 	g_sigquit_received = 0;
-	sa.sa_handler = &handle_sigquit;
+	sa.sa_handler = SIG_IGN;
 	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
 	if (sigaction(SIGQUIT, &sa, NULL) == -1)

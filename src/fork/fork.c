@@ -12,30 +12,30 @@
 
 #include "../../include/minishell.h"
 
-int	path_for_execve(t_shell *shell)
-{
-	int		i;
-	char	*path;
-	char	*tmp;
+// int	path_for_execve(t_shell *shell)
+// {
+// 	int		i;
+// 	char	*path;
+// 	char	*tmp;
 
-	i = 0;
-	while (shell->general->path[i])
-	{
-		path = ft_strdup(shell->general->path[i]);
-		tmp = ft_strjoin(path, shell->execlist->cmd_path);
-		free(path);
-		if (access(tmp, F_OK) == 0)
-		{
-			free(shell->execlist->cmd_path);
-			shell->execlist->cmd_path = ft_strdup(tmp);
-			free(tmp);
-			return (0);
-		}
-		free(tmp);
-		i++;
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (shell->general->path[i])
+// 	{
+// 		path = ft_strdup(shell->general->path[i]);
+// 		tmp = ft_strjoin(path, shell->execlist->cmd_path);
+// 		free(path);
+// 		if (access(tmp, F_OK) == 0)
+// 		{
+// 			free(shell->execlist->cmd_path);
+// 			shell->execlist->cmd_path = ft_strdup(tmp);
+// 			free(tmp);
+// 			return (0);
+// 		}
+// 		free(tmp);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 int	ft_solo_child(t_shell *shell)
 {
@@ -46,7 +46,8 @@ int	ft_solo_child(t_shell *shell)
 		return (1);
 	else if (pid == 0)
 	{
-		path_for_execve(shell);
+		get_cmd_path(shell);
+		// path_for_execve(shell);
 		if (ft_def_redir(shell, 0) == 1)
 			return (1);
 		if (execve(shell->execlist->cmd_path, shell->execlist->arg,
@@ -63,7 +64,7 @@ int	ft_child_process(t_shell *shell, int i)
 {
 	if (ft_def_redir(shell, i) == 1)
 		return (1);
-	path_for_execve(shell);
+	get_cmd_path(shell);
 	if (execve(shell->execlist->cmd_path, shell->execlist->arg,
 			shell->general->env) == -1)
 	{

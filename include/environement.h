@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 18:49:10 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/31 16:53:22 by aherrman         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/11/02 09:27:55 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_envlist			*get_parent_environement(char **envp);
 char				*get_var_value(t_envlist *envlist, char *varname);
 // Convert the environement list to a char **
 char				**environement_list_to_array(t_envlist *envlist);
-
 char				*extract_varname(char *str);
 char				*extract_varvalue(char *str);
 

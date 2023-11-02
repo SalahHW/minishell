@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_sigquit.c                                   :+:      :+:    :+:   */
+/*   is_token_delimiter.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 00:26:58 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/09/22 03:57:45 by sbouheni         ###   ########.fr       */
+/*   Created: 2023/11/01 03:17:18 by sbouheni          #+#    #+#             */
+/*   Updated: 2023/11/01 07:49:35 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	handle_sigquit(int sig)
+int	is_token_delimiter(char c)
 {
-	(void)sig;
-	g_sigquit_received = 1;
+	if (is_operator(c) || is_white_space(c))
+		return (1);
+	return (0);
 }

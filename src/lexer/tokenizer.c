@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/31 13:12:43 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:21:55 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,51 @@ void	tokenizer(char *input, t_shell *shell)
 // Scan the input and return a list of tokens
 t_tokenlist	*tokenize_input(char *input, t_shell *shell)
 {
+	t_tokenlist	*tokens_list;
 	char		*input_ptr;
-	t_tokenlist	*tokens;
+	char		*token_value;
+	int			quoted;
 
-	tokens = shell->tokens;
+	quoted = 0;
+	tokens_list = shell->tokens;
 	input_ptr = input;
-	while (*input_ptr)
+	token_value = get_next_token(&input_ptr);
+	while (token_value)
 	{
-		if (*input_ptr == '\'' || *input_ptr == '\"')
-			input_ptr = tokenize_quote(input_ptr, tokens);
-		else if (*input_ptr == '|' || *input_ptr == '<' || *input_ptr == '>')
-			input_ptr = tokenize_operator(input_ptr, tokens);
-		else if (is_white_space(*input_ptr))
-			input_ptr++;
-		else
-			input_ptr = tokenize_word(input_ptr, tokens);
-		if (tokens->tail)
-		{
-			detect_tokens_type(tokens->tail);
-			if (tokens->tail->quote != single_quote)
-				tokens->tail->value = expand_variables(shell,
-						tokens->tail->value);
-		}
+		token_value = expand_variables(shell, token_value);
+		quoted = has_quote(token_value);
+		token_value = remove_quotes(token_value);
+		add_new_token(tokens_list, token_value);
+		tokens_list->tail->quote = quoted;
+		detect_tokens_type(tokens_list->tail);
+		token_value = get_next_token(&input_ptr);
 	}
-	return (tokens);
+	return (tokens_list);
 }
 
-// Take a start and a end and make a string with char beetween
-char	*extract_tokens(char *token_start, char *token_end)
+char	*get_next_token(char **input)
 {
-	char	*new_str;
-	int		new_str_len;
+	char	*token_start;
+	char	*token_end;
+	char	*token_value;
 
-	new_str_len = token_end - token_start + 2;
-	new_str = malloc(sizeof(char) * new_str_len);
-	if (!new_str)
+	while (**input && is_white_space(**input))
+		(*input)++;
+	token_start = *input;
+	token_end = *input;
+	if (is_operator(**input))
+		return (tokenize_operator(input));
+	while (*token_end && !is_token_delimiter(*token_end))
+	{
+		if (is_quote(*token_end))
+			token_end = skip_quotes(token_end);
+		if (!token_end)
+			return (NULL);
+		token_end++;
+	}
+	if (token_end == token_start)
 		return (NULL);
-	ft_strlcpy(new_str, token_start, new_str_len);
-	return (new_str);
+	*input = token_end;
+	token_value = get_str(token_start, token_end);
+	return (token_value);
 }

@@ -6,13 +6,13 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:29:54 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/26 06:53:25 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:50:37 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static char	*extract_var_name(char *str)
+char	*extract_var_name(char *str)
 {
 	char	*var_name;
 	char	*var_start;
@@ -81,12 +81,28 @@ static void	replace_variable(t_shell *shell, char **str_ptr, char **dst_ptr)
 	}
 }
 
+static void	handle_quote(char c, int *single_quoted, int *double_quoted)
+{
+	if (is_single_quote(c) && !*single_quoted && !*double_quoted)
+		*single_quoted = 1;
+	else if (is_single_quote(c) && *single_quoted && !*double_quoted)
+		*single_quoted = 0;
+	if (is_double_quote(c) && !*double_quoted && !*single_quoted)
+		*double_quoted = 1;
+	else if (is_double_quote(c) && *double_quoted && !*single_quoted)
+		*double_quoted = 0;
+}
+
 char	*expand_variables(t_shell *shell, char *str)
 {
 	char	*str_ptr;
 	char	*expanded_str;
 	char	*dst_ptr;
+	int		single_quoted;
+	int		double_quoted;
 
+	single_quoted = 0;
+	double_quoted = 0;
 	str_ptr = str;
 	expanded_str = malloc(get_expanded_len(shell, str) + 1);
 	dst_ptr = expanded_str;
@@ -94,7 +110,9 @@ char	*expand_variables(t_shell *shell, char *str)
 		return (NULL);
 	while (*str_ptr)
 	{
-		if (is_variable(str_ptr) || is_exit_status(str_ptr))
+		if (is_quote(*str_ptr))
+			handle_quote(*str_ptr, &single_quoted, &double_quoted);
+		if (!single_quoted && (is_variable(str_ptr) || is_exit_status(str_ptr)))
 			replace_variable(shell, &str_ptr, &dst_ptr);
 		else
 			*dst_ptr++ = *str_ptr++;

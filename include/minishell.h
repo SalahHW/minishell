@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 10:00:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:47:36 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ int								init_shell(t_shell *shell);
 void							clean_shell(t_shell *shell);
 void							read_user_input(t_shell *shell);
 int								execute_cmd(t_shell *shell);
+void							get_cmd_path(t_shell *shell);
 // create env,path,home//
-void							ft_create_env_and_path(t_shell *shell);
+// void							ft_create_env_and_path(t_shell *shell);
 // FORMAT//
 // fornat for exec//
 int								format_for_exec(t_shell *shell);
@@ -102,7 +103,7 @@ int								pwd(void);
 int								pwd_change(t_shell *exec);
 int								unset(t_shell *exec);
 int								ft_export(t_shell *exec);
-int								env(char **env);
+int								env(t_shell *shell);
 int								ft_echo(t_shell *exec);
 // UTILSBUILTINS//
 
@@ -128,5 +129,7 @@ int								error(char *cmd, char *input, int error);
 // fortest//
 void							print_tokens_list(t_tokenlist *token);
 void							print_execlist(t_execlist *list);
+
+void							ft_save_fd(t_shell *shell);
 
 #endif

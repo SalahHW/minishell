@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 11:39:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:32:01 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	ft_del_if_need(t_shell *shell, char *str)
 	tmp2 = get_var_value(shell->environement_list, extract_varname(str));
 	if (tmp2 != NULL )
 		remove_var(shell->environement_list, tmp2);
+	free(tmp);
+	free(tmp2);
 	return (0);
 }
 

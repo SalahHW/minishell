@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 10:00:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:28:51 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ int	ft_create_list(t_shell *shell)
 
 int	format_for_exec(t_shell *shell)
 {
-	int cmd;
-	ft_create_env_and_path(shell);
+	int	cmd;
+
 	cmd = 0;
+	ft_save_fd(shell);
 	if (ft_format_for_tokens(shell) == 1)
 		return (1);
 	if (ft_create_list(shell) == 1)

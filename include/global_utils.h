@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:18 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/25 17:18:39 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/01 20:54:00 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_print_tab_for_test(char **tab);
 int		is_quote(char c);
 int		is_single_quote(char c);
 int		is_double_quote(char c);
+int		has_quote(char *str);
 int		is_operator(char c);
 int		is_redirection(char c);
 int		is_pipe(char c);
@@ -53,5 +54,8 @@ int		is_redirect_in(char c);
 int		is_redirect_out(char c);
 int		is_exit_status(char *str);
 int		is_variable(char *str);
+int		is_token_delimiter(char c);
+
+char	*get_str(char *str_start, char *str_end);
 
 #endif
