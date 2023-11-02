@@ -131,5 +131,9 @@ void							print_tokens_list(t_tokenlist *token);
 void							print_execlist(t_execlist *list);
 
 void	ft_save_fd(t_shell *shell);
+<<<<<<< HEAD
+=======
+char *expand_heredoc_variables(t_shell *shell, char *str);
+>>>>>>> master
 
 #endif

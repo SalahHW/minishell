@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:45:53 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 12:03:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:14:32 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	pwd(void)
 
 	pwd = getcwd(NULL, 0);
 	if (pwd == NULL)
+	{
+		free(pwd);
 		return (1);
+	}
 	printf("%s\n", pwd);
 	free(pwd);
 	return (0);
