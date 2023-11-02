@@ -29,9 +29,6 @@ SRCS 	=			main.c									\
 					lexer/token_list.c						\
 					lexer/quote_process.c					\
 					lexer/expansion.c						\
-					parser/parser.c							\
-					parser/token_check.c					\
-					parser/command_check.c					\
 					prompt/prompt.c							\
 					redirection/in_and_out.c				\
 					signal/setup_signals.c					\
