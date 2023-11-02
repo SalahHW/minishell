@@ -49,9 +49,9 @@ typedef struct s_general
 {
 	int							status;
 	char						**env;
-	char						**path;
-	char						**expt;
-	char						*home;
+	// char						**path;
+	// char						**expt;
+	// char						*home;
 	int							nbpipes;
 	int							**pipes;
 	int							*pids;
@@ -103,7 +103,7 @@ int								pwd(void);
 int								pwd_change(t_shell *exec);
 int								unset(t_shell *exec);
 int								ft_export(t_shell *exec);
-int								env(char **env);
+int								env(t_shell *shell);
 int								ft_echo(t_shell *exec);
 // UTILSBUILTINS//
 

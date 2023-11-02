@@ -12,17 +12,18 @@
 
 #include "../../include/minishell.h"
 
-int	env(char **env)
+int	env(t_shell *shell)
 {
+	char **tmp;
 	int i;
 
 	i = 0;
-	if (!env)
-		return (1);
-	while (env[i])
+	tmp = environement_list_to_array(shell->environement_list);
+	while (tmp[i])
 	{
-		printf("%s\n", env[i]);
+		printf("%s\n", tmp[i]);
 		i++;
 	}
+	free_tab(tmp);
 	return (0);
 }
