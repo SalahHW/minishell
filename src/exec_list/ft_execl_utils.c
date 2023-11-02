@@ -79,3 +79,31 @@ int	ft_lst_len(t_execlist *cmd)
 	}
 	return (i);
 }
+
+char	**ft_tab_copy(char **tab)
+{
+	int		l;
+	int		i;
+	char	**tmp;
+
+	i = 0;
+	l = 0;
+	if (!tab)
+		return (NULL);
+	l = ft_tab_size(tab);
+	tmp = ft_calloc(l + 1, sizeof(char *));
+	if (!tmp)
+		return (NULL);
+	while (tab[i])
+	{
+		tmp[i] = ft_strdup(tab[i]);
+		if (!tmp[i])
+		{
+			free_tab(tmp);
+			return (NULL);
+		}
+		i++;
+	}
+	tmp[i] = NULL;
+	return (tmp);
+}
