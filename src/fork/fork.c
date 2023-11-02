@@ -68,7 +68,6 @@ int	ft_child_process(t_shell *shell, int i)
 	if (execve(shell->execlist->cmd_path, shell->execlist->arg,
 			shell->general->env) == -1)
 	{
-		fprintf(stderr,"error");
 		error(shell->execlist->arg[0], NULL, 127);
 		exit(127);
 	}

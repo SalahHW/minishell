@@ -17,9 +17,9 @@ volatile sig_atomic_t	g_sigquit_received;
 int	init_general_data(t_shell *shell)
 {
 	shell->general->env = NULL;
-	shell->general->path = NULL;
-	shell->general->expt = NULL;
-	shell->general->home = NULL;
+	// shell->general->path = NULL;
+	// shell->general->expt = NULL;
+	// shell->general->home = NULL;
 	shell->general->pipes = NULL;
 	shell->general->nbpipes = 0;
 	return (0);
