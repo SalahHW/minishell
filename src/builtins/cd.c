@@ -14,17 +14,18 @@
 
 int	ft_cd(t_shell *exec)
 {
-	int	err;
+	(void)exec;
+	// int	err;
 
-	err = 0;
-	if (exec->execlist->arg == NULL && ft_search_in_tab(exec->general->env, "HOME") != NULL)
-		return (1);
-	else if (exec->execlist->arg[1] == NULL)
-		err = chdir(exec->general->home);
-	else
-		err = chdir(exec->execlist->arg[1]);
-	if (err != 0)
-		return (1);
-	pwd_change(exec);
+	// err = 0;
+	// if (exec->execlist->arg == NULL && ft_search_in_tab(exec->general->env, "HOME") != NULL)
+	// 	return (1);
+	// else if (exec->execlist->arg[1] == NULL)
+	// 	err = chdir(exec->general->home);
+	// else
+	// 	err = chdir(exec->execlist->arg[1]);
+	// if (err != 0)
+	// 	return (1);
+	// pwd_change(exec);
 	return (0);
 }

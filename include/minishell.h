@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/02 09:47:36 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:38:13 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef struct s_general
 {
 	int							status;
 	char						**env;
-	char						**path;
-	char						**expt;
-	char						*home;
+	// char						**path;
+	// char						**expt;
+	// char						*home;
 	int							nbpipes;
 	int							**pipes;
 	int							*pids;
@@ -129,7 +129,5 @@ int								error(char *cmd, char *input, int error);
 // fortest//
 void							print_tokens_list(t_tokenlist *token);
 void							print_execlist(t_execlist *list);
-
-void							ft_save_fd(t_shell *shell);
 
 #endif

@@ -29,31 +29,25 @@ SRCS 	=			main.c									\
 					lexer/token_list.c						\
 					lexer/quote_process.c					\
 					lexer/expansion.c						\
-					parser/parser.c							\
-					parser/token_check.c					\
-					parser/command_check.c					\
 					prompt/prompt.c							\
 					redirection/in_and_out.c				\
 					signal/setup_signals.c					\
 					signal/handle_sigint.c					\
 					resources/init.c						\
 					resources/clean.c						\
-					global_utils/utils_for_char.c			\
 					global_utils/utils_for_tab.c			\
 					global_utils/utils_for_tab2.c			\
-					global_utils/utils_for_tab3.c			\
-					global_utils/utils_for_env.c			\
 					global_utils/is_operator.c				\
 					global_utils/is_quote.c					\
 					global_utils/is_variable.c				\
 					global_utils/is_exit_code.c				\
 					global_utils/is_token_delimiter.c		\
 					global_utils/get_str.c					\
-					exec_list/ft_create_struct.c			\
 					exec_list/ft_execl_utils.c				\
 					exec_list/exec_free.c					\
 					pipe/pipe.c								\
 					format_for_exec/main_format.c			\
+					format_for_exec/fd_save.c				\
 					builtins/cd.c							\
 					builtins/pwd.c							\
 					builtins/unset.c						\
@@ -68,7 +62,6 @@ SRCS 	=			main.c									\
 					error/error.c							\
 					fork/fork.c								\
 					test/print_tokens.c						\
-					resources/create_r.c					\
 
 				
 					
