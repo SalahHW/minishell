@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 11:30:03 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:24:56 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,6 @@ static int	export_variable(t_envlist *env_list, char *str)
 int	ft_export(t_shell *exec)
 {
 	int		i;
-	char	**tmp;
 
 	i = 1;
 	if (exec->execlist->arg[i] == NULL)

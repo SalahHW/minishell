@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 06:22:15 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:22:57 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ void							ft_close_all_fd(t_shell *shell);
 // redir in exec2//
 t_token							*search_next_cmd(t_token *token, int i);
 int								ft_open_fd_in_out(t_execlist *execlist,
-									t_token *token, t_shell *shell);
-int								ft_here_heredoc(t_token *token, t_shell *shell);
 									t_token *token, t_shell *shell);
 int								ft_here_heredoc(t_token *token, t_shell *shell);
 void							ft_heredoc(t_shell *shell);
