@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:44:18 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/02 15:35:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:53:33 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*get_var_value(t_envlist *envlist, char *varname)
 	env_ptr = envlist->head;
 	while (env_ptr)
 	{
-		if (ft_strncmp(env_ptr->var_name, varname, varname_len + 1) == 0)
+		if (!ft_strncmp(env_ptr->var_name, varname, varname_len + 1))
 			return (env_ptr->var_value);
 		env_ptr = env_ptr->next;
 	}
@@ -58,22 +58,20 @@ char	**environement_list_to_array(t_envlist *envlist)
 	env_array = malloc(sizeof(char **) * (environement_list_size(envlist) + 1));
 	while (env_ptr)
 	{
-		variable = ft_strjoin(env_ptr->var_name, "=");
-		tmp = variable;
-		variable = ft_strjoin(variable, env_ptr->var_value);
+		tmp = ft_strjoin(env_ptr->var_name, "=");
+		variable = ft_strjoin(tmp, env_ptr->var_value);
 		free(tmp);
 		env_array[i] = variable;
-		env_ptr = env_ptr->next;
 		i++;
-		free(variable);
+		env_ptr = env_ptr->next;
 	}
 	env_array[i] = NULL;
 	return (env_array);
 }
 
-void	remove_var(t_envlist *envlist, char *varname)
+void remove_var(t_envlist *envlist, char *varname)
 {
-	t_env	*env_ptr;
+	t_env *env_ptr;
 
 	env_ptr = envlist->head;
 	while (env_ptr)

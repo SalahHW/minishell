@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
 /*   Updated: 2023/10/31 14:46:31 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/10/31 14:46:31 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +29,9 @@ int	ft_here_heredoc(t_token *token,t_shell *shell)
 			free(line);
 			break ;
 		}
-		ft_putendl_fd(expand_variables(shell,line), fd);
+		line = expand_heredoc_variables(shell, line);
+		ft_putendl_fd(line, fd);
+		free(line);
 	}
 	close(fd);
 	token->fd = open(".tmp", O_RDONLY);

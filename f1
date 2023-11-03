@@ -1,6 +1,0 @@
-Makefile
-f1
-include
-minishell
-src
-valgrind_ignore_leaks.txt

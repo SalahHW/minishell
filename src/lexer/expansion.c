@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:29:54 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/01 10:50:37 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:54:13 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,29 @@ char	*expand_variables(t_shell *shell, char *str)
 		if (is_quote(*str_ptr))
 			handle_quote(*str_ptr, &single_quoted, &double_quoted);
 		if (!single_quoted && (is_variable(str_ptr) || is_exit_status(str_ptr)))
+			replace_variable(shell, &str_ptr, &dst_ptr);
+		else
+			*dst_ptr++ = *str_ptr++;
+	}
+	*dst_ptr = '\0';
+	free(str);
+	return (expanded_str);
+}
+
+char	*expand_heredoc_variables(t_shell *shell, char *str)
+{
+	char	*str_ptr;
+	char	*expanded_str;
+	char	*dst_ptr;
+
+	str_ptr = str;
+	expanded_str = malloc(get_expanded_len(shell, str) + 1);
+	dst_ptr = expanded_str;
+	if (!expanded_str)
+		return (NULL);
+	while (*str_ptr)
+	{
+		if (is_variable(str_ptr) || is_exit_status(str_ptr))
 			replace_variable(shell, &str_ptr, &dst_ptr);
 		else
 			*dst_ptr++ = *str_ptr++;

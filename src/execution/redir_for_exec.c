@@ -57,6 +57,8 @@ int	ft_def_redir_out(int fd_out)
 
 int	ft_def_redir(t_shell *shell, int i)
 {
+	// shell->execlist->fd_in = 0;
+	// shell->execlist->fd_out = 1;
 	if (ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head,
 				i), shell) == 1)
 	{
