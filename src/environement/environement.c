@@ -23,13 +23,13 @@ t_envlist	*get_parent_environement(char **env)
 	{
 		varname = extract_varname(*env);
 		varvalue = extract_varvalue(*env);
-		add_new_var(envlist, varname, varvalue, global);
+		add_new_var(envlist, varname, varvalue);
 		env++;
 	}
 	return (envlist);
 }
 
-char	*get_var_value(t_envlist *envlist, char *varname, t_var_scope scope)
+char	*get_var_value(t_envlist *envlist, char *varname)
 {
 	t_env	*env_ptr;
 	int		varname_len;
@@ -38,7 +38,7 @@ char	*get_var_value(t_envlist *envlist, char *varname, t_var_scope scope)
 	env_ptr = envlist->head;
 	while (env_ptr)
 	{
-		if (!ft_strncmp(env_ptr->var_name, varname, varname_len + 1) && env_ptr->scope == scope)
+		if (!ft_strncmp(env_ptr->var_name, varname, varname_len + 1))
 			return (env_ptr->var_value);
 		env_ptr = env_ptr->next;
 	}
@@ -55,17 +55,14 @@ char	**environement_list_to_array(t_envlist *envlist)
 
 	i = 0;
 	env_ptr = envlist->head;
-	env_array = malloc(sizeof(char **) * (environement_list_size(envlist, global) + 1));
+	env_array = malloc(sizeof(char **) * (environement_list_size(envlist) + 1));
 	while (env_ptr)
 	{
-		if (env_ptr->scope == local)
-		{
-			tmp = ft_strjoin(env_ptr->var_name, "=");
-			variable = ft_strjoin(tmp, env_ptr->var_value);
-			free(tmp);
-			env_array[i] = variable;
-			i++;
-		}
+		tmp = ft_strjoin(env_ptr->var_name, "=");
+		variable = ft_strjoin(tmp, env_ptr->var_value);
+		free(tmp);
+		env_array[i] = variable;
+		i++;
 		env_ptr = env_ptr->next;
 	}
 	env_array[i] = NULL;

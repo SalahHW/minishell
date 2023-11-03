@@ -59,7 +59,7 @@ int	exec_builtins(t_shell *exec, int i)
 
 int	ft_only_one_cmd(t_shell *shell)
 {
-	if (get_var_value(shell->environement_list, "PATH", global) != NULL)
+	if (get_var_value(shell->environement_list, "PATH") != NULL)
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
 			exec_builtins(shell, 0);
@@ -79,7 +79,7 @@ int	ft_only_one_cmd(t_shell *shell)
 
 int	ft_multi_cmd2(t_shell *shell, int i)
 {
-	if (get_var_value(shell->environement_list, "PATH", global) != NULL)
+	if (get_var_value(shell->environement_list, "PATH") != NULL)
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
 		{

@@ -24,7 +24,7 @@ t_envlist	*init_environement_list(void)
 }
 
 // Add a new variable to the environement list
-void	add_new_var(t_envlist *envlist, char *varname, char *varvalue, t_var_scope scope)
+void	add_new_var(t_envlist *envlist, char *varname, char *varvalue)
 {
 	t_env	*new_var;
 
@@ -36,7 +36,6 @@ void	add_new_var(t_envlist *envlist, char *varname, char *varvalue, t_var_scope 
 	}
 	new_var->var_name = varname;
 	new_var->var_value = varvalue;
-	new_var->scope = scope;
 	new_var->next = NULL;
 	new_var->prev = envlist->tail;
 	if (envlist->tail)
@@ -79,7 +78,7 @@ void	clear_environement_list(t_envlist *envlist)
 	free(envlist);
 }
 
-int environement_list_size(t_envlist *envlist, t_var_scope scope)
+int environement_list_size(t_envlist *envlist)
 {
 	t_env	*env_ptr;
 	int		size;
@@ -88,11 +87,8 @@ int environement_list_size(t_envlist *envlist, t_var_scope scope)
 	env_ptr = envlist->head;
 	while (env_ptr)
 	{
-		if (env_ptr->scope == scope)
-		{
-			size++;
-			env_ptr = env_ptr->next;
-		}
+		size++;
+		env_ptr = env_ptr->next;
 	}
 	return (size);
 }

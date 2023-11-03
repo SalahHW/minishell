@@ -20,7 +20,7 @@ static char	**get_paths_array(t_envlist *env_list)
 	int		i;
 
 	i = 0;
-	path = get_var_value(env_list, "PATH", global);
+	path = get_var_value(env_list, "PATH");
 	path_array = ft_split(path, ':');
 	while (path_array[i])
 	{

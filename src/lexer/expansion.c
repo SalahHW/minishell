@@ -40,7 +40,7 @@ static int	get_expanded_len(t_shell *shell, char *str)
 		if (is_variable(str_ptr))
 		{
 			var_name = extract_var_name(str_ptr);
-			var_value = get_var_value(shell->environement_list, var_name, global);
+			var_value = get_var_value(shell->environement_list, var_name);
 			len += ft_strlen(var_value);
 			str_ptr += ft_strlen(var_name) + 1;
 			free(var_name);
@@ -62,7 +62,7 @@ static void	replace_variable(t_shell *shell, char **str_ptr, char **dst_ptr)
 	if (is_variable(*str_ptr))
 	{
 		var_name = extract_var_name(*str_ptr);
-		var_value = get_var_value(shell->environement_list, var_name, global);
+		var_value = get_var_value(shell->environement_list, var_name);
 		if (var_value)
 		{
 			ft_strlcpy(*dst_ptr, var_value, ft_strlen(var_value) + 1);

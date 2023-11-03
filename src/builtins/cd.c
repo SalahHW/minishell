@@ -35,7 +35,7 @@ int	ft_cd(t_shell *exec)
 	char	*home;
 
 	err = 0;
-	home = get_var_value(exec->environement_list, "HOME", global);
+	home = get_var_value(exec->environement_list, "HOME");
 	if (home == NULL)
 	{
 		error("cd", NULL, 3);
