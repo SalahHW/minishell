@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:09:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/27 11:24:37 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:28:25 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int	env(t_shell *shell)
 {
-	char **tmp;
-	int i;
-
-	i = 0;
-	tmp = environement_list_to_array(shell->environement_list);
-	while (tmp[i])
+	t_env *env_ptr;
+	
+	env_ptr = shell->environement_list->head;
+	while (env_ptr)
 	{
-		printf("%s\n", tmp[i]);
-		i++;
+		if (env_ptr->var_value)
+			printf("%s=%s\n", env_ptr->var_name, env_ptr->var_value);
+		env_ptr = env_ptr->next;
 	}
-	free_tab(tmp);
 	return (0);
 }
