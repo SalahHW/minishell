@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:29:54 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/01 10:50:37 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:54:13 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	get_expanded_len(t_shell *shell, char *str)
 		if (is_variable(str_ptr))
 		{
 			var_name = extract_var_name(str_ptr);
-			var_value = get_var_value(shell->environement_list, var_name);
+			var_value = get_var_value(shell->environement_list, var_name, global);
 			len += ft_strlen(var_value);
 			str_ptr += ft_strlen(var_name) + 1;
 			free(var_name);
@@ -62,7 +62,7 @@ static void	replace_variable(t_shell *shell, char **str_ptr, char **dst_ptr)
 	if (is_variable(*str_ptr))
 	{
 		var_name = extract_var_name(*str_ptr);
-		var_value = get_var_value(shell->environement_list, var_name);
+		var_value = get_var_value(shell->environement_list, var_name, global);
 		if (var_value)
 		{
 			ft_strlcpy(*dst_ptr, var_value, ft_strlen(var_value) + 1);

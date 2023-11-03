@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 16:34:33 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:55:57 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	exec_builtins(t_shell *exec, int i)
 
 int	ft_only_one_cmd(t_shell *shell)
 {
-	if (get_var_value(shell->environement_list, "PATH") != NULL)
+	if (get_var_value(shell->environement_list, "PATH", global) != NULL)
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
 			exec_builtins(shell, 0);
@@ -79,7 +79,7 @@ int	ft_only_one_cmd(t_shell *shell)
 
 int	ft_multi_cmd2(t_shell *shell, int i)
 {
-	if (get_var_value(shell->environement_list, "PATH") != NULL)
+	if (get_var_value(shell->environement_list, "PATH", global) != NULL)
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
 		{

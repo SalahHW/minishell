@@ -23,13 +23,13 @@ t_envlist	*get_parent_environement(char **env)
 	{
 		varname = extract_varname(*env);
 		varvalue = extract_varvalue(*env);
-		add_new_var(envlist, varname, varvalue);
+		add_new_var(envlist, varname, varvalue, global);
 		env++;
 	}
 	return (envlist);
 }
 
-char	*get_var_value(t_envlist *envlist, char *varname)
+char	*get_var_value(t_envlist *envlist, char *varname, t_var_scope scope)
 {
 	t_env	*env_ptr;
 	int		varname_len;
@@ -38,7 +38,7 @@ char	*get_var_value(t_envlist *envlist, char *varname)
 	env_ptr = envlist->head;
 	while (env_ptr)
 	{
-		if (ft_strncmp(env_ptr->var_name, varname, varname_len + 1) == 0)
+		if (!ft_strncmp(env_ptr->var_name, varname, varname_len + 1) && env_ptr->scope == scope)
 			return (env_ptr->var_value);
 		env_ptr = env_ptr->next;
 	}

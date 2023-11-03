@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 02:46:16 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:22:15 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_general
 typedef struct s_shell
 {
 	t_envlist					*environement_list;
-	t_envlist					*export_list;
 	char						*prompt;
 	char						*user_input;
 	t_tokenlist					*tokens;
@@ -97,7 +96,7 @@ int								ft_cd(t_shell *exec);
 int								pwd(void);
 int								pwd_change(t_shell *exec);
 int								unset(t_shell *exec);
-int								ft_export(t_shell *exec);
+int								ft_export(t_shell *exec, t_envlist *env_list);
 int								env(t_shell *shell);
 int								ft_echo(t_shell *exec);
 // UTILSBUILTINS//

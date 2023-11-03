@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/02 16:20:38 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:54:37 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_cd(t_shell *exec)
 	char	*home;
 
 	err = 0;
-	home = get_var_value(exec->environement_list, "HOME");
+	home = get_var_value(exec->environement_list, "HOME", global);
 	if (home == NULL)
 	{
 		error("cd", NULL, 3);
