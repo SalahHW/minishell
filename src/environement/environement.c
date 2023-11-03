@@ -38,7 +38,7 @@ char	*get_var_value(t_envlist *envlist, char *varname)
 	env_ptr = envlist->head;
 	while (env_ptr)
 	{
-		if (ft_strncmp(env_ptr->var_name, varname, varname_len + 1) == 0)
+		if (!ft_strncmp(env_ptr->var_name, varname, varname_len + 1))
 			return (env_ptr->var_value);
 		env_ptr = env_ptr->next;
 	}
@@ -62,8 +62,8 @@ char	**environement_list_to_array(t_envlist *envlist)
 		variable = ft_strjoin(tmp, env_ptr->var_value);
 		free(tmp);
 		env_array[i] = variable;
-		env_ptr = env_ptr->next;
 		i++;
+		env_ptr = env_ptr->next;
 	}
 	env_array[i] = NULL;
 	return (env_array);

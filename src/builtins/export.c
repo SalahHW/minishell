@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 11:39:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 09:28:25 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,50 +70,33 @@ void	ft_print_for_export(char **tmp)
 		j++;
 	}
 }
-int	ft_del_if_need(t_shell *shell, char *str)
-{
-	char	*tmp;
-	char	*tmp2;
-
-	if (ft_strncmp(str, "=", 2) == 0)
-	{
-		error(shell->execlist->arg[0], NULL, 2);
-		return (1);
-	}
-	tmp = get_var_value(shell->export_list, extract_varname(str));
-	if (tmp != NULL)
-		remove_var(shell->export_list, tmp);
-	tmp2 = get_var_value(shell->environement_list, extract_varname(str));
-	if (tmp2 != NULL )
-		remove_var(shell->environement_list, tmp2);
-	return (0);
-}
 
 int	ft_export(t_shell *exec)
 {
-	int		i;
-	char	**tmp;
+	(void)exec;
+	// int		i;
+	// char	**tmp;
 
-	i = 1;
-	if (exec->execlist->arg[i] == NULL)
-	{
-		tmp = environement_list_to_array(exec->export_list);
-		ft_print_for_export(ft_ascii_sort(tmp));
-		free(tmp);
-		return (0);
-	}
-	while (exec->execlist->arg[i])
-	{
-		if (ft_del_if_need(exec, exec->execlist->arg[i]) == 1)
-			return (0);
-		if (check_if_egal(exec->execlist->arg[i]) == 0)
-			ft_add_list(exec->export_list, exec->execlist->arg[i]);
-		else
-		{
-			ft_add_list(exec->export_list, exec->execlist->arg[i]);
-			ft_add_list(exec->environement_list, exec->execlist->arg[i]);
-		}
-		i++;
-	}
+	// i = 1;
+	// if (exec->execlist->arg[i] == NULL)
+	// {
+	// 	tmp = environement_list_to_array(exec->export_list);
+	// 	ft_print_for_export(ft_ascii_sort(tmp));
+	// 	free(tmp);
+	// 	return (0);
+	// }
+	// while (exec->execlist->arg[i])
+	// {
+	// 	if (ft_del_if_need(exec, exec->execlist->arg[i]) == 1)
+	// 		return (0);
+	// 	if (check_if_egal(exec->execlist->arg[i]) == 0)
+	// 		ft_add_list(exec->export_list, exec->execlist->arg[i]);
+	// 	else
+	// 	{
+	// 		ft_add_list(exec->export_list, exec->execlist->arg[i]);
+	// 		ft_add_list(exec->environement_list, exec->execlist->arg[i]);
+	// 	}
+	// 	i++;
+	// }
 	return (0);
 }

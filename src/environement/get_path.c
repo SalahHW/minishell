@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 02:36:30 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/02 03:00:39 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 06:52:36 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void get_cmd_path(t_shell *shell)
 	while (path_array[i])
 	{
 		cmd_full_path = ft_strjoin(path_array[i], shell->execlist->cmd_path);
-		// printf("cmd_full_path: %s\n", cmd_full_path);
 		if (access(cmd_full_path, F_OK) == 0)
 		{
 			free(shell->execlist->cmd_path);

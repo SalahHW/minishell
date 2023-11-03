@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/01 20:45:35 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 03:45:47 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ char					*skip_quotes(char *input);
 
 char					*expand_variables(t_shell *shell, char *str);
 char					*extract_var_name(char *str);
+
+int						analyze_tokens(t_tokenlist *tokens_list);
 
 #endif
