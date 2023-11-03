@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 13:22:57 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:27:24 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_general
 typedef struct s_shell
 {
 	t_envlist					*environement_list;
-	t_envlist					*export_list;
 	char						*prompt;
 	char						*user_input;
 	t_tokenlist					*tokens;
@@ -119,6 +118,7 @@ int								ft_solo_child(t_shell *shell);
 int								ft_child_process(t_shell *shell, int i);
 void							ft_parent_process(t_shell *shell,
 									int nbprocess);
+int								ft_for_builtins(char *str);
 // ERROR//
 int								error(char *cmd, char *input, int error);
 
@@ -126,8 +126,7 @@ int								error(char *cmd, char *input, int error);
 void							print_tokens_list(t_tokenlist *token);
 void							print_execlist(t_execlist *list);
 
-void							ft_save_fd(t_shell *shell);
-char							*expand_heredoc_variables(t_shell *shell,
-									char *str);
+void	ft_save_fd(t_shell *shell);
+char *expand_heredoc_variables(t_shell *shell, char *str);
 
 #endif

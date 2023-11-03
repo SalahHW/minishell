@@ -6,14 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 14:46:31 by aherrman         ###   ########.fr       */
-/*   Updated: 2023/10/31 14:46:31 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:04:22 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_here_heredoc(t_token *token,t_shell *shell)
+int	ft_here_heredoc(t_token *token, t_shell *shell)
 {
 	int		fd;
 	char	*line;
@@ -40,7 +39,8 @@ int	ft_here_heredoc(t_token *token,t_shell *shell)
 	return (0);
 }
 
-int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist,t_shell *shell)
+int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist,
+		t_shell *shell)
 {
 	if (type == t_redirect_in)
 		token->fd = open(token->value, O_RDONLY, __O_DIRECTORY);
@@ -49,14 +49,15 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist,t_shel
 		token->fd = open(token->value, O_RDONLY);
 		if (token->fd < 0)
 		{
-			error(token->value, NULL, 1);
+			error(token->value, NULL, errno);
 			return (1);
 		}
 	}
 	if (type == t_heredoc)
 	{
-		if (ft_here_heredoc(token,shell) == 1)
-			return (1);
+		if (ft_here_heredoc(token, shell) == 1)
+			error(token->value, NULL, errno);
+		return (1);
 	}
 	if (execlist->fd_in != 0)
 		close(execlist->fd_in);
@@ -100,7 +101,7 @@ t_token	*search_next_cmd(t_token *token, int i)
 	return (NULL);
 }
 
-int	ft_open_fd_in_out(t_execlist *execlist, t_token *token,t_shell *shell)
+int	ft_open_fd_in_out(t_execlist *execlist, t_token *token, t_shell *shell)
 {
 	while (token && token->type != t_pipe)
 	{
@@ -110,7 +111,8 @@ int	ft_open_fd_in_out(t_execlist *execlist, t_token *token,t_shell *shell)
 			if (token->prev && (token->prev->type == t_redirect_in
 					|| token->prev->type == t_heredoc))
 			{
-				if (ft_token_input(token, token->prev->type, execlist,shell) == 1)
+				if (ft_token_input(token, token->prev->type, execlist,
+						shell) == 1)
 					return (1);
 			}
 			else if (token->prev && (token->prev->type == t_redirect_out

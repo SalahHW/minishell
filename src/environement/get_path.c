@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 02:36:30 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 06:52:36 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:24:36 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static char	**get_paths_array(t_envlist *env_list)
 	return (path_array);
 }
 
-void get_cmd_path(t_shell *shell)
+void	get_cmd_path(t_shell *shell)
 {
-	char *cmd_full_path;
-	char **path_array;
-	int i;
+	char	*cmd_full_path;
+	char	**path_array;
+	int		i;
 
 	i = 0;
 	path_array = get_paths_array(shell->environement_list);
@@ -47,7 +47,8 @@ void get_cmd_path(t_shell *shell)
 		{
 			free(shell->execlist->cmd_path);
 			shell->execlist->cmd_path = ft_strdup(cmd_full_path);
-			break;
+			free(cmd_full_path);
+			break ;
 		}
 		free(cmd_full_path);
 		i++;

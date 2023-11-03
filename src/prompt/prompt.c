@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 03:54:49 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:05:22 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	read_user_input(t_shell *shell)
 	char *input;
 	int status_code;
 
+	rl_catch_signals = 0;
 	while (shell->general->status)
 	{
 		input = readline(shell->prompt);

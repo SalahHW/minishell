@@ -6,36 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 10:52:39 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:07:57 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-// int	path_for_execve(t_shell *shell)
-// {
-// 	int		i;
-// 	char	*path;
-// 	char	*tmp;
-
-// 	i = 0;
-// 	while (shell->general->path[i])
-// 	{
-// 		path = ft_strdup(shell->general->path[i]);
-// 		tmp = ft_strjoin(path, shell->execlist->cmd_path);
-// 		free(path);
-// 		if (access(tmp, F_OK) == 0)
-// 		{
-// 			free(shell->execlist->cmd_path);
-// 			shell->execlist->cmd_path = ft_strdup(tmp);
-// 			free(tmp);
-// 			return (0);
-// 		}
-// 		free(tmp);
-// 		i++;
-// 	}
-// 	return (1);
-// }
 
 int	ft_solo_child(t_shell *shell)
 {
@@ -90,7 +65,12 @@ void	ft_parent_process(t_shell *shell, int nbprocess)
 	while (i < nbprocess)
 	{
 		waitpid(-1, &status, 0);
-		shell->last_exit_code = status % 255;
+		if (ft_for_builtins(shell->execlist->arg[0]) == 1 && nbprocess == 1)
+		{
+			shell->last_exit_code = 0;
+		}
+		else
+			shell->last_exit_code = status % 255;
 		i++;
 	}
 }

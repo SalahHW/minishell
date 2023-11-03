@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:46:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 12:00:17 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:31:17 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@ static void	remove_var_from_env(t_envlist *env_list, char *varname)
 	while (env_ptr)
 	{
 		if (!ft_strncmp(env_ptr->var_name, varname, ft_strlen(varname) + 1))
+		{
 			delete_var(env_list, env_ptr);
+			break ;
+		}
 		env_ptr = env_ptr->next;
 	}
 }
 
 int	unset(t_shell *exec)
 {
-	char *varname;
-	int	i;
+	char	*varname;
+	int		i;
 
 	i = 0;
 	while (exec->execlist->arg[i])

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 06:55:57 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:20:39 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ int	exec_builtins(t_shell *exec, int i)
 
 int	ft_only_one_cmd(t_shell *shell)
 {
-	if (get_var_value(shell->environement_list, "PATH") != NULL)
+	if (get_var_value(shell->environement_list, "PATH") != NULL
+		|| ((ft_for_builtins(shell->execlist->arg[0]) == 1)
+			&& ft_strncmp(shell->execlist->arg[0], "env", 4) != 0))
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
 			exec_builtins(shell, 0);
@@ -71,15 +73,16 @@ int	ft_only_one_cmd(t_shell *shell)
 	}
 	else
 	{
-		error(shell->execlist->arg[0], NULL, 2);
-		exit(127);
+		error(shell->execlist->arg[0], NULL, 1);
 	}
 	return (0);
 }
 
 int	ft_multi_cmd2(t_shell *shell, int i)
 {
-	if (get_var_value(shell->environement_list, "PATH") != NULL)
+	if (get_var_value(shell->environement_list, "PATH") != NULL
+		|| ((ft_for_builtins(shell->execlist->arg[0]) == 1)
+			&& ft_strncmp(shell->execlist->arg[0], "env", 4) != 0))
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
 		{
@@ -91,7 +94,7 @@ int	ft_multi_cmd2(t_shell *shell, int i)
 	}
 	else
 	{
-		error(shell->execlist->arg[0], NULL, 2);
+		error(shell->execlist->arg[0], NULL, 1);
 		exit(127);
 	}
 	return (0);
@@ -131,6 +134,7 @@ int	execute_cmd(t_shell *shell)
 	ft_h(shell);
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
+	ft_h(shell);
 	ft_parent_process(shell, nbprocess);
 	ft_h(shell);
 	ft_free_exec(shell);
