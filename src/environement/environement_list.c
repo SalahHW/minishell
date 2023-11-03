@@ -79,7 +79,7 @@ void	clear_environement_list(t_envlist *envlist)
 	free(envlist);
 }
 
-int environement_list_size(t_envlist *envlist)
+int environement_list_size(t_envlist *envlist, t_var_scope scope)
 {
 	t_env	*env_ptr;
 	int		size;
@@ -88,8 +88,11 @@ int environement_list_size(t_envlist *envlist)
 	env_ptr = envlist->head;
 	while (env_ptr)
 	{
-		size++;
-		env_ptr = env_ptr->next;
+		if (env_ptr->scope == scope)
+		{
+			size++;
+			env_ptr = env_ptr->next;
+		}
 	}
 	return (size);
 }

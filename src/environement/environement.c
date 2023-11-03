@@ -55,15 +55,18 @@ char	**environement_list_to_array(t_envlist *envlist)
 
 	i = 0;
 	env_ptr = envlist->head;
-	env_array = malloc(sizeof(char **) * (environement_list_size(envlist) + 1));
+	env_array = malloc(sizeof(char **) * (environement_list_size(envlist, global) + 1));
 	while (env_ptr)
 	{
-		tmp = ft_strjoin(env_ptr->var_name, "=");
-		variable = ft_strjoin(tmp, env_ptr->var_value);
-		free(tmp);
-		env_array[i] = variable;
+		if (env_ptr->scope == local)
+		{
+			tmp = ft_strjoin(env_ptr->var_name, "=");
+			variable = ft_strjoin(tmp, env_ptr->var_value);
+			free(tmp);
+			env_array[i] = variable;
+			i++;
+		}
 		env_ptr = env_ptr->next;
-		i++;
 	}
 	env_array[i] = NULL;
 	return (env_array);

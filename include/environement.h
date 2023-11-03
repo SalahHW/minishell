@@ -40,7 +40,7 @@ void				add_new_var(t_envlist *envlist, char *varname,
 void				remove_var(t_envlist *envlist, char *varname);
 void				delete_var(t_envlist *envlist, t_env *env_var);
 void				clear_environement_list(t_envlist *envlist);
-int					environement_list_size(t_envlist *envlist);
+int					environement_list_size(t_envlist *envlist, t_var_scope scope);
 
 // Get the environement list from the environement variable
 t_envlist			*get_parent_environement(char **envp);

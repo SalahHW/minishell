@@ -96,7 +96,7 @@ int								ft_cd(t_shell *exec);
 int								pwd(void);
 int								pwd_change(t_shell *exec);
 int								unset(t_shell *exec);
-int								ft_export(t_shell *exec, t_envlist *env_list);
+int								ft_export(t_shell *exec);
 int								env(t_shell *shell);
 int								ft_echo(t_shell *exec);
 // UTILSBUILTINS//
