@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:15:08 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/02 16:12:52 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:09:50 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	error(char *cmd, char *input, int error)
 	else if (error == 2)
 		write_preset_error("`=': not a valid identifier", cmd);
 	else if (error == 3)
+		write_preset_error("`=': : HOME not set", cmd);
+	else if (error == 4)
 		write_preset_error("`=': : HOME not set", cmd);
 	else if (error == 127)
 		write_preset_error("command not found", cmd);

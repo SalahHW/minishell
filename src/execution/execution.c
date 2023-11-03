@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 10:22:17 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:09:48 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_only_one_cmd(t_shell *shell)
 	}
 	else
 	{
-		error(shell->execlist->arg[0], NULL, 2);
+		error(shell->execlist->arg[0], NULL, 1);
 		exit(127);
 	}
 	return (0);
@@ -91,7 +91,7 @@ int	ft_multi_cmd2(t_shell *shell, int i)
 	}
 	else
 	{
-		error(shell->execlist->arg[0], NULL, 2);
+		error(shell->execlist->arg[0], NULL, 1);
 		exit(127);
 	}
 	return (0);

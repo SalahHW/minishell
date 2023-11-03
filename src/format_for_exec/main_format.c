@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 10:18:12 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:47:40 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_format_for_tokens(t_shell *shell)
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
-	int i;
+	int		i;
 
 	i = 0;
 	shell->execlist = NULL;
@@ -93,12 +93,11 @@ int	ft_create_list(t_shell *shell)
 
 int	format_for_exec(t_shell *shell)
 {
-	int cmd;
-
-
+	int	cmd;
 
 	cmd = 0;
 	ft_save_fd(shell);
+	shell->general->nbpipes = 0;
 	shell->general->env = environement_list_to_array(shell->environement_list);
 	if (ft_format_for_tokens(shell) == 1)
 		return (1);
