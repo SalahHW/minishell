@@ -6,29 +6,36 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 14:46:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 11:08:25 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:00:17 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+static void	remove_var_from_env(t_envlist *env_list, char *varname)
+{
+	t_env	*env_ptr;
+
+	env_ptr = env_list->head;
+	while (env_ptr)
+	{
+		if (!ft_strncmp(env_ptr->var_name, varname, ft_strlen(varname) + 1))
+			delete_var(env_list, env_ptr);
+		env_ptr = env_ptr->next;
+	}
+}
+
 int	unset(t_shell *exec)
 {
-	char	*tmp;
-	char	*tmp2;
-	int		i;
+	char *varname;
+	int	i;
 
 	i = 0;
 	while (exec->execlist->arg[i])
 	{
-		tmp = get_var_value(exec->export_list,
-				extract_varname(exec->execlist->arg[i]));
-		if (tmp != NULL)
-			remove_var(exec->export_list, tmp);
-		tmp2 = get_var_value(exec->environement_list,
-				extract_varname(exec->execlist->arg[i]));
-		if (tmp2 != NULL)
-			remove_var(exec->environement_list, tmp2);
+		varname = extract_varname(exec->execlist->arg[i]);
+		remove_var_from_env(exec->environement_list, varname);
+		free(varname);
 		i++;
 	}
 	return (0);

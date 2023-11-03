@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/01 21:13:05 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:18:33 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@ t_tokenlist	*tokenize_input(char *input, t_shell *shell)
 	t_tokenlist	*tokens_list;
 	char		*input_ptr;
 	char		*token_value;
+	char		*input_copy;
 	int			quoted;
 
 	quoted = 0;
 	tokens_list = shell->tokens;
-	input_ptr = input;
+	input_copy = ft_strdup(input);
+	input_copy = expand_variables(shell, input_copy);
+	input_ptr = input_copy;
 	token_value = get_next_token(&input_ptr);
 	while (token_value)
 	{
-		token_value = expand_variables(shell, token_value);
 		quoted = has_quote(token_value);
 		token_value = remove_quotes(token_value);
 		add_new_token(tokens_list, token_value);

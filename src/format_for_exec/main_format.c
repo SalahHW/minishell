@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 02:11:05 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:23:52 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_format_for_tokens(t_shell *shell)
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
-	int i;
+	int		i;
 
 	i = 0;
 	shell->execlist = NULL;
@@ -93,7 +93,7 @@ int	ft_create_list(t_shell *shell)
 
 int	format_for_exec(t_shell *shell)
 {
-	int cmd;
+	int	cmd;
 
 	cmd = 0;
 	ft_save_fd(shell);
