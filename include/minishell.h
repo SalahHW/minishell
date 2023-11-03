@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 10:00:35 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 02:46:16 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ typedef struct s_general
 {
 	int							status;
 	char						**env;
-	// char						**path;
-	// char						**expt;
-	// char						*home;
 	int							nbpipes;
 	int							**pipes;
 	int							*pids;
@@ -77,8 +74,6 @@ void							clean_shell(t_shell *shell);
 void							read_user_input(t_shell *shell);
 int								execute_cmd(t_shell *shell);
 void							get_cmd_path(t_shell *shell);
-// create env,path,home//
-// void							ft_create_env_and_path(t_shell *shell);
 // FORMAT//
 // fornat for exec//
 int								format_for_exec(t_shell *shell);
@@ -130,7 +125,8 @@ int								error(char *cmd, char *input, int error);
 void							print_tokens_list(t_tokenlist *token);
 void							print_execlist(t_execlist *list);
 
-void	ft_save_fd(t_shell *shell);
-char *expand_heredoc_variables(t_shell *shell, char *str);
+void							ft_save_fd(t_shell *shell);
+char							*expand_heredoc_variables(t_shell *shell,
+									char *str);
 
 #endif
