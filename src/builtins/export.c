@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/04 06:44:52 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 06:56:45 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static char	*get_varvalue(char *str)
 	return (varvalue);
 }
 
-static int	export_error(t_shell *exec, char *varname, char *varvalue)
+static int	export_error(char *varname, char *varvalue)
 {
-	printf("%s: export: `%s': not a valid identifier\n", exec->prompt, varname);
+	printf("export: `%s': not a valid identifier\n", varname);
 	free(varname);
 	if (varvalue)
 		free(varvalue);
@@ -87,7 +87,7 @@ int	ft_export(t_shell *exec)
 		if (is_valid_env_varname(varname))
 			export_variable(exec->environement_list, varname, varvalue);
 		else
-			exit_code = export_error(exec, varname, varvalue);
+			exit_code = export_error(varname, varvalue);
 		i++;
 	}
 	return (exit_code);
