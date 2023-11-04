@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:18 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/04 03:25:33 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:42:55 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int		is_redirect_out(char c);
 int		is_exit_status(char *str);
 int		is_variable(char *str);
 int		is_token_delimiter(char c);
-
 char	*get_str(char *str_start, char *str_end);
 
 #endif

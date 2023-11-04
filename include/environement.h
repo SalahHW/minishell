@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:49:10 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/04 03:29:00 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:42:38 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,9 @@ int					environement_list_size(t_envlist *envlist);
 
 // Get the environement list from the environement variable
 t_envlist			*get_parent_environement(char **envp);
-t_envlist			*get_parent_environement(char **envp);
 // Search for a variable in the environement list by name
 char				*get_var_value(t_envlist *envlist, char *varname);
-char				*get_var_value(t_envlist *envlist, char *varname);
 // Convert the environement list to a char **
-char				**environement_list_to_array(t_envlist *envlist);
 char				**environement_list_to_array(t_envlist *envlist);
 
 char				*extract_varname(char *str);

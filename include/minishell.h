@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 14:27:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:45:54 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "global_utils.h"
 # include "lexer.h"
 # include "libft/libft.h"
-# include "parser.h"
 # include "signal.h"
 # include <fcntl.h>
 # include <readline/history.h>
@@ -84,7 +83,7 @@ int								redir_pipes(t_shell *shell);
 int								ft_redirections(t_shell *shell);
 // utils new struct//
 void							ft_execadd_back(t_shell *shell,
-									t_execlist *new);
+									t_execlist *new_element);
 t_execlist						*ft_new_execlist_node(t_token *token);
 int								ft_lst_len(t_execlist *cmd);
 t_shell							*ft_h(t_shell *shell);
@@ -126,7 +125,8 @@ int								error(char *cmd, char *input, int error);
 void							print_tokens_list(t_tokenlist *token);
 void							print_execlist(t_execlist *list);
 
-void	ft_save_fd(t_shell *shell);
-char *expand_heredoc_variables(t_shell *shell, char *str);
+void							ft_save_fd(t_shell *shell);
+char							*expand_heredoc_variables(t_shell *shell,
+									char *str);
 
 #endif
