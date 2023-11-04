@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:11:17 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/24 08:42:30 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:02:43 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_execlist	*ft_new_execlist_node(t_token *token)
 		return (NULL);
 	new->cmd_path = ft_strdup(token->cmd_path);
 	new->arg = ft_tab_copy(token->arg);
+	new->fd_in = 0;
+	new->fd_out = 1;
 	new->fd_in = token->fd_in;
 	new->fd_out = token->fd_out;
 	new->next = NULL;

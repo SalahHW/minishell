@@ -21,7 +21,6 @@ int	main(int argc, char **argv, char **envp)
 	if (init_shell(&shell) == -1)
 		return (EXIT_FAILURE);
 	shell.environement_list = get_parent_environement(envp);
-	shell.export_list = get_parent_environement(envp);
 	read_user_input(&shell);
 	clean_shell(&shell);
 }

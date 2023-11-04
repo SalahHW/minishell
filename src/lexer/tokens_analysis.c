@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 02:50:32 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 04:02:39 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:08:50 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	is_pipe_type(t_token *token)
 
 static int	check_syntax(t_token *token)
 {
+	(void)token;
 	if (is_pipe_type(token) && (!token->next || token->next->type != t_cmd))
 	{
 		printf("syntax error near unexpected token `%s'\n", token->value);
@@ -43,7 +44,8 @@ static int	check_syntax(t_token *token)
 		}
 		if (token->next->type != t_file)
 		{
-			printf("syntax error near unexpected token `%s'\n", token->next->value);
+			printf("syntax error near unexpected token `%s'\n",
+				token->next->value);
 			return (2);
 		}
 	}

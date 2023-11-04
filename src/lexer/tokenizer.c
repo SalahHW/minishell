@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:48:26 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 11:18:33 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:55:29 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_tokenlist	*tokenize_input(char *input, t_shell *shell)
 		detect_tokens_type(tokens_list->tail);
 		token_value = get_next_token(&input_ptr);
 	}
+	free(input_copy);
 	return (tokens_list);
 }
 
