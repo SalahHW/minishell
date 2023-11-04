@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/11/04 03:24:07 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/11/04 05:52:50 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS 	=			main.c									\
 					builtins/export.c						\
 					builtins/env.c							\
 					builtins/echo.c							\
+					builtins/utils.c						\
 					execution/execution.c					\
 					execution/execution_utils.c				\
 					execution/redir_for_exec.c				\
