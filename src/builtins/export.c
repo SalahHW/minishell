@@ -6,31 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/04 06:26:13 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 06:44:52 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-static int	export_variable(t_envlist *env_list, char *varname, char *varvalue)
-{
-	t_env	*var_node;
-
-	var_node = get_var_node(env_list, varname);
-	if (!var_node)
-		add_new_var(env_list, varname, varvalue);
-	else
-	{
-		if (varvalue)
-		{
-			if (var_node->var_value)
-				free(var_node->var_value);
-			var_node->var_value = varvalue;
-		}
-		free(varname);
-	}
-	return (0);
-}
 
 static int	is_valid_env_varname(char *varname)
 {
@@ -80,13 +60,24 @@ static char	*get_varvalue(char *str)
 	return (varvalue);
 }
 
+static int	export_error(t_shell *exec, char *varname, char *varvalue)
+{
+	printf("%s: export: `%s': not a valid identifier\n", exec->prompt, varname);
+	free(varname);
+	if (varvalue)
+		free(varvalue);
+	return (1);
+}
+
 int	ft_export(t_shell *exec)
 {
 	char	*varname;
 	char	*varvalue;
+	int		exit_code;
 	int		i;
 
 	i = 1;
+	exit_code = 0;
 	if (!exec->execlist->arg[i])
 		return (print_exported_vars(exec->environement_list));
 	while (exec->execlist->arg[i])
@@ -96,15 +87,8 @@ int	ft_export(t_shell *exec)
 		if (is_valid_env_varname(varname))
 			export_variable(exec->environement_list, varname, varvalue);
 		else
-		{
-			printf("%s: export: `%s': not a valid identifier\n", exec->prompt,
-				varname);
-			if (varname)
-				free(varname);
-			if (varvalue)
-				free(varvalue);
-		}
+			exit_code = export_error(exec, varname, varvalue);
 		i++;
 	}
-	return (0);
+	return (exit_code);
 }

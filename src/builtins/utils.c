@@ -6,11 +6,31 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 05:23:38 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/04 05:25:05 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 06:44:01 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int	export_variable(t_envlist *env_list, char *varname, char *varvalue)
+{
+	t_env	*var_node;
+
+	var_node = get_var_node(env_list, varname);
+	if (!var_node)
+		add_new_var(env_list, varname, varvalue);
+	else
+	{
+		if (varvalue)
+		{
+			if (var_node->var_value)
+				free(var_node->var_value);
+			var_node->var_value = varvalue;
+		}
+		free(varname);
+	}
+	return (0);
+}
 
 int	print_exported_vars(t_envlist *env_list)
 {

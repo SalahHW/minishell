@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/04 05:24:59 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 06:44:42 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int								env(t_shell *shell);
 int								ft_echo(t_shell *exec);
 // UTILSBUILTINS//
 int								print_exported_vars(t_envlist *env_list);
+int								export_variable(t_envlist *env_list,
+									char *varname, char *varvalue);
 
 int								check_if_egal(char *str);
 void							ft_add_list(t_envlist *list, char *str);
