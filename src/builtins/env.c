@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:09:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 11:28:25 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 06:30:26 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	env(t_shell *shell)
 {
-	t_env *env_ptr;
-	
+	t_env	*env_ptr;
+
 	env_ptr = shell->environement_list->head;
 	while (env_ptr)
 	{
