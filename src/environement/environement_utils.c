@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 07:24:20 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/04 03:12:19 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 04:40:47 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ t_env	**get_node_array(t_envlist *envlist)
 
 	i = 0;
 	len = environement_list_size(envlist);
-	env_node_array = malloc(sizeof(t_env *) * len + 1);
+	env_node_array = malloc(sizeof(t_env *) * (len + 1));
+	if (!env_node_array)
+		return (NULL);
 	env_ptr = envlist->head;
 	while (env_ptr)
 	{
