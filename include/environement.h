@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:49:10 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 14:30:55 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:29:00 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ char				*extract_varvalue(char *str);
 
 t_env				*get_var_node(t_envlist *envlist, char *varname);
 t_env				**get_node_array(t_envlist *envlist);
+t_env				**sort_env_array(t_env **env, int size);
 
 #endif

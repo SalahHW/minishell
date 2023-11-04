@@ -6,50 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 17:21:04 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:29:37 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-static int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-	{
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
-
-t_env	**sort_env_array(t_env **env, int size)
-{
-	int		i;
-	int		j;
-	t_env	*tmp;
-
-	i = 0;
-	j = 1;
-	while (j < size)
-	{
-		if (ft_strcmp(env[i]->var_name, env[j]->var_name) > 0)
-		{
-			tmp = env[i];
-			env[i] = env[j];
-			env[j] = tmp;
-			i = 0;
-			j = 1;
-		}
-		else
-		{
-			i++;
-			j++;
-		}
-	}
-	return (env);
-}
 
 static void	print_exported_vars(t_envlist *env_list)
 {
@@ -70,6 +31,7 @@ static void	print_exported_vars(t_envlist *env_list)
 	}
 	i = 0;
 }
+
 static int	export_variable(t_envlist *env_list, char *str)
 {
 	char	*varname;

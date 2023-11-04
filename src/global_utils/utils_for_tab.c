@@ -6,15 +6,15 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:16:14 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 13:54:47 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:24:53 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])

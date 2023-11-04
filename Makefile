@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/11/03 14:25:05 by aherrman         ###   ########.fr        #
+#    Updated: 2023/11/04 03:24:07 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ SRCS 	=			main.c									\
 					builtins/pwd.c							\
 					builtins/unset.c						\
 					builtins/export.c						\
-					builtins/export2.c						\
 					builtins/env.c							\
 					builtins/echo.c							\
 					execution/execution.c					\

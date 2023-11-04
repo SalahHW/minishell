@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 07:24:20 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 10:18:15 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:12:19 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,31 @@ t_env	**get_node_array(t_envlist *envlist)
 	}
 	env_node_array[i] = NULL;
 	return (env_node_array);
+}
+
+t_env	**sort_env_array(t_env **env, int size)
+{
+	int		i;
+	int		j;
+	t_env	*tmp;
+
+	i = 0;
+	j = 1;
+	while (j < size)
+	{
+		if (ft_strcmp(env[i]->var_name, env[j]->var_name) > 0)
+		{
+			tmp = env[i];
+			env[i] = env[j];
+			env[j] = tmp;
+			i = 0;
+			j = 1;
+		}
+		else
+		{
+			i++;
+			j++;
+		}
+	}
+	return (env);
 }

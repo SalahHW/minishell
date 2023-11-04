@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:18 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 20:54:00 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/04 03:25:33 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		ft_check_char_in_str(char *str, char c);
 // utils_for_tab//
 char	**add_char_at_back_tab(char **tab, char *str);
 char	**ft_ascii_sort(char **str);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_tab_size(char **str);
 char	**ft_tab_copy(char **str);
 void	free_tab(char **tab);
@@ -41,6 +42,8 @@ char	*ft_search_var_in_env(char **env, char *search, int need);
 // utils_for_test//
 
 void	ft_print_tab_for_test(char **tab);
+
+// UTILS //
 
 int		is_quote(char c);
 int		is_single_quote(char c);
