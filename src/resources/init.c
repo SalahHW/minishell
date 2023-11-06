@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 01:40:17 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/04 03:47:07 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:20:24 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init_general_data(t_shell *shell)
 	shell->general->env = NULL;
 	shell->general->pipes = NULL;
 	shell->general->nbpipes = 0;
+	shell->general->b_err = 0;
 	return (0);
 }
 

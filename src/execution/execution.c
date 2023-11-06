@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 02:09:43 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:00:52 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,39 @@ int	ft_for_builtins(char *str)
 
 int	exec_builtins(t_shell *exec, int i)
 {
+	int	err;
+
+	err = 0;
 	if (ft_def_redir(exec, i) == 1)
 		return (1);
 	if (ft_strncmp(exec->execlist->arg[0], "echo", 5) == 0)
-		ft_echo(exec);
+		err = ft_echo(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "env", 4) == 0)
-		env(exec);
+		err = env(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "cd", 3) == 0)
-		ft_cd(exec);
+		err = ft_cd(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "pwd", 4) == 0)
-		pwd();
+		err = pwd();
 	else if (ft_strncmp(exec->execlist->arg[0], "unset", 6) == 0)
-		unset(exec);
+		err = unset(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "export", 7) == 0)
-		ft_export(exec);
+		err = ft_export(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "exit", 5) == 0)
-		minishell_exit(exec);
-	return (0);
+		err = minishell_exit(exec);
+	return (err);
 }
 
 int	ft_only_one_cmd(t_shell *shell)
 {
 	if (get_var_value(shell->environement_list, "PATH") != NULL
-		|| ((ft_for_builtins(shell->execlist->arg[0]) == 1)
-			&& ft_strncmp(shell->execlist->arg[0], "env", 4) != 0))
+		|| (((ft_for_builtins(shell->execlist->arg[0]) == 1)
+				&& ft_strncmp(shell->execlist->arg[0], "env", 3) != 0)
+			|| (access(shell->execlist->arg[0], F_OK) == 0)))
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
-			exec_builtins(shell, 0);
+		{
+			shell->general->b_err = exec_builtins(shell, 0);
+		}
 		else
 		{
 			if (ft_solo_child(shell) == 1)
@@ -81,8 +87,9 @@ int	ft_only_one_cmd(t_shell *shell)
 int	ft_multi_cmd2(t_shell *shell, int i)
 {
 	if (get_var_value(shell->environement_list, "PATH") != NULL
-		|| ((ft_for_builtins(shell->execlist->arg[0]) == 1)
-			&& ft_strncmp(shell->execlist->arg[0], "env", 4) != 0))
+		|| (((ft_for_builtins(shell->execlist->arg[0]) == 1)
+				&& ft_strncmp(shell->execlist->arg[0], "env", 3) != 0)
+			|| (access(shell->execlist->arg[0], F_OK) == 0)))
 	{
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1)
 		{

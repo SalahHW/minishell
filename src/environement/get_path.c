@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 02:36:30 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 17:24:36 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:47:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static char	**get_paths_array(t_envlist *env_list)
 
 	i = 0;
 	path = get_var_value(env_list, "PATH");
+	if (path == NULL)
+		return (NULL);
 	path_array = ft_split(path, ':');
 	while (path_array[i])
 	{
@@ -40,6 +42,8 @@ void	get_cmd_path(t_shell *shell)
 
 	i = 0;
 	path_array = get_paths_array(shell->environement_list);
+	if (path_array == NULL)
+		return ;
 	while (path_array[i])
 	{
 		cmd_full_path = ft_strjoin(path_array[i], shell->execlist->cmd_path);

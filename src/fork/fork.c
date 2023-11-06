@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 17:07:57 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:14:26 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_parent_process(t_shell *shell, int nbprocess)
 		waitpid(-1, &status, 0);
 		if (ft_for_builtins(shell->execlist->arg[0]) == 1 && nbprocess == 1)
 		{
-			shell->last_exit_code = 0;
+			shell->last_exit_code = shell->general->b_err;
 		}
 		else
 			shell->last_exit_code = status % 255;

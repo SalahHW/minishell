@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 02:09:36 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:06:29 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_general
 	int							*pids;
 	int							fd_in;
 	int							fd_out;
+	int							b_err;
 }								t_general;
 
 typedef struct s_shell
