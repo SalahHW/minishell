@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 17:20:39 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/06 02:09:43 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	exec_builtins(t_shell *exec, int i)
 	else if (ft_strncmp(exec->execlist->arg[0], "export", 7) == 0)
 		ft_export(exec);
 	else if (ft_strncmp(exec->execlist->arg[0], "exit", 5) == 0)
-		exec->general->status = 0;
+		minishell_exit(exec);
 	return (0);
 }
 
