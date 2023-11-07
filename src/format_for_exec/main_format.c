@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/07 10:15:17 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:18:02 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,31 @@ int	ft_create_list(t_shell *shell)
 	shell->general->pids = malloc(sizeof(int) * (i + 1));
 	if (!shell->general->pids)
 		return (1);
-	// ERR malloc
 	return (0);
+}
+
+void	print_list(t_execlist *list)
+{
+	int	i;
+
+	i = 0;
+
+	while (list)
+	{
+		i = 0;
+		while (list->arg[i])
+		{
+			printf("cmd_path%s\n", list->cmd_path);
+			printf("fd_in%d\n", list->fd_in);
+			printf("fd_out%d\n", list->fd_out);
+			printf("%s ", list->arg[i]);
+			i++;
+		}
+		if (list->next != NULL)
+			list = list->next;
+		else
+			break ;
+	}
 }
 
 int	format_for_exec(t_shell *shell)
@@ -112,6 +135,7 @@ int	format_for_exec(t_shell *shell)
 		if (ft_general_pipe(shell) == 1)
 			return (1);
 	}
+	ft_h(shell);
 	ft_h(shell);
 	return (0);
 }

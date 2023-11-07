@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:12:55 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/07 12:10:13 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:57:42 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
- char	*ft_name(int i)
+char	*ft_name(int i)
 {
 	char	*name;
 	char	*tmp;
@@ -30,7 +30,7 @@ void	ft_heredoc(t_shell *shell)
 {
 	t_token *token;
 	int i;
-	 char *name;
+	char *name;
 
 	i = 0;
 	token = shell->tokens->head;
@@ -47,7 +47,5 @@ void	ft_heredoc(t_shell *shell)
 			}
 		}
 		token = token->next;
-		if (token && token->type == t_pipe)
-			shell->execlist = shell->execlist->next;
 	}
 }

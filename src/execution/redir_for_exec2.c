@@ -6,13 +6,13 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/07 12:17:23 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:24:05 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_here_heredoc(t_token *token, t_shell *shell,const char *name)
+int	ft_here_heredoc(t_token *token, t_shell *shell, const char *name)
 {
 	int		fd;
 	char	*line;
@@ -98,11 +98,13 @@ t_token	*search_next_cmd(t_token *token, int i)
 
 int	ft_open_fd_in_out(t_execlist *execlist, t_token *token, t_shell *shell)
 {
+	execlist->fd_in = 0;
 	while (token && token->type != t_pipe)
 	{
-		token->fd = 0;
 		if (token->type == t_file)
 		{
+			if (token->prev && token->prev->type != t_heredoc)
+				token->fd = 0;
 			if (token->prev && (token->prev->type == t_redirect_in
 					|| token->prev->type == t_heredoc))
 			{
