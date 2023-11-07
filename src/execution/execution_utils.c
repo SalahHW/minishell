@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:12:55 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/07 13:57:42 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:41:33 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_name(int i)
 	char	*tmp;
 	char	*tmp2;
 
-	tmp = ft_strdup("tmp");
+	tmp = ft_strdup(".tmp");
 	tmp2 = ft_itoa(i);
 	name = ft_strjoin(tmp, tmp2);
 	free(tmp);

@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:15:08 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 11:17:14 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:23:55 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	error(char *cmd, char *input, int error)
 		return (error);
 	else if (error == 1)
 		write_preset_error("No such file or directory", input, cmd);
-	else if (error == 2)
-		write_preset_error("`=': not a valid identifier", input, cmd);
+	//else if (error == 2)
+	//	write_preset_error("`=': not a valid identifier", input, cmd);
 	else if (error == 3)
 		write_preset_error(": HOME not set", input, cmd);
 	else if (error == 4)

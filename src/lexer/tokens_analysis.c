@@ -6,50 +6,51 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 02:50:32 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/07 13:55:04 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:05:53 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// static int	is_redirection_type(t_token *token)
-// {
-// 	if (token->type == t_redirect_in || token->type == t_redirect_out
-// 		|| token->type == t_redirect_append || token->type == t_heredoc)
-// 		return (1);
-// 	return (0);
-// }
+static int	is_redirection_type(t_token *token)
+{
+	if (token->type == t_redirect_in || token->type == t_redirect_out
+		|| token->type == t_redirect_append || token->type == t_heredoc)
+		return (1);
+	return (0);
+}
 
-// static int	is_pipe_type(t_token *token)
-// {
-// 	if (token->type == t_pipe)
-// 		return (1);
-// 	return (0);
-// }
+static int	is_pipe_type(t_token *token)
+{
+	if (token->type == t_pipe)
+		return (1);
+	return (0);
+}
 
 static int	check_syntax(t_token *token)
 {
 	(void)token;
-	// if (is_pipe_type(token) && (!token->next || token->next->type != t_cmd))
-	// {
-	// 	printf("syntax error near unexpected token `%s'\n", token->value);
-	// 	return (2);
-	// }
-	// if (is_redirection_type(token))
-	// {
-	// 	if (!token->next)
-	// 	{
-	// 		printf("syntax error near unexpected token `newline'\n");
-	// 		return (2);
-	// 	}
-	// 	if (token->next->type != t_file)
-	// 	{
-	// 		printf("syntax error near unexpected token `%s'\n",
-	// 			token->next->value);
-	// 		return (2);
-	// 	}
-	// }
-	 return (0);
+	if (is_pipe_type(token) && (!token->next || !token->prev
+			|| token->next->type == t_pipe))
+	{
+		printf("syntax error near unexpected token `%s'\n", token->value);
+		return (2);
+	}
+	if (is_redirection_type(token))
+	{
+		if (!token->next)
+		{
+			printf("syntax error near unexpected token `newline'\n");
+			return (2);
+		}
+		if (token->next->type != t_file)
+		{
+			printf("syntax error near unexpected token `%s'\n",
+				token->next->value);
+			return (2);
+		}
+	}
+	return (0);
 }
 
 int	analyze_tokens(t_tokenlist *tokens_list)
