@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 00:07:11 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 17:05:22 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 05:20:19 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	read_user_input(t_shell *shell)
 	rl_catch_signals = 0;
 	while (shell->general->status)
 	{
+		signal_handlers(READ);
 		input = readline(shell->prompt);
 		if (input)
 		{

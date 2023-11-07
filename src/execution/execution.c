@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 12:00:52 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 05:52:39 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,17 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 	int	i;
 
 	i = 0;
+	signal_handlers(IGNORE);
 	while (i < nbprocess)
 	{
 		shell->general->pids[i] = fork();
 		if (shell->general->pids[i] == -1)
 			return (1);
 		else if (shell->general->pids[i] == 0)
+		{
+			signal_handlers(DEFAULT);
 			ft_multi_cmd2(shell, i);
+		}
 		if (shell->execlist->next)
 			shell->execlist = shell->execlist->next;
 		i++;

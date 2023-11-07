@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 01:40:17 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/06 11:20:24 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 05:20:05 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int	init_shell(t_shell *shell)
 	if (init_general_data(shell) == -1)
 		return (-1);
 	g_sigquit_received = 0;
-	setup_signal_handlers();
 	return (0);
 }
