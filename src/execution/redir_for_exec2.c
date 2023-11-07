@@ -6,18 +6,18 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 15:04:22 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:17:23 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_here_heredoc(t_token *token, t_shell *shell)
+int	ft_here_heredoc(t_token *token, t_shell *shell,const char *name)
 {
 	int		fd;
 	char	*line;
 
-	fd = open(".tmp", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		return (1);
 	while (1)
@@ -33,7 +33,7 @@ int	ft_here_heredoc(t_token *token, t_shell *shell)
 		free(line);
 	}
 	close(fd);
-	token->fd = open(".tmp", O_RDONLY);
+	token->fd = open(name, O_RDONLY);
 	if (token->fd < 0)
 		return (1);
 	return (0);
@@ -42,6 +42,7 @@ int	ft_here_heredoc(t_token *token, t_shell *shell)
 int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist,
 		t_shell *shell)
 {
+	(void)shell;
 	if (type == t_redirect_in)
 		token->fd = open(token->value, O_RDONLY, __O_DIRECTORY);
 	if (token->fd == -1)
@@ -52,12 +53,6 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist,
 			error(token->value, NULL, errno);
 			return (1);
 		}
-	}
-	if (type == t_heredoc)
-	{
-		if (ft_here_heredoc(token, shell) == 1)
-			error(token->value, NULL, errno);
-		return (1);
 	}
 	if (execlist->fd_in != 0)
 		close(execlist->fd_in);

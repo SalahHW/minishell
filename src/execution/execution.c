@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 13:38:03 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/07 05:59:56 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:12:46 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,16 +133,13 @@ int	ft_multi_cmd(t_shell *shell, int nbprocess)
 int	execute_cmd(t_shell *shell)
 {
 	int	nbprocess;
-
 	format_for_exec(shell);
 	nbprocess = ft_lst_len(shell->execlist);
+	ft_heredoc(ft_h(shell));
 	if (nbprocess == 1)
 		ft_only_one_cmd(ft_h(shell));
 	else if (nbprocess > 1)
 		ft_multi_cmd(ft_h(shell), nbprocess);
-	else
-		ft_heredoc(shell);
-	ft_h(shell);
 	dup2(shell->general->fd_in, STDIN_FILENO);
 	dup2(shell->general->fd_out, STDOUT_FILENO);
 	ft_h(shell);

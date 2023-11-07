@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:10:26 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/31 14:36:52 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:00:35 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int	ft_def_redir_out(int fd_out)
 
 int	ft_def_redir(t_shell *shell, int i)
 {
-	// shell->execlist->fd_in = 0;
-	// shell->execlist->fd_out = 1;
+	fprintf(stderr, "ft_def_redir fdin = %d fd out = %d\n", shell->execlist->fd_in, shell->execlist->fd_out);
 	if (ft_open_fd_in_out(shell->execlist, search_next_cmd(shell->tokens->head,
 				i), shell) == 1)
 	{
@@ -67,10 +66,8 @@ int	ft_def_redir(t_shell *shell, int i)
 	}
 	if (ft_def_redir_in(shell->execlist->fd_in) == 1)
 		return (1);
-	// error dup2 on in
 	if (ft_def_redir_out(shell->execlist->fd_out) == 1)
 		return (1);
-	// error dup2 on out
 	close_pipes(shell->general->nbpipes, shell->general->pipes, i);
 	return (0);
 }
