@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:30 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/04 06:56:45 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/07 07:24:12 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ static char	*get_varvalue(char *str)
 
 static int	export_error(char *varname, char *varvalue)
 {
-	printf("export: `%s': not a valid identifier\n", varname);
+	ft_putstr_fd("export: `", STDERR_FILENO);
+	ft_putstr_fd(varname, STDERR_FILENO);
+	ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
 	free(varname);
 	if (varvalue)
 		free(varvalue);
