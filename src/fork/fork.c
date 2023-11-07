@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 11:14:26 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/07 06:00:11 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	ft_solo_child(t_shell *shell)
 {
 	int	pid;
 
+	signal_handlers(IGNORE);
 	pid = fork();
 	if (pid == -1)
 		return (1);
 	else if (pid == 0)
 	{
+		signal_handlers(DEFAULT);
 		get_cmd_path(shell);
 		// path_for_execve(shell);
 		if (ft_def_redir(shell, 0) == 1)

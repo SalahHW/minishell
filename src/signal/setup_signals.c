@@ -6,48 +6,56 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 00:22:08 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/31 14:39:18 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/07 05:37:55 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static int	setup_sigquit(void)
-{
-	struct sigaction	sa;
+// static int	setup_sigquit(void)
+// {
+// 	struct sigaction	sa;
+//
+// 	g_sigquit_received = 0;
+// 	sa.sa_handler = SIG_IGN;
+// 	sa.sa_flags = 0;
+// 	sigemptyset(&sa.sa_mask);
+// 	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+// 	{
+// 		perror("Can't set SIGQUIT handler");
+// 		return (-1);
+// 	}
+// 	return (0);
+// }
+//
+// static int	setup_read_signal_handlers(void)
+// {
+// 	struct sigaction	sa;
+//
+// 	sa.sa_handler = &read_sig_handler;
+// 	sa.sa_flags = 0;
+// 	sigemptyset(&sa.sa_mask);
+// 	if (sigaction(SIGINT, &sa, NULL) == -1)
+// 		return (-1);
+// 	return (0);
+// }
 
-	g_sigquit_received = 0;
-	sa.sa_handler = SIG_IGN;
-	sa.sa_flags = 0;
-	sigemptyset(&sa.sa_mask);
-	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+void	signal_handlers(t_signal_status status)
+{
+	if (status == DEFAULT)
 	{
-		perror("Can't set SIGQUIT handler");
-		return (-1);
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 	}
-	return (0);
-}
-
-static int	setup_sigint(void)
-{
-	struct sigaction	sa;
-
-	sa.sa_handler = &handle_sigint;
-	sa.sa_flags = 0;
-	sigemptyset(&sa.sa_mask);
-	if (sigaction(SIGINT, &sa, NULL) == -1)
+	else if (status == IGNORE)
 	{
-		perror("Can't set SIGINT handler");
-		return (-1);
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 	}
-	return (0);
-}
-
-int	setup_signal_handlers(void)
-{
-	if (setup_sigquit() == -1)
-		return (-1);
-	if (setup_sigint() == -1)
-		return (-1);
-	return (0);
+	else if (status == READ)
+	{
+		rl_catch_signals = 1;
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, &read_sig_handler);
+	}
 }
