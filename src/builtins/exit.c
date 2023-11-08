@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 01:54:44 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/07 07:18:34 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 03:16:23 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int	minishell_exit(t_shell *shell)
 		shell->general->status = 0;
 	}
 	printf("exit\n");
-	if (exit_code > 255)
+	if (exit_code > 255 || exit_code < 0)
 		exit_code %= 256;
+	if (exit_code < 0)
+		exit_code += 256;
 	shell->general->status = 0;
 	return (exit_code);
 }
