@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/11/08 04:44:53 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/11/08 17:32:39 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,6 @@ SRCS 	=			main.c									\
 					execution/command_execution.c			\
 					error/error.c							\
 					fork/fork.c								\
-					test/print_tokens.c						\
 
 				
 					
