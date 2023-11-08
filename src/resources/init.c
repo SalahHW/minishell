@@ -12,8 +12,6 @@
 
 #include "../../include/minishell.h"
 
-volatile sig_atomic_t	g_sigquit_received;
-
 int	init_general_data(t_shell *shell)
 {
 	shell->general->env = NULL;
@@ -46,6 +44,5 @@ int	init_shell(t_shell *shell)
 		return (-1);
 	if (init_general_data(shell) == -1)
 		return (-1);
-	g_sigquit_received = 0;
 	return (0);
 }
