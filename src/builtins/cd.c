@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/08 02:37:17 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:46:04 by aherrman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	ft_cd(t_shell *exec)
 		exit_code = chdir(home);
 	else
 		exit_code = chdir(exec->execlist->arg[1]);
+	if (exit_code == -1)
+		error("cd", exec->execlist->arg[1], 10);
 	if (exit_code != 0)
 		return (1);
 	pwd_change(exec);
