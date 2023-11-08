@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:00:06 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/03 15:04:22 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:33:20 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	ft_token_input(t_token *token, t_tokentype type, t_execlist *execlist,
 	execlist->fd_in = token->fd;
 	return (0);
 }
+
 int	ft_token_output(t_token *token, t_tokentype type, t_execlist *execlist)
 {
 	if (type == t_redirect_out)

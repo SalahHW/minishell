@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:15:08 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 11:17:14 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:36:06 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	write_error(char *cmd, char *input, int error_no)
 	write(STDERR_FILENO, err_str, len);
 	write(STDERR_FILENO, "\n", 2);
 }
+
 void	write_preset_error(char *err, char *input, char *cmd)
 {
 	int	len;

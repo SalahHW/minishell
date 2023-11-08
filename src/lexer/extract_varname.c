@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution_utils.c                                  :+:      :+:    :+:   */
+/*   extract_varname.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 13:12:55 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/08 04:33:48 by sbouheni         ###   ########.fr       */
+/*   Created: 2023/11/08 04:41:39 by sbouheni          #+#    #+#             */
+/*   Updated: 2023/11/08 04:43:07 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	ft_heredoc(t_shell *shell)
+char	*extract_var_name(char *str)
 {
-	t_token	*token;
+	char	*var_name;
+	char	*var_start;
+	char	*var_end;
 
-	token = shell->tokens->head;
-	while (token)
-	{
-		if (token->type == t_file)
-		{
-			if (token->prev && token->prev->type == t_heredoc)
-				ft_here_heredoc(token, shell);
-		}
-		token = token->next;
-	}
+	var_start = str + 1;
+	var_end = str + 1;
+	while (*var_end && (ft_isalnum(*var_end) || *var_end == '_'))
+		var_end++;
+	var_name = ft_substr(var_start, 0, var_end - var_start);
+	return (var_name);
 }

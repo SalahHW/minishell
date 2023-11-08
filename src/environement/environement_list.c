@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:45:01 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/10/26 18:17:31 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:45:46 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	clear_environement_list(t_envlist *envlist)
 	free(envlist);
 }
 
-int environement_list_size(t_envlist *envlist)
+int	environement_list_size(t_envlist *envlist)
 {
 	t_env	*env_ptr;
 	int		size;

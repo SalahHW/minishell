@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:40:41 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 08:57:18 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:34:06 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_search_redir_input(t_token *token, t_execlist *execlist)
 	}
 	return (0);
 }
+
 int	ft_search_redir_output(t_token *token, t_execlist *execlist)
 {
 	t_token	*tmp;
@@ -50,7 +51,7 @@ int	ft_search_redir_output(t_token *token, t_execlist *execlist)
 
 int	ft_redirections(t_shell *shell)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = shell->tokens->head;
 	while (token)

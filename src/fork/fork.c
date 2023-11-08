@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:40:51 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/07 06:00:11 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:45:26 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_solo_child(t_shell *shell)
 	{
 		signal_handlers(DEFAULT);
 		get_cmd_path(shell);
-		// path_for_execve(shell);
 		if (ft_def_redir(shell, 0) == 1)
 			return (1);
 		if (execve(shell->execlist->cmd_path, shell->execlist->arg,

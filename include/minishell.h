@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 11:22:34 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 11:06:29 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:31:53 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,10 @@ void							print_execlist(t_execlist *list);
 void							ft_save_fd(t_shell *shell);
 char							*expand_heredoc_variables(t_shell *shell,
 									char *str);
+// COMMANDS EXECUTION//
+int								ft_only_one_cmd(t_shell *shell);
+int								ft_multi_cmd(t_shell *shell, int nbprocess);
+int								ft_multi_cmd2(t_shell *shell, int i);
+int								exec_builtins(t_shell *exec, int i);
 
 #endif
