@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:02:02 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/01 09:41:44 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:36:58 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ char	*ft_tab_on_one_line(char **tab)
 		tmp[k++] = ' ';
 		i++;
 	}
-	//tmp[k] = '\0';
 	return (tmp);
 }

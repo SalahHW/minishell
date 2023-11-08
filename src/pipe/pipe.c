@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:36:12 by aherrman          #+#    #+#             */
-/*   Updated: 2023/10/30 18:47:23 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:35:39 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	ft_define_in_pipe(t_shell *shell, int nbpipes)
 
 int	ft_malloc_pipe(int nbpipes, int ***pipefd)
 {
-	// frr t sah
 	int	i;
 
 	i = 0;

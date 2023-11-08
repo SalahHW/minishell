@@ -6,7 +6,7 @@
 #    By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/24 10:04:23 by aherrman          #+#    #+#              #
-#    Updated: 2023/11/06 02:05:33 by sbouheni         ###   ########.fr        #
+#    Updated: 2023/11/08 04:44:53 by sbouheni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS 	=			main.c									\
 					lexer/quote_process.c					\
 					lexer/expansion.c						\
 					lexer/tokens_analysis.c					\
+					lexer/extract_varname.c					\
 					prompt/prompt.c							\
 					redirection/in_and_out.c				\
 					signal/setup_signals.c					\
@@ -62,6 +63,7 @@ SRCS 	=			main.c									\
 					execution/execution_utils.c				\
 					execution/redir_for_exec.c				\
 					execution/redir_for_exec2.c				\
+					execution/command_execution.c			\
 					error/error.c							\
 					fork/fork.c								\
 					test/print_tokens.c						\

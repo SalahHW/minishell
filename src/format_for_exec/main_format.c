@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:44:42 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/06 11:19:04 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:26:23 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	ft_format_for_tokens(t_shell *shell)
 	}
 	return (0);
 }
+
 int	ft_create_list(t_shell *shell)
 {
 	t_token	*tmp;
@@ -87,7 +88,6 @@ int	ft_create_list(t_shell *shell)
 	shell->general->pids = malloc(sizeof(int) * (i + 1));
 	if (!shell->general->pids)
 		return (1);
-	// ERR malloc
 	return (0);
 }
 

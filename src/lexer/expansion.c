@@ -6,25 +6,11 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:29:54 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 16:50:44 by aherrman         ###   ########.fr       */
+/*   Updated: 2023/11/08 04:42:51 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-char	*extract_var_name(char *str)
-{
-	char	*var_name;
-	char	*var_start;
-	char	*var_end;
-
-	var_start = str + 1;
-	var_end = str + 1;
-	while (*var_end && (ft_isalnum(*var_end) || *var_end == '_'))
-		var_end++;
-	var_name = ft_substr(var_start, 0, var_end - var_start);
-	return (var_name);
-}
 
 static int	get_expanded_len(t_shell *shell, char *str)
 {
