@@ -6,23 +6,14 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/08 12:47:43 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:28:30 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static void	update_pwd(t_envlist *environement_list)
+static void	handle_old_pwd(t_envlist *env_list, t_env *pwd, t_env *oldpwd)
 {
-	char	*current_dir;
-	t_env	*pwd;
-	t_env	*oldpwd;
-
-	current_dir = getcwd(NULL, 0);
-	pwd = get_var_node(environement_list, "PWD");
-	oldpwd = get_var_node(environement_list, "OLDPWD");
-	if (!current_dir)
-		return ;
 	if (oldpwd)
 	{
 		free(oldpwd->var_value);
@@ -32,16 +23,37 @@ static void	update_pwd(t_envlist *environement_list)
 	else
 	{
 		if (pwd)
-			add_new_var(environement_list, "OLDPWD", ft_strdup(pwd->var_value));
+			add_new_var(env_list, ft_strdup("OLDPWD"),
+				ft_strdup(pwd->var_value));
 	}
+}
+
+static void	handle_pwd(t_envlist *env_list, t_env *pwd)
+{
+	char	*current_dir;
+
+	current_dir = getcwd(NULL, 0);
+	if (!current_dir)
+		return ;
 	if (pwd)
 	{
 		free(pwd->var_value);
 		pwd->var_value = ft_strdup(current_dir);
 	}
 	else
-		add_new_var(environement_list, "PWD", ft_strdup(current_dir));
+		add_new_var(env_list, ft_strdup("PWD"), ft_strdup(current_dir));
 	free(current_dir);
+}
+
+static void	update_pwd(t_envlist *environement_list)
+{
+	t_env	*pwd;
+	t_env	*oldpwd;
+
+	pwd = get_var_node(environement_list, "PWD");
+	oldpwd = get_var_node(environement_list, "OLDPWD");
+	handle_old_pwd(environement_list, pwd, oldpwd);
+	handle_pwd(environement_list, pwd);
 }
 
 static int	cd_argc_error(void)
