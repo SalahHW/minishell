@@ -6,11 +6,43 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/08 02:37:17 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 06:13:49 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+static void	update_pwd(t_envlist *environement_list)
+{
+	char	*current_dir;
+	t_env	*pwd;
+	t_env	*oldpwd;
+
+	current_dir = getcwd(NULL, 0);
+	pwd = get_var_node(environement_list, "PWD");
+	oldpwd = get_var_node(environement_list, "OLDPWD");
+	if (!current_dir)
+		return ;
+	if (oldpwd)
+	{
+		free(oldpwd->var_value);
+		if (pwd)
+			oldpwd->var_value = ft_strdup(pwd->var_value);
+	}
+	else
+	{
+		if (pwd)
+			add_new_var(environement_list, "OLDPWD", ft_strdup(pwd->var_value));
+	}
+	if (pwd)
+	{
+		free(pwd->var_value);
+		pwd->var_value = ft_strdup(current_dir);
+	}
+	else
+		add_new_var(environement_list, "PWD", ft_strdup(current_dir));
+	free(current_dir);
+}
 
 static int	cd_argc_error(void)
 {
@@ -43,6 +75,6 @@ int	ft_cd(t_shell *exec)
 		exit_code = chdir(exec->execlist->arg[1]);
 	if (exit_code != 0)
 		return (1);
-	pwd_change(exec);
+	update_pwd(exec->environement_list);
 	return (0);
 }
