@@ -6,7 +6,7 @@
 /*   By: aherrman <aherrman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 09:10:35 by aherrman          #+#    #+#             */
-/*   Updated: 2023/11/08 15:28:30 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:35:34 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	handle_old_pwd(t_envlist *env_list, t_env *pwd, t_env *oldpwd)
 {
 	if (oldpwd)
 	{
-		free(oldpwd->var_value);
+		if (oldpwd->var_value)
+			free(oldpwd->var_value);
 		if (pwd)
 			oldpwd->var_value = ft_strdup(pwd->var_value);
 	}
@@ -37,7 +38,8 @@ static void	handle_pwd(t_envlist *env_list, t_env *pwd)
 		return ;
 	if (pwd)
 	{
-		free(pwd->var_value);
+		if (pwd->var_value)
+			free(pwd->var_value);
 		pwd->var_value = ft_strdup(current_dir);
 	}
 	else
