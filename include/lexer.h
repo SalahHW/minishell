@@ -6,7 +6,7 @@
 /*   By: sbouheni <sbouheni@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:40:53 by sbouheni          #+#    #+#             */
-/*   Updated: 2023/11/03 03:45:47 by sbouheni         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:45:03 by sbouheni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef enum e_tokentype
 	t_redirect_append,
 	t_heredoc,
 	t_file,
-	t_exit_status,
 }						t_tokentype;
 
 typedef struct s_token
